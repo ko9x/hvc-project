@@ -91,7 +91,6 @@ function standardCLogic(standardSerial, configChars, sequenceNum) {
             }
         }
     }
-    presentErrorMessage('is not valid');
 }
 
 // General Configuration Identification Logic
@@ -100,13 +99,26 @@ function findConfiguration() {
         presentErrorMessage('is not 11 characters');
     }
     let capitalizedSearchItem = searchItem.value.toUpperCase();
+    let configChars = capitalizedSearchItem.slice(0, 6);
+    let sequenceNum = capitalizedSearchItem.slice(-5);
     if(capitalizedSearchItem.charAt(0) !== 'F') {
         presentErrorMessage("does not start with character 'F'");
     };
-    let sequenceNum = capitalizedSearchItem.slice(-5);
-    let configChars = capitalizedSearchItem.slice(0, 6);
     if(capitalizedSearchItem.charAt(1) === '9' || '2') {
         standardCLogic(capitalizedSearchItem, configChars, sequenceNum);
     }
+    if(capitalizedSearchItem.charAt(1) === 'S') {
+        if(configChars === 'FSXXXX') {
+            systemDetails.innerText = 'Super C 9" Image Intensifier with Control Panel (non-tablet)';
+            partNumber.innerText = '5877921';
+            return;
+        }
+        if(configChars === 'FSXXTX') {
+            systemDetails.innerText = 'Super C 9" Image Intensifier with Tablet';
+            partNumber.innerText = '5877921';
+            return;
+        }
+    }
+    presentErrorMessage('is not valid')
 };
 
