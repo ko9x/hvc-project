@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>High Voltage Cable Finder</title>
+    <style>
+       body {
+        background-color: #282c34;
+       }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 100px;
+        background-color: white;
+        border-radius: 25px;
+        min-height: 400px;
+      }
+    </style>
     <script src="main.js" defer type="module"></script>
-</head>
-<body>
-    <h1>High Voltage Cable Finder</h1>
-    <h3>Identify the correct High Voltage Cable part number using the System Serial Number</h3>
-    <div id="searchSection">
-        <input id="searchItem" placeholder="Enter Serial Number"/>
+  </head>
+  <body>
+    <div class="container">
+      <h1>High Voltage Cable Finder</h1>
+      <h3>
+        Identify the correct High Voltage Cable part number using the System
+        Serial Number
+      </h3>
+      <div id="searchSection">
+        <input id="searchItem" placeholder="Enter Serial Number" />
         <button id="executeSearch">Search</button>
         <button id="clearSearch">Clear</button>
-    </div>
-    <div id="resultSection">
+      </div>
+      <div id="resultSection">
         <h1 id="invalidSerial"></h1>
         <h2>System Configuration Details:</h2>
         <div id="systemDetails"></div>
         <h2>High Voltage Cable Part#:</h2>
         <div id="partNumber"></div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
