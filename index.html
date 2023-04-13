@@ -8,15 +8,41 @@
     <style>
       body {
         background-color: #282c34;
+        font-family: Arial, Helvetica, sans-serif;
+        color: rgb(100, 0, 160);
+        text-shadow: 0.5px 1px 2px pink;
       }
       .container {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-around;
         padding: 100px;
         background-color: white;
         border-radius: 25px;
-        min-height: 400px;
+        min-height: 600px;
+      }
+      .resultSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: rgb(100, 0, 160);
+        color: white;
+        border-radius: 10px;
+        min-height: 250px;
+        min-width: 500px;
+        text-shadow: 3px 3px 3px black;
+      }
+      .resultSectionHide {
+        background-color: white;
+        text-shadow: none;
+      }
+      .resultSectionItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100px;
       }
       input {
         width: 400px;
@@ -62,7 +88,10 @@
         Identify the correct High Voltage Cable part number using the System
         Serial Number
       </h3>
-      <div id="searchSection" style="display: flex; width: 48%; justify-content: space-around;">
+      <div
+        id="searchSection"
+        style="display: flex; width: 48%; justify-content: space-around"
+      >
         <input
           id="searchItem"
           type="search"
@@ -70,12 +99,18 @@
         />
         <button id="executeSearch">Search</button>
       </div>
-      <div id="resultSection">
+      <div id="errorSection" class="errorSection">
         <h1 id="invalidSerial"></h1>
-        <h2>System Configuration Details:</h2>
-        <div id="systemDetails"></div>
-        <h2>High Voltage Cable Part#:</h2>
-        <div id="partNumber"></div>
+      </div>
+      <div id="resultSection" class="resultSection">
+        <div class="resultSectionItem">
+          <h2>System Configuration Details:</h2>
+          <div id="systemDetails"></div>
+        </div>
+        <div class="resultSectionItem">
+          <h2>High Voltage Cable Part#:</h2>
+          <div id="partNumber"></div>
+        </div>
       </div>
     </div>
   </body>

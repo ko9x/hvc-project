@@ -1,4 +1,5 @@
 const resultSection = document.getElementById("resultSection");
+const resultSubSection = document.getElementById("resultSubSection");
 const searchItem = document.getElementById("searchItem");
 const executeSearch = document.getElementById("executeSearch");
 const clearSearch = document.getElementById("clearSearch");
@@ -53,11 +54,11 @@ function clearResults() {
 }
 
 function showResultsSection() {
-  document.getElementById("resultSection").style.display = "block";
+  resultSection.classList.remove('resultSectionHide');
 }
 
 function hideResultsSection() {
-  document.getElementById("resultSection").style.display = "none";
+    resultSection.classList.add('resultSectionHide');
 }
 
 function displayResults(configurationDescription, partDescription) {
