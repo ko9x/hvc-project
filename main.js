@@ -25,7 +25,13 @@ searchItem.addEventListener("keypress", (e) => {
 });
 
 executeSearch.addEventListener("click", () => {
-  findConfiguration();
+    findConfiguration();
+    executeSearch.style.backgroundColor = 'rgb(100, 0, 160)';
+    executeSearch.style.color = 'white';
+    setTimeout(() => {
+        executeSearch.style.color = 'black';
+        executeSearch.style.backgroundColor = 'transparent'
+    }, 100)
 });
 
 clearSearch.addEventListener("click", () => {

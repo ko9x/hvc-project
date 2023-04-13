@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>High Voltage Cable Finder</title>
     <style>
-       body {
+      body {
         background-color: #282c34;
-       }
+      }
       .container {
         display: flex;
         flex-direction: column;
@@ -17,6 +17,40 @@
         background-color: white;
         border-radius: 25px;
         min-height: 400px;
+      }
+      input {
+        width: 400px;
+        height: 40px;
+        border-radius: 25px;
+        border-width: 1px;
+        padding-left: 15px;
+        font-size: large;
+        text-transform: uppercase;
+      }
+      input::placeholder {
+        padding-left: 2px;
+        font-size: medium;
+        text-transform: capitalize;
+      }
+      input:focus {
+        outline-style: solid;
+        outline-width: 2px;
+        outline-color: rgb(100, 0, 160);
+      }
+      input::-webkit-search-cancel-button {
+        cursor: pointer;
+        padding-right: 5px;
+      }
+      button {
+        background-color: transparent;
+        border-radius: 25px;
+        border-width: 1px;
+      }
+      button:hover {
+        cursor: pointer;
+        outline-style: solid;
+        outline-width: 2px;
+        outline-color: rgb(100, 0, 160);
       }
     </style>
     <script src="main.js" defer type="module"></script>
@@ -28,10 +62,13 @@
         Identify the correct High Voltage Cable part number using the System
         Serial Number
       </h3>
-      <div id="searchSection">
-        <input id="searchItem" placeholder="Enter Serial Number" />
+      <div id="searchSection" style="display: flex; width: 48%; justify-content: space-around;">
+        <input
+          id="searchItem"
+          type="search"
+          placeholder="Enter Serial Number"
+        />
         <button id="executeSearch">Search</button>
-        <button id="clearSearch">Clear</button>
       </div>
       <div id="resultSection">
         <h1 id="invalidSerial"></h1>
