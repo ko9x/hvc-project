@@ -124,12 +124,14 @@ function standardCLogic(standardSerial, configChars, sequenceNum) {
 function findConfiguration() {
   if (searchItem.value.length !== 11) {
     presentErrorMessage("is not 11 characters");
+    return;
   }
   let capitalizedSearchItem = searchItem.value.toUpperCase();
   let configChars = capitalizedSearchItem.slice(0, 6);
   let sequenceNum = capitalizedSearchItem.slice(-5);
   if (capitalizedSearchItem.charAt(0) !== "F") {
-    presentErrorMessage("does not start with character 'F'");
+      presentErrorMessage("does not start with character 'F'");
+      return;
   }
   if (capitalizedSearchItem.charAt(1) === "9" || "2") {
     standardCLogic(capitalizedSearchItem, configChars, sequenceNum);
