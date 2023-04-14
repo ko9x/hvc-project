@@ -139,30 +139,37 @@ function superC9Logic(configChars) {
 
 // Standard C Configuration Logic
 function standardCLogic(configChars, sequenceNum) {
+  const cable1 = '5443126';
+  const cable2 = '5792202 (if unavailable order 5877920)';
+  const cable3 = '5877920';
+  const configDescription1 = 'Standard C 9" Image Intensifier';
+  const configDescription2 = 'Standard C 12" Image Intensifier';
+  const interfaceDescription1 = ' with Control Panel (non-tablet)';
+  const interfaceDescription2 = ' with Tablet';
   if (configChars.charAt(4) !== "T") {
     if (configChars === "F9XXXX") {
       if (sequenceNum < "00035") {
         displayResults(
-          'Standard C 9" Image Intensifier with Control Panel (non-tablet)',
-          "5443126"
+          `${configDescription1} ${interfaceDescription1}`,
+          cable1
         );
       } else {
         displayResults(
-          'Standard C 9" Image Intensifier with Control Panel (non-tablet)',
-          "5792202 (if unavailable order 5877920)"
+          `${configDescription1} ${interfaceDescription1}`,
+          cable2
         );
       }
     }
     if (configChars === "F2XXXX") {
       if (sequenceNum < "00032") {
         displayResults(
-          'Standard C 12" Image Intensifier with Control Panel (non-tablet)',
-          "5443126"
+          `${configDescription2} ${interfaceDescription1}`,
+          cable1
         );
       } else {
         displayResults(
-          'Standard C 12" Image Intensifier with Control Panel (non-tablet)',
-          "5792202 (if unavailable order 5877920)"
+          `${configDescription2} ${interfaceDescription1}`,
+          cable2
         );
       }
     }
@@ -170,26 +177,26 @@ function standardCLogic(configChars, sequenceNum) {
     if (configChars === "F9XXTX") {
       if (sequenceNum < "00134") {
         displayResults(
-          'Standard C 9" Image Intensifier with Tablet',
-          "5792202 (if unavailable order 5877920)"
+          `${configDescription1} ${interfaceDescription2}`,
+          cable2
         );
       } else {
         displayResults(
-          'Standard C 9" Image Intensifier with Tablet',
-          "5877920"
+          `${configDescription1} ${interfaceDescription2}`,
+          cable3
         );
       }
     }
     if (configChars === "F2XXTX") {
       if (sequenceNum < "00299") {
         displayResults(
-          'Standard C 12" Image Intensifier with Tablet',
-          "5792202 (if unavailable order 5877920)"
+          `${configDescription2} ${interfaceDescription2}`,
+          cable2
         );
       } else {
         displayResults(
-          'Standard C 12" Image Intensifier with Tablet',
-          "5877920"
+          `${configDescription2} ${interfaceDescription2}`,
+          cable3
         );
       }
     }
