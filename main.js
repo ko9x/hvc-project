@@ -1,5 +1,5 @@
 const resultSection = document.getElementById("resultSection");
-const resultSubSection = document.getElementById("resultSubSection");
+const resultSectionContainer = document.getElementById("resultSectionContainer");
 const searchItem = document.getElementById("searchItem");
 const executeSearch = document.getElementById("executeSearch");
 const clearSearch = document.getElementById("clearSearch");
@@ -8,8 +8,12 @@ const topResultContent = document.getElementById("topResultContent");
 const bottomResultLabel = document.getElementById("bottomResultLabel");
 const bottomResultContent = document.getElementById("bottomResultContent");
 
-// This section runs every time the app loads
+// This runs every time the app loads
 hideResultsSection();
+
+// I add and remove the resultSectionContainer class to hide a weird flash when the page loads
+resultSectionContainer.classList.remove('resultSectionContainer');
+
 
 // Event Listeners
 searchItem.addEventListener("focus", () => {

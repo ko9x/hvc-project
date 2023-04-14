@@ -47,6 +47,10 @@
         border-radius: 10px;
         box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
       }
+      .resultSectionContainer {
+        min-height: 250px;
+        display: none;
+      }
       .resultSection {
         display: flex;
         flex-direction: column;
@@ -65,14 +69,13 @@
         background-color: white;
         text-shadow: none;
         box-shadow: none;
-        height: 1px;
+        min-height: 60px;
         transition-duration: 500ms;
       }
       .sectionItem {
         display: flex;
         flex-direction: column;
         align-items: center;
-        min-height: 100px;
       }
       input {
         width: 400px;
@@ -130,14 +133,16 @@
         />
         <button id="executeSearch">Search</button>
       </div>
-      <div id="resultSection" class="resultSection">
-        <div class="sectionItem">
-          <h2 id="topResultLabel"></h2>
-          <div id="topResultContent"></div>
-        </div>
-        <div class="sectionItem">
-          <h2 id="bottomResultLabel"></h2>
-          <div id="bottomResultContent"></div>
+      <div class="resultSectionContainer" id="resultSectionContainer">
+        <div id="resultSection" class="resultSection">
+          <div class="sectionItem">
+            <h2 id="topResultLabel"></h2>
+            <div id="topResultContent"></div>
+          </div>
+          <div class="sectionItem">
+            <h2 id="bottomResultLabel"></h2>
+            <div id="bottomResultContent"></div>
+          </div>
         </div>
       </div>
     </div>
