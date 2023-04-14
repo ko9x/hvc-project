@@ -75,8 +75,53 @@ const ergoConfigs = ['FAXXXE', 'FAXXTE', 'FBXXXE', 'FBXXTE'];
 const motorizedConfigs = ['FAMHXX', 'FAMHTX', 'FBMHXX', 'FBMHTX'];
 
 // Super C FPD Configuration Logic
-function superCFPDLogic() {
-
+function superCFPDLogic(configChars, sequenceNum) {
+  const cable1 = '5458880';
+  const cable2 = '5790094';
+  const configDescription1 = 'Super C 21cm Flat Panel Display';
+  const configDescription2 = 'Super C 31cm Flat Panel Display';
+  const interfaceDescription1 = ' with Control Panel (non-tablet)';
+  const interfaceDescription2 = ' with Tablet';
+  if (configChars.charAt(4) !== "T") {
+    if (configChars === 'FAHXXX') {
+      if (sequenceNum < '00107') {
+        displayResults(
+          `${configDescription1} ${interfaceDescription1}`,
+          cable1
+        );
+      } else {
+        displayResults(
+          `${configDescription1} ${interfaceDescription1}`,
+          cable2
+        );
+      }
+    }
+    if (configChars === 'FBHXXX') {
+      if (sequenceNum < '00196') {
+        displayResults(
+          `${configDescription2} ${interfaceDescription1}`,
+          cable1
+        );
+      } else {
+        displayResults(
+          `${configDescription2} ${interfaceDescription1}`,
+          cable2
+        );
+      }
+    }
+  } else {
+    if (configChars === 'FAHXTX') {
+      displayResults(
+        `${configDescription1} ${interfaceDescription2}`,
+        cable2
+      );
+    } else {
+      displayResults(
+        `${configDescription2} ${interfaceDescription2}`,
+        cable2
+      );
+    }
+  }
 }
 
 // Super C 9" Configuration Logic
