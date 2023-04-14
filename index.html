@@ -23,6 +23,11 @@
         border-radius: 25px;
         min-height: 600px;
       }
+      .searchSection {
+        display: flex;
+        width: 48%;
+        justify-content: space-around;
+      }
       .resultSection {
         display: flex;
         flex-direction: column;
@@ -40,18 +45,6 @@
         text-shadow: none;
       }
       .sectionItem {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100px;
-      }
-      .errorSection {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-width: 500px;
-      }
-      .errorSectionItem {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -103,7 +96,7 @@
       </h3>
       <div
         id="searchSection"
-        style="display: flex; width: 48%; justify-content: space-around"
+        class="searchSection"
       >
         <input
           id="searchItem"
