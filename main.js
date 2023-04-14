@@ -67,9 +67,34 @@ function displayResults(topDescription, bottomDescription) {
   return;
 }
 
+// Configuration Check Array Section
+const standardConfigs = ['F9XXXX', 'F9XXTX', 'F2XXXX', 'F2XXTX'];
+const superC9Configs = ['FSXXXX', 'FSXXTX'];
+const superCFPDConfigs = ['FAHXXX', 'FAHXTX', 'FBHXXX', 'FBHXTX'];
+const ergoConfigs = ['FAXXXE', 'FAXXTE', 'FBXXXE', 'FBXXTE'];
+const motorizedConfigs = ['FAMHXX', 'FAMHTX', 'FBMHXX', 'FBMHTX'];
+
+// Super C FPD Configuration Logic
+function superCFPDLogic() {
+
+}
+
+// Super C 9" Configuration Logic
+function superC9Logic(configChars) {
+  if (configChars === "FSXXXX") {
+    displayResults(
+      'Super C 9" Image Intensifier with Control Panel (non-tablet)',
+      "5877921"
+    );
+  }
+  if (configChars === "FSXXTX") {
+    displayResults('Super C 9" Image Intensifier with Tablet', "5877921");
+  }
+}
+
 // Standard C Configuration Logic
-function standardCLogic(standardSerial, configChars, sequenceNum) {
-  if (standardSerial.charAt(4) !== "T") {
+function standardCLogic(configChars, sequenceNum) {
+  if (configChars.charAt(4) !== "T") {
     if (configChars === "F9XXXX") {
       if (sequenceNum < "00035") {
         displayResults(
@@ -139,18 +164,17 @@ function findConfiguration() {
       displayResults("The Serial Number entered does not start with character 'F'");
       return;
   }
-  if (capitalizedSearchItem.charAt(1) === "9" || "2") {
-    standardCLogic(capitalizedSearchItem, configChars, sequenceNum);
+  if (standardConfigs.includes(configChars)) {
+    standardCLogic(configChars, sequenceNum);
+    return;
   }
-  if (capitalizedSearchItem.charAt(1) === "S") {
-    if (configChars === "FSXXXX") {
-      displayResults(
-        'Super C 9" Image Intensifier with Control Panel (non-tablet)',
-        "5877921"
-      );
-    }
-    if (configChars === "FSXXTX") {
-      displayResults('Super C 9" Image Intensifier with Tablet', "5877921");
-    }
+  if (superC9Configs.includes(configChars)) {
+    superC9Logic(configChars);
+    return;
   }
+  if (superCFPDConfigs.includes(configChars)) {
+    superCFPDLogic(configChars, sequenceNum);
+    return;
+  }
+  displayResults('The Serial Number entered does not match any Elite configurations');
 }
