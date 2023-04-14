@@ -75,8 +75,52 @@ const ergoCConfigs = ['FAXXXE', 'FAXXTE', 'FBXXXE', 'FBXXTE'];
 const motorizedConfigs = ['FAMHXX', 'FAMHTX', 'FBMHXX', 'FBMHTX'];
 
 // Motorized C Configuration Logic
-function motorizedLogic() {
-
+function motorizedLogic(configChars, sequenceNum) {
+  const cable1 = '5428385';
+  const cable2 = '5786472';
+  const configDescription1 = 'Motorized C 21cm Flat Panel Display';
+  const configDescription2 = 'Motorized C 31cm Flat Panel Display';
+  const interfaceDescription1 = ' with Control Panel (non-tablet)';
+  const interfaceDescription2 = ' with Tablet';
+  if(configChars.charAt(4) !== "T") {
+    if (configChars === 'FAMHXX') {
+      if (sequenceNum < '00010') {
+        displayResults(
+          `${configDescription1} ${interfaceDescription1}`,
+          cable1
+        );
+      } else {
+        displayResults(
+          `${configDescription1} ${interfaceDescription1}`,
+          cable2
+        );
+      }
+    } else {
+      if (sequenceNum < '00021') {
+        displayResults(
+          `${configDescription2} ${interfaceDescription1}`,
+          cable1
+        );
+      } else {
+        displayResults(
+          `${configDescription2} ${interfaceDescription1}`,
+          cable2
+        );
+      }
+    }
+  } else {
+    if (configChars === 'FAMHTX') {
+      displayResults(
+        `${configDescription1} ${interfaceDescription2}`,
+        cable2
+      );
+    } else {
+      displayResults(
+        `${configDescription2} ${interfaceDescription2}`,
+        cable2
+      );
+    }
+  }
 }
 
 // Ergo C Configuration Logic
@@ -270,6 +314,10 @@ function findConfiguration() {
   }
   if (ergoCConfigs.includes(configChars)) {
     ergoCLogic(configChars, sequenceNum);
+    return;
+  }
+  if (motorizedConfigs.includes(configChars)) {
+    motorizedLogic(configChars, sequenceNum);
     return;
   }
   displayResults('The Serial Number entered does not match any Elite configurations');
