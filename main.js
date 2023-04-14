@@ -71,8 +71,43 @@ function displayResults(topDescription, bottomDescription) {
 const standardConfigs = ['F9XXXX', 'F9XXTX', 'F2XXXX', 'F2XXTX'];
 const superC9Configs = ['FSXXXX', 'FSXXTX'];
 const superCFPDConfigs = ['FAHXXX', 'FAHXTX', 'FBHXXX', 'FBHXTX'];
-const ergoConfigs = ['FAXXXE', 'FAXXTE', 'FBXXXE', 'FBXXTE'];
+const ergoCConfigs = ['FAXXXE', 'FAXXTE', 'FBXXXE', 'FBXXTE'];
 const motorizedConfigs = ['FAMHXX', 'FAMHTX', 'FBMHXX', 'FBMHTX'];
+
+// Ergo C Configuration Logic
+function ergoCLogic(configChars, sequenceNum) {
+  const cable1 = '5759488 (if unavailable, order 5792201)';
+  const cable2 = '5792201';
+  const configDescription1 = 'Ergo C 21cm Flat Panel Display';
+  const configDescription2 = 'Ergo C 31cm Flat Panel Display';
+  const interfaceDescription1 = ' with Control Panel (non-tablet)';
+  const interfaceDescription2 = ' with Tablet';
+  if (configChars.charAt(4) !== "T") {
+    if (configChars === 'FAXXXE') {
+      displayResults(
+        `${configDescription1} ${interfaceDescription1}`,
+        cable1
+      );
+    } else {
+      displayResults(
+        `${configDescription2} ${interfaceDescription1}`,
+        cable1
+      );
+    }
+  } else {
+    if (configChars === 'FAXXTE') {
+      displayResults(
+        `${configDescription1} ${interfaceDescription2}`,
+        cable2
+      );
+    } else {
+      displayResults(
+        `${configDescription2} ${interfaceDescription2}`,
+        cable2
+      );
+    }
+  }
+}
 
 // Super C FPD Configuration Logic
 function superCFPDLogic(configChars, sequenceNum) {
@@ -140,7 +175,7 @@ function superC9Logic(configChars) {
 // Standard C Configuration Logic
 function standardCLogic(configChars, sequenceNum) {
   const cable1 = '5443126';
-  const cable2 = '5792202 (if unavailable order 5877920)';
+  const cable2 = '5792202 (if unavailable, order 5877920)';
   const cable3 = '5877920';
   const configDescription1 = 'Standard C 9" Image Intensifier';
   const configDescription2 = 'Standard C 12" Image Intensifier';
@@ -226,6 +261,10 @@ function findConfiguration() {
   }
   if (superCFPDConfigs.includes(configChars)) {
     superCFPDLogic(configChars, sequenceNum);
+    return;
+  }
+  if (ergoCConfigs.includes(configChars)) {
+    ergoCLogic(configChars, sequenceNum);
     return;
   }
   displayResults('The Serial Number entered does not match any Elite configurations');
