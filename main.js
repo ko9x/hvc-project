@@ -31,7 +31,7 @@ executeSearch.addEventListener("click", () => {
     executeSearch.style.color = 'white';
     setTimeout(() => {
         executeSearch.style.color = 'black';
-        executeSearch.style.backgroundColor = 'transparent'
+        executeSearch.style.backgroundColor = 'white'
     }, 100)
 });
 
@@ -68,11 +68,16 @@ function displayResults(topDescription, bottomDescription) {
 }
 
 // Configuration Check Array Section
-const standardConfigs = ['F9XXXX', 'F9XXTX', 'F2XXXX', 'F2XXTX'];
+const standardCConfigs = ['F9XXXX', 'F9XXTX', 'F2XXXX', 'F2XXTX'];
 const superC9Configs = ['FSXXXX', 'FSXXTX'];
 const superCFPDConfigs = ['FAHXXX', 'FAHXTX', 'FBHXXX', 'FBHXTX'];
 const ergoCConfigs = ['FAXXXE', 'FAXXTE', 'FBXXXE', 'FBXXTE'];
 const motorizedConfigs = ['FAMHXX', 'FAMHTX', 'FBMHXX', 'FBMHTX'];
+
+// Motorized C Configuration Logic
+function motorizedLogic() {
+
+}
 
 // Ergo C Configuration Logic
 function ergoCLogic(configChars, sequenceNum) {
@@ -251,7 +256,7 @@ function findConfiguration() {
       displayResults("The Serial Number entered does not start with character 'F'");
       return;
   }
-  if (standardConfigs.includes(configChars)) {
+  if (standardCConfigs.includes(configChars)) {
     standardCLogic(configChars, sequenceNum);
     return;
   }
