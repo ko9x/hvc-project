@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <title>High Voltage Cable Finder</title>
     <style>
       body {
         background-color: #282c34;
-        font-family: Arial, Helvetica, sans-serif;
-        color: rgb(100, 0, 160);
-        text-shadow: 0.5px 1px 2px pink;
+        font-family: 'Source Sans Pro', sans-serif;
+        color: #6022A6;
+        text-shadow: 1px 2px 2px rgba(0,0,0,0.3);
       }
       .container {
         display: flex;
@@ -27,7 +28,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
-        background-color: rgb(100, 0, 160);
+        background-color: #6022A6;
         color: white;
         border-radius: 10px;
         min-height: 250px;
@@ -38,7 +39,19 @@
         background-color: white;
         text-shadow: none;
       }
-      .resultSectionItem {
+      .sectionItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100px;
+      }
+      .errorSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 500px;
+      }
+      .errorSectionItem {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -61,7 +74,7 @@
       input:focus {
         outline-style: solid;
         outline-width: 2px;
-        outline-color: rgb(100, 0, 160);
+        outline-color: #6022A6;
       }
       input::-webkit-search-cancel-button {
         cursor: pointer;
@@ -76,7 +89,7 @@
         cursor: pointer;
         outline-style: solid;
         outline-width: 2px;
-        outline-color: rgb(100, 0, 160);
+        outline-color: #6022A6;
       }
     </style>
     <script src="main.js" defer type="module"></script>
@@ -99,17 +112,14 @@
         />
         <button id="executeSearch">Search</button>
       </div>
-      <div id="errorSection" class="errorSection">
-        <h1 id="invalidSerial"></h1>
-      </div>
       <div id="resultSection" class="resultSection">
-        <div class="resultSectionItem">
-          <h2>System Configuration Details:</h2>
-          <div id="systemDetails"></div>
+        <div class="sectionItem">
+          <h2 id="topResultLabel"></h2>
+          <div id="topResultContent"></div>
         </div>
-        <div class="resultSectionItem">
-          <h2>High Voltage Cable Part#:</h2>
-          <div id="partNumber"></div>
+        <div class="sectionItem">
+          <h2 id="bottomResultLabel"></h2>
+          <div id="bottomResultContent"></div>
         </div>
       </div>
     </div>

@@ -3,11 +3,10 @@ const resultSubSection = document.getElementById("resultSubSection");
 const searchItem = document.getElementById("searchItem");
 const executeSearch = document.getElementById("executeSearch");
 const clearSearch = document.getElementById("clearSearch");
-const invalidSerial = document.getElementById("invalidSerial");
-const systemDetails = document.getElementById("systemDetails");
-const partNumber = document.getElementById("partNumber");
-const errorMessage = "<h6>Please enter a valid Elite System Serial Number<h6>";
-let resultsIsHidden = false;
+const topResultLabel = document.getElementById("topResultLabel");
+const topResultContent = document.getElementById("topResultContent");
+const bottomResultLabel = document.getElementById("bottomResultLabel");
+const bottomResultContent = document.getElementById("bottomResultContent");
 
 // This section runs every time the app loads
 hideResultsSection();
@@ -27,6 +26,7 @@ searchItem.addEventListener("keypress", (e) => {
 
 executeSearch.addEventListener("click", () => {
     findConfiguration();
+    // Make the search button change color for 100ms when the user clicks it
     executeSearch.style.backgroundColor = 'rgb(100, 0, 160)';
     executeSearch.style.color = 'white';
     setTimeout(() => {
@@ -35,22 +35,12 @@ executeSearch.addEventListener("click", () => {
     }, 100)
 });
 
-clearSearch.addEventListener("click", () => {
-  searchItem.value = "";
-  clearResults();
-});
-
-function presentErrorMessage(uniqueMessage) {
-  invalidSerial.innerHTML = `<h5>Entered Serial Number ${uniqueMessage}</h5>${errorMessage}`;
-  systemDetails.innerHTML = "";
-  partNumber.innerHTML = "";
-}
-
 function clearResults() {
   hideResultsSection();
-  systemDetails.innerText = "";
-  partNumber.innerText = "";
-  invalidSerial.innerText = "";
+  topResultLabel.innerText = "";
+  topResultContent.innerText = "";
+  bottomResultLabel.innerText = "";
+  bottomResultContent.innerText = "";
 }
 
 function showResultsSection() {
@@ -61,10 +51,19 @@ function hideResultsSection() {
     resultSection.classList.add('resultSectionHide');
 }
 
-function displayResults(configurationDescription, partDescription) {
+function displayResults(topDescription, bottomDescription) {
+  if(bottomDescription) {
+    topResultLabel.innerText = "System Configuration Details:";
+    bottomResultLabel.innerText = "High Voltage Cable Part#:";
+    topResultContent.innerText = topDescription;
+    bottomResultContent.innerText = bottomDescription;
+  } else {
+    topResultLabel.innerText = "Invalid Serial Number";
+    bottomResultLabel.innerText = "";
+    topResultContent.innerText = topDescription;
+    bottomResultContent.innerText = 'Please enter a valid Elite Serial Number';
+  }
   showResultsSection();
-  systemDetails.innerText = configurationDescription;
-  partNumber.innerText = partDescription;
   return;
 }
 
@@ -130,14 +129,14 @@ function standardCLogic(standardSerial, configChars, sequenceNum) {
 // General Configuration Identification Logic
 function findConfiguration() {
   if (searchItem.value.length !== 11) {
-    presentErrorMessage("is not 11 characters");
+    displayResults("The Serial Number entered is not 11 characters");
     return;
   }
   let capitalizedSearchItem = searchItem.value.toUpperCase();
   let configChars = capitalizedSearchItem.slice(0, 6);
   let sequenceNum = capitalizedSearchItem.slice(-5);
   if (capitalizedSearchItem.charAt(0) !== "F") {
-      presentErrorMessage("does not start with character 'F'");
+      displayResults("The Serial Number entered does not start with character 'F'");
       return;
   }
   if (capitalizedSearchItem.charAt(1) === "9" || "2") {
