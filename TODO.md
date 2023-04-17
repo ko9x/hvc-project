@@ -3,7 +3,7 @@
 
 ### Styling
 * Light and dark mode would be cool
-    * Either way, we need plumb crazy purple
+    * Either way, we need compassion purple
 
 ### Done
 * Nicer searchbar
@@ -12,3 +12,4 @@
 * card around result section
     * cards around the canfiguration and parts sections
 * Add an animation to the result section
+* Get styles working for mobile
