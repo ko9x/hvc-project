@@ -1,8 +1,9 @@
-const resultSection = document.getElementById("resultSection");
-const resultSectionContainer = document.getElementById("resultSectionContainer");
+const titleText = document.getElementById("titleText");
+const subTitleText = document.getElementById("subTitleText");
 const searchItem = document.getElementById("searchItem");
 const executeSearch = document.getElementById("executeSearch");
-const clearSearch = document.getElementById("clearSearch");
+const resultSectionContainer = document.getElementById("resultSectionContainer");
+const resultSection = document.getElementById("resultSection");
 const topResultLabel = document.getElementById("topResultLabel");
 const topResultContent = document.getElementById("topResultContent");
 const bottomResultLabel = document.getElementById("bottomResultLabel");
@@ -10,6 +11,15 @@ const bottomResultContent = document.getElementById("bottomResultContent");
 
 // This runs every time the app loads
 hideResultsSection();
+if(window.screen.width > 750) {
+  // add non-mobile styles
+}
+if(window.screen.width < 750) {
+  // add mobile styles
+}
+
+console.log('height', window.screen.height); //@DEBUG
+console.log('width', window.screen.width); //@DEBUG
 
 // I add and remove the resultSectionContainer class to hide a weird flash when the page loads
 resultSectionContainer.classList.remove('resultSectionContainer');
