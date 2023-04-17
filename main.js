@@ -1,5 +1,8 @@
+const container = document.getElementById("container");
 const titleText = document.getElementById("titleText");
+const titleSection = document.getElementById("titleSection");
 const subTitleText = document.getElementById("subTitleText");
+const searchSection = document.getElementById("searchSection");
 const searchItem = document.getElementById("searchItem");
 const executeSearch = document.getElementById("executeSearch");
 const resultSectionContainer = document.getElementById("resultSectionContainer");
@@ -8,22 +11,28 @@ const topResultLabel = document.getElementById("topResultLabel");
 const topResultContent = document.getElementById("topResultContent");
 const bottomResultLabel = document.getElementById("bottomResultLabel");
 const bottomResultContent = document.getElementById("bottomResultContent");
+// Constants for height and width
+const width = window.innerWidth
+|| document.documentElement.clientWidth
+|| document.body.clientWidth;
+const height = window.innerHeight
+|| document.documentElement.clientHeight
+|| document.body.clientHeight;
+// Configuration arrays
+const standardCConfigs = ['F9XXXX', 'F9XXTX', 'F2XXXX', 'F2XXTX'];
+const superC9Configs = ['FSXXXX', 'FSXXTX'];
+const superCFPDConfigs = ['FAHXXX', 'FAHXTX', 'FBHXXX', 'FBHXTX'];
+const ergoCConfigs = ['FAXXXE', 'FAXXTE', 'FBXXXE', 'FBXXTE'];
+const motorizedConfigs = ['FAMHXX', 'FAMHTX', 'FBMHXX', 'FBMHTX'];
+// Create a variable to differentiate between large and small screens
+const isSmall = width < 750;
 
-// This runs every time the app loads
+// This section runs every time the app loads
 hideResultsSection();
-if(window.screen.width > 750) {
-  // add non-mobile styles
-}
-if(window.screen.width < 750) {
-  // add mobile styles
-}
+handleLayout();
 
-console.log('height', window.screen.height); //@DEBUG
-console.log('width', window.screen.width); //@DEBUG
-
-// I add and remove the resultSectionContainer class to hide a weird flash when the page loads
+// Add and remove the resultSectionContainer class to hide a weird flash when the page loads
 resultSectionContainer.classList.remove('resultSectionContainer');
-
 
 // Event Listeners
 searchItem.addEventListener("focus", () => {
@@ -40,14 +49,39 @@ searchItem.addEventListener("keypress", (e) => {
 
 executeSearch.addEventListener("click", () => {
     findConfiguration();
-    // Make the search button change color for 100ms when the user clicks it
-    executeSearch.style.backgroundColor = 'rgb(100, 0, 160)';
+    flashSearchButton();
+});
+
+// Handle layout based on the screen size
+function handleLayout() {
+  const titleTextDescription = 'Elite High Voltage Cable Finder'
+  const subTitleTextDescription = 'Identify the correct High Voltage Cable part number using the System Serial Number'
+  if(!isSmall) {
+    container.classList.add('largeContainer');
+    titleSection.classList.add('largeTitleSection');
+    searchSection.classList.add('largeSearchSection');
+    resultSection.classList.add('largeResultSection');
+    titleText.innerHTML = `<h1>${titleTextDescription}</h1>`;
+    subTitleText.innerHTML = `<h3>${subTitleTextDescription}</h3>`
+
+  }
+  if(isSmall) {
+    container.classList.add('smallContainer');
+    executeSearch.classList.add('smallButton');
+    titleText.innerHTML = `<h3>${titleTextDescription}</h3>`;
+    subTitleText.innerHTML = `<p>${subTitleTextDescription}</p>`
+  }
+}
+
+// Make the search button change color for 100ms when the user clicks it
+function flashSearchButton() {
+  executeSearch.style.backgroundColor = 'rgb(100, 0, 160)';
     executeSearch.style.color = 'white';
     setTimeout(() => {
         executeSearch.style.color = 'black';
         executeSearch.style.backgroundColor = 'white'
     }, 100)
-});
+}
 
 function clearResults() {
   hideResultsSection();
@@ -80,13 +114,6 @@ function displayResults(topDescription, bottomDescription) {
   showResultsSection();
   return;
 }
-
-// Configuration Check Array Section
-const standardCConfigs = ['F9XXXX', 'F9XXTX', 'F2XXXX', 'F2XXTX'];
-const superC9Configs = ['FSXXXX', 'FSXXTX'];
-const superCFPDConfigs = ['FAHXXX', 'FAHXTX', 'FBHXXX', 'FBHXTX'];
-const ergoCConfigs = ['FAXXXE', 'FAXXTE', 'FBXXXE', 'FBXXTE'];
-const motorizedConfigs = ['FAMHXX', 'FAMHTX', 'FBMHXX', 'FBMHTX'];
 
 // Motorized C Configuration Logic
 function motorizedLogic(configChars, sequenceNum) {
