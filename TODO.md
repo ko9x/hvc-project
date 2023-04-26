@@ -1,11 +1,13 @@
 ### Current Focus
-* Get a working version on the server
+* Continue creating the dataObj to mimic a database for storing the dataObjects
+    * This work is being done on the newly created dataObj branch
 
 ### Styling
 * Light and dark mode would be cool
     * Either way, we need compassion purple
 
 ### Done
+* Get a working version on the server
 * Nicer searchbar
 * Nicer button
 * Style the errorSection
