@@ -1,6 +1,11 @@
 ### Current Focus
-* Continue creating the dataObj to mimic a database for storing the dataObjects
-    * This work is being done on the newly created dataObj branch
+* Create dataObj branch
+    * Add logic to calulate any serial number that has a "T" in it as higher than a serial that does not have a "T"
+    * Continue creating the dataObj to mimic a database for storing the dataObjects
+        * Determine feasibility of using the current itemData object structure for all other items
+        * Create a function that can use the current itemData object to spit out the correct High Voltage Cable 
+            * Use the configs object to tell the function which config id to check the breakPoints for
+                * Maybe pass the config id as an argument to the function
 
 ### Styling
 * Light and dark mode would be cool
