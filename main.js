@@ -1,3 +1,5 @@
+import {itemInfo as HVCInfo, configs} from './dummyDatabase.js'
+
 const container = document.getElementById("container");
 const titleText = document.getElementById("titleText");
 const titleSection = document.getElementById("titleSection");
@@ -19,11 +21,6 @@ const height = window.innerHeight
 || document.documentElement.clientHeight
 || document.body.clientHeight;
 
-// Data Object
-const data = {items: [{id: 1, name: 'High Voltage Cable', CutInfo: [{}]}, {name: 'ebox'}]};
-const items = [{id: 1, name: 'High Voltage Cable', breakPoints: [{config1: []}], partInformation: [] }];
-const configs = [{id: 1, code: 'F9XXXX', description: 'Standard C 9" Image Intensifier'}];
-const cutInfo = [{configID: 1, breakPoints: [{id: 1, startsAt: 'F9XXXX00001', endsAt: 'F9XXXX00034', display: '5443126' }, {id: 2, startsAt: 'F9XXXX00035', endsAt: 'F9XXTX00133', display: '5792202 (if unavailable, order 5877920)' }, {id: 3, startsAt: 'F9XXXX00035', endsAt: null, display: '5877920' } ]}];
 // Configuration arrays
 const standardCConfigs = ['F9XXXX', 'F9XXTX', 'F2XXXX', 'F2XXTX'];
 const superC9Configs = ['FSXXXX', 'FSXXTX'];
@@ -37,7 +34,7 @@ const isSmall = width < 750;
 hideResultsSection();
 handleLayout();
 
-console.log('data.items', data.items); //@DEBUG
+console.log('HVC Info', HVCInfo); //@DEBUG
 console.log('configs all', configs); //@DEBUG
 console.log('configs', configs.find(config => config.id === 1)); //@DEBUG
 
