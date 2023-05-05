@@ -48,15 +48,15 @@ searchItem.addEventListener("focus", () => {
 
 searchItem.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    findConfiguration();
+    validateSerialNumber();
   } else {
     clearResults();
   }
 });
 
 executeSearch.addEventListener("click", () => {
-    findConfiguration();
-    flashSearchButton();
+  validateSerialNumber();
+  flashSearchButton();
 });
 
 // Handle layout based on the screen size
@@ -335,19 +335,20 @@ function standardCLogic(configChars, sequenceNum) {
   }
 }
 
-// General Configuration Identification Logic
-function findConfiguration() {
-  if (searchItem.value.length !== 11) {
-    displayResults("The Serial Number entered is not 11 characters");
-    return;
-  }
+function validateSerialNumber() {
+  let regex = /F[ABS29][HMX][HX][TX][EX]\d\d\d\d\d/i;
   let capitalizedSearchItem = searchItem.value.toUpperCase();
+  if(capitalizedSearchItem.match(regex)) {
+    findConfiguration(capitalizedSearchItem);
+  } else {
+    displayResults("The Serial Number entered is not valid");
+  }
+}
+
+// General Configuration Identification Logic
+function findConfiguration(capitalizedSearchItem) {
   let configChars = capitalizedSearchItem.slice(0, 6);
   let sequenceNum = capitalizedSearchItem.slice(-5);
-  if (capitalizedSearchItem.charAt(0) !== "F") {
-      displayResults("The Serial Number entered does not start with character 'F'");
-      return;
-  }
   if (standardCConfigs.includes(configChars)) {
     standardCLogic(configChars, sequenceNum);
     return;
