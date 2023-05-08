@@ -34,9 +34,9 @@ const isSmall = width < 750;
 hideResultsSection();
 handleLayout();
 
-console.log('HVC Info', HVCInfo); //@DEBUG
-console.log('configs all', configs); //@DEBUG
-console.log('configs', configs.find(config => config.code === 'F2XX')); //@DEBUG
+// console.log('HVC Info', HVCInfo); //@DEBUG
+// console.log('configs all', configs); //@DEBUG
+// console.log('configs', configs.find(config => config.code === 'F2XX')); //@DEBUG
 
 // Add and remove the resultSectionContainer class to hide a weird flash when the page loads
 resultSectionContainer.classList.remove('resultSectionContainer');
@@ -347,7 +347,21 @@ function validateSerialNumber() {
 
 function findBreakPoint(serialNum, breakPointArr, sequenceNum) {
   if(serialNum.charAt(4) === 'T') {
-    console.log('tablet', ); //@DEBUG
+    const infoBreakPoint = breakPointArr.find((breakPoint) => {
+      let startSequenceNum = breakPoint.startsAt.slice(-5);
+      let endSequenceNum = breakPoint.endsAt.slice(-5);
+      if(breakPoint.startsAt.charAt(4) === 'X') {
+        if(breakPoint.endsAt.charAt(4) === 'T' && endSequenceNum >= sequenceNum) {
+          return breakPoint;
+        }
+      }
+      if(breakPoint.startsAt.charAt(4) === 'T') {
+        if(startSequenceNum <= sequenceNum && endSequenceNum >= sequenceNum) {
+          return breakPoint;
+        }
+      }
+    })
+    console.log('tablet', infoBreakPoint); //@DEBUG
   }
   if(serialNum.charAt(4) === 'X') {
     const infoBreakPoint = breakPointArr.find((breakPoint) => {
