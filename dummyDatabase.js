@@ -40,10 +40,10 @@ export const configs = [
   { id: 9, code: "FBMH", description: "Motorized C 31cm Flat Panel Display" },
 ];
 
-// Here is an example of an itemInfo object that has the information filled out for configs.id 1 which is Standard 9"
-export const itemInfo = [
+// Here is an example of an items object that has the information filled out for configs.id 1 which is Standard 9"
+export const items = [
   {
-    name: "High Voltage Cable",
+    name: "High Voltage Cable Part#:",
     configs: [
       {
         id: 1,

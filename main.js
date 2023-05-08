@@ -1,4 +1,4 @@
-import {itemInfo as HVCInfo, configs} from './dummyDatabase.js'
+import {items, configs} from './dummyDatabase.js'
 
 const container = document.getElementById("container");
 const titleText = document.getElementById("titleText");
@@ -33,10 +33,6 @@ const isSmall = width < 750;
 // This section runs every time the app loads
 hideResultsSection();
 handleLayout();
-
-// console.log('HVC Info', HVCInfo); //@DEBUG
-// console.log('configs all', configs); //@DEBUG
-// console.log('configs', configs.find(config => config.code === 'F2XX')); //@DEBUG
 
 // Add and remove the resultSectionContainer class to hide a weird flash when the page loads
 resultSectionContainer.classList.remove('resultSectionContainer');
@@ -106,18 +102,12 @@ function hideResultsSection() {
     resultSection.classList.add('resultSectionHide');
 }
 
-function displayResults(topDescription, bottomDescription) {
-  if(bottomDescription) {
+function displayResults(id, name, itemInfo, userInterface) {
+  const configuration = configs.find(config => config.id === id)
     topResultLabel.innerText = "System Configuration Details:";
-    bottomResultLabel.innerText = "High Voltage Cable Part#:";
-    topResultContent.innerText = topDescription;
-    bottomResultContent.innerText = bottomDescription;
-  } else {
-    topResultLabel.innerText = "Invalid Serial Number";
-    bottomResultLabel.innerText = "";
-    topResultContent.innerText = topDescription;
-    bottomResultContent.innerText = 'Please enter a valid Elite Serial Number';
-  }
+    bottomResultLabel.innerText = name;
+    topResultContent.innerText = `${configuration.description} ${userInterface}` ;
+    bottomResultContent.innerText = itemInfo;
   showResultsSection();
   return;
 }
@@ -345,7 +335,7 @@ function validateSerialNumber() {
   }
 }
 
-function findBreakPoint(serialNum, breakPointArr, sequenceNum) {
+function findBreakPoint(serialNum, breakPointArr, sequenceNum, id, name) {
   if(serialNum.charAt(4) === 'T') {
     const infoBreakPoint = breakPointArr.find((breakPoint) => {
       let startSequenceNum = breakPoint.startsAt.slice(-5);
@@ -361,19 +351,19 @@ function findBreakPoint(serialNum, breakPointArr, sequenceNum) {
         }
       }
     })
-    console.log('tablet', infoBreakPoint); //@DEBUG
+    displayResults(id, name, infoBreakPoint.display, 'with Tablet');
   }
   if(serialNum.charAt(4) === 'X') {
     const infoBreakPoint = breakPointArr.find((breakPoint) => {
       let startSequenceNum = breakPoint.startsAt.slice(-5);
       let endSequenceNum = breakPoint.endsAt.slice(-5);
       if(breakPoint.startsAt.charAt(4) === 'X' && startSequenceNum <= sequenceNum) {
-        if ((breakPoint.endsAt.charAt(4) === 'X' && endSequenceNum > sequenceNum) || breakPoint.endsAt.charAt(4) === 'T') {
+        if ((breakPoint.endsAt.charAt(4) === 'X' && endSequenceNum >= sequenceNum) || breakPoint.endsAt.charAt(4) === 'T') {
           return breakPoint;
         }
       }
     })
-    console.log('non tablet', infoBreakPoint); //@DEBUG
+    displayResults(id, name, infoBreakPoint.display, 'with Control Panel (non-tablet)');
   }
 }
 
@@ -383,11 +373,10 @@ function findConfiguration(capitalizedSearchItem) {
   let sequenceNum = capitalizedSearchItem.slice(-5);
   configs.find((config) => {
     if(config.code === configChars) {
-      console.log('Match', config)
-      HVCInfo.forEach((item) => {
+      items.forEach((item) => {
         item.configs.find((itemConfig) => {
           if(config.id === itemConfig.id) {
-            findBreakPoint(capitalizedSearchItem, itemConfig.breakPoints, sequenceNum);
+            findBreakPoint(capitalizedSearchItem, itemConfig.breakPoints, sequenceNum, config.id, item.name);
           }
         })
       })
@@ -413,5 +402,5 @@ function findConfiguration(capitalizedSearchItem) {
     motorizedLogic(configChars, sequenceNum);
     return;
   }
-  displayResults('The Serial Number entered does not match any Elite configurations');
+  // displayResults('The Serial Number entered does not match any Elite configurations');
 }
