@@ -56,9 +56,9 @@ executeSearch.addEventListener("click", () => {
 
 // Handle layout based on the screen size
 function handleLayout() {
-  const titleTextDescription = "Elite High Voltage Cable Finder";
+  const titleTextDescription = "Elite System Information Database";
   const subTitleTextDescription =
-    "Identify the correct High Voltage Cable part number using the System Serial Number";
+    "Find configuration information and part numbers using the System Serial Number";
   if (!isSmall) {
     container.classList.add("largeContainer");
     titleSection.classList.add("largeTitleSection");
