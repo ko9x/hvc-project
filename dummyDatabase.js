@@ -41,80 +41,114 @@ export const configs = [
 ];
 
 // Here is an example of an itemInfo object that has the information filled out for configs.id 1 which is Standard 9"
-export const itemInfo = {
-  name: "High Voltage Cable",
-  configs: [
-    {
-      id: 1,
-      breakPoints: [
-        { startsAt: "F9XXXX00001", endsAt: "F9XXXX00034", display: "5443126" },
-        {
-          startsAt: "F9XXXX00035",
-          endsAt: "F9XXTX00133",
-          display: "5792202 (if unavailable, order 5877920)",
-        },
-        { startsAt: "F9XXXX00035", endsAt: null, display: "5877920" },
-      ],
-    },
-    {
-      id: 2,
-      breakPoints: [
-        { startsAt: "F2XXXX00001", endsAt: "F2XXXX00001", display: "5443126" },
-        {
-          startsAt: "F2XXXX00032",
-          endsAt: "F2XXTX00298",
-          display: "5792202 (if unavailable, order 5877920)",
-        },
-        { startsAt: "F2XXXX00032", endsAt: null, display: "5877920" },
-      ],
-    },
-    {
-      id: 3,
-      breakPoints: [
-        { startsAt: "FAXXXE00001", endsAt: "FAXXTE00000", display: "5759488 (if unavailable, order 5792201)" },
-        { startsAt: "FAXXTE00001", endsAt: null, display: "5792201" },
-      ],
-    },
-    {
-      id: 4,
-      breakPoints: [
-        { startsAt: "FBXXXE00001", endsAt: "FBXXTE00000", display: "5759488 (if unavailable, order 5792201)" },
-        { startsAt: "FBXXTE00001", endsAt: null, display: "5792201" },
-      ],
-    },
-    {
-      id: 5,
-      breakPoints: [
-        { startsAt: "FSXXXX00001", endsAt: null, display: "5443126" },
-      ],
-    },
-    {
-      id: 6,
-      breakPoints: [
-        { startsAt: "FAHXXX00001", endsAt: "FAHXXX00106", display: "5458880" },
-        { startsAt: "FAHXXX00107", endsAt: null, display: "5790094" },
-      ],
-    },
-    {
-      id: 7,
-      breakPoints: [
-        { startsAt: "FBHXXX00001", endsAt: "FBHXXX00195", display: "5458880" },
-        { startsAt: "FBHXXX00196", endsAt: null, display: "5790094" },
-      ],
-    },
-    {
-      id: 8,
-      breakPoints: [
-        { startsAt: "FAMHXX00001", endsAt: "FAMHXX00009", display: "5428385" },
-        { startsAt: "FAMHXX00010", endsAt: null, display: "5786472" },
-      ],
-    },
-    {
-      id: 9,
-      breakPoints: [
-        { startsAt: "FBMHXX00001", endsAt: "FBMHXX00020", display: "5428385" },
-        { startsAt: "FBMHXX00021", endsAt: null, display: "5786472" },
-      ],
-    },
-  ],
-};
+export const itemInfo = [
+  {
+    name: "High Voltage Cable",
+    configs: [
+      {
+        id: 1,
+        breakPoints: [
+          {
+            startsAt: "F9XXXX00001",
+            endsAt: "F9XXXX00034",
+            display: "5443126",
+          },
+          {
+            startsAt: "F9XXXX00035",
+            endsAt: "F9XXTX00133",
+            display: "5792202 (if unavailable, order 5877920)",
+          },
+          { startsAt: "F9XXXX00035", endsAt: 'F9XXXX99999', display: "5877920" },
+        ],
+      },
+      {
+        id: 2,
+        breakPoints: [
+          {
+            startsAt: "F2XXXX00001",
+            endsAt: "F2XXXX00001",
+            display: "5443126",
+          },
+          {
+            startsAt: "F2XXXX00032",
+            endsAt: "F2XXTX00298",
+            display: "5792202 (if unavailable, order 5877920)",
+          },
+          { startsAt: "F2XXXX00032", endsAt: "F2XXXX99999", display: "5877920" },
+        ],
+      },
+      {
+        id: 3,
+        breakPoints: [
+          {
+            startsAt: "FAXXXE00001",
+            endsAt: "FAXXTE99999",
+            display: "5759488 (if unavailable, order 5792201)",
+          },
+          { startsAt: "FAXXTE00001", endsAt: "FAXXTE99999", display: "5792201" },
+        ],
+      },
+      {
+        id: 4,
+        breakPoints: [
+          {
+            startsAt: "FBXXXE00001",
+            endsAt: "FBXXTE99999",
+            display: "5759488 (if unavailable, order 5792201)",
+          },
+          { startsAt: "FBXXTE00001", endsAt: "FBXXTE99999", display: "5792201" },
+        ],
+      },
+      {
+        id: 5,
+        breakPoints: [
+          { startsAt: "FSXXXX00001", endsAt: "FSXXXX99999", display: "5443126" },
+        ],
+      },
+      {
+        id: 6,
+        breakPoints: [
+          {
+            startsAt: "FAHXXX00001",
+            endsAt: "FAHXXX00106",
+            display: "5458880",
+          },
+          { startsAt: "FAHXXX00107", endsAt: "FAHXXX99999", display: "5790094" },
+        ],
+      },
+      {
+        id: 7,
+        breakPoints: [
+          {
+            startsAt: "FBHXXX00001",
+            endsAt: "FBHXXX00195",
+            display: "5458880",
+          },
+          { startsAt: "FBHXXX00196", endsAt: "FBHXXX99999", display: "5790094" },
+        ],
+      },
+      {
+        id: 8,
+        breakPoints: [
+          {
+            startsAt: "FAMHXX00001",
+            endsAt: "FAMHXX00009",
+            display: "5428385",
+          },
+          { startsAt: "FAMHXX00010", endsAt: "FAMHXX99999", display: "5786472" },
+        ],
+      },
+      {
+        id: 9,
+        breakPoints: [
+          {
+            startsAt: "FBMHXX00001",
+            endsAt: "FBMHXX00020",
+            display: "5428385",
+          },
+          { startsAt: "FBMHXX00021", endsAt: "FBMHXX99999", display: "5786472" },
+        ],
+      },
+    ],
+  },
+];
