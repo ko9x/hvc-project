@@ -36,7 +36,7 @@ handleLayout();
 
 console.log('HVC Info', HVCInfo); //@DEBUG
 console.log('configs all', configs); //@DEBUG
-console.log('configs', configs.find(config => config.id === 1)); //@DEBUG
+console.log('configs', configs.find(config => config.code === 'F2XX')); //@DEBUG
 
 // Add and remove the resultSectionContainer class to hide a weird flash when the page loads
 resultSectionContainer.classList.remove('resultSectionContainer');
@@ -345,10 +345,40 @@ function validateSerialNumber() {
   }
 }
 
+function findBreakPoint(serialNum, breakPointArr, sequenceNum) {
+  if(serialNum.charAt(4) === 'T') {
+    console.log('tablet', ); //@DEBUG
+  }
+  if(serialNum.charAt(4) === 'X') {
+    const infoBreakPoint = breakPointArr.find((breakPoint) => {
+      let startSequenceNum = breakPoint.startsAt.slice(-5);
+      let endSequenceNum = breakPoint.endsAt.slice(-5);
+      if(breakPoint.startsAt.charAt(4) === 'X' && startSequenceNum <= sequenceNum) {
+        if ((breakPoint.endsAt.charAt(4) === 'X' && endSequenceNum > sequenceNum) || breakPoint.endsAt.charAt(4) === 'T') {
+          return breakPoint;
+        }
+      }
+    })
+    console.log('non tablet', infoBreakPoint); //@DEBUG
+  }
+}
+
 // General Configuration Identification Logic
 function findConfiguration(capitalizedSearchItem) {
-  let configChars = capitalizedSearchItem.slice(0, 6);
+  let configChars = capitalizedSearchItem.slice(0, 4);
   let sequenceNum = capitalizedSearchItem.slice(-5);
+  configs.find((config) => {
+    if(config.code === configChars) {
+      console.log('Match', config)
+      HVCInfo.forEach((item) => {
+        item.configs.find((itemConfig) => {
+          if(config.id === itemConfig.id) {
+            findBreakPoint(capitalizedSearchItem, itemConfig.breakPoints, sequenceNum);
+          }
+        })
+      })
+    }
+  })
   if (standardCConfigs.includes(configChars)) {
     standardCLogic(configChars, sequenceNum);
     return;
