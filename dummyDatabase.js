@@ -82,7 +82,7 @@ export const itemInfo = [
         breakPoints: [
           {
             startsAt: "FAXXXE00001",
-            endsAt: "FAXXTE99999",
+            endsAt: "FAXXXE99999",
             display: "5759488 (if unavailable, order 5792201)",
           },
           { startsAt: "FAXXTE00001", endsAt: "FAXXTE99999", display: "5792201" },
@@ -93,7 +93,7 @@ export const itemInfo = [
         breakPoints: [
           {
             startsAt: "FBXXXE00001",
-            endsAt: "FBXXTE99999",
+            endsAt: "FBXXXE99999",
             display: "5759488 (if unavailable, order 5792201)",
           },
           { startsAt: "FBXXTE00001", endsAt: "FBXXTE99999", display: "5792201" },
