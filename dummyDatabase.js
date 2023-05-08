@@ -58,7 +58,7 @@ export const itemInfo = [
             endsAt: "F9XXTX00133",
             display: "5792202 (if unavailable, order 5877920)",
           },
-          { startsAt: "F9XXXX00035", endsAt: 'F9XXXX99999', display: "5877920" },
+          { startsAt: "F9XXXX00035", endsAt: 'F9XXTX99999', display: "5877920" },
         ],
       },
       {
@@ -66,7 +66,7 @@ export const itemInfo = [
         breakPoints: [
           {
             startsAt: "F2XXXX00001",
-            endsAt: "F2XXXX00001",
+            endsAt: "F2XXXX00031",
             display: "5443126",
           },
           {
@@ -74,7 +74,7 @@ export const itemInfo = [
             endsAt: "F2XXTX00298",
             display: "5792202 (if unavailable, order 5877920)",
           },
-          { startsAt: "F2XXXX00032", endsAt: "F2XXXX99999", display: "5877920" },
+          { startsAt: "F2XXXX00032", endsAt: "F2XXTX99999", display: "5877920" },
         ],
       },
       {
@@ -102,7 +102,7 @@ export const itemInfo = [
       {
         id: 5,
         breakPoints: [
-          { startsAt: "FSXXXX00001", endsAt: "FSXXXX99999", display: "5443126" },
+          { startsAt: "FSXXXX00001", endsAt: "FSXXTX99999", display: "5443126" },
         ],
       },
       {
@@ -113,7 +113,7 @@ export const itemInfo = [
             endsAt: "FAHXXX00106",
             display: "5458880",
           },
-          { startsAt: "FAHXXX00107", endsAt: "FAHXXX99999", display: "5790094" },
+          { startsAt: "FAHXXX00107", endsAt: "FAHXTX99999", display: "5790094" },
         ],
       },
       {
@@ -124,7 +124,7 @@ export const itemInfo = [
             endsAt: "FBHXXX00195",
             display: "5458880",
           },
-          { startsAt: "FBHXXX00196", endsAt: "FBHXXX99999", display: "5790094" },
+          { startsAt: "FBHXXX00196", endsAt: "FBHXTX99999", display: "5790094" },
         ],
       },
       {
@@ -135,7 +135,7 @@ export const itemInfo = [
             endsAt: "FAMHXX00009",
             display: "5428385",
           },
-          { startsAt: "FAMHXX00010", endsAt: "FAMHXX99999", display: "5786472" },
+          { startsAt: "FAMHXX00010", endsAt: "FAMHTX99999", display: "5786472" },
         ],
       },
       {
@@ -146,7 +146,7 @@ export const itemInfo = [
             endsAt: "FBMHXX00020",
             display: "5428385",
           },
-          { startsAt: "FBMHXX00021", endsAt: "FBMHXX99999", display: "5786472" },
+          { startsAt: "FBMHXX00021", endsAt: "FBMHTX99999", display: "5786472" },
         ],
       },
     ],
