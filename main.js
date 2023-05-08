@@ -148,7 +148,12 @@ function findBreakPoint(serialNum, breakPointArr, sequenceNum, id, name) {
         }
       }
     });
-    displayResults(id, name, infoBreakPoint.display, "with Tablet");
+    displayResults(
+      id,
+      name,
+      infoBreakPoint.display,
+      "with Tablet"
+    );
   }
   if (serialNum.charAt(4) === "X") {
     const infoBreakPoint = breakPointArr.find((breakPoint) => {
@@ -176,7 +181,7 @@ function findBreakPoint(serialNum, breakPointArr, sequenceNum, id, name) {
   }
 }
 
-// General Configuration Identification Logic
+// Configuration Identification Logic
 function findConfiguration(capitalizedSearchItem) {
   let noMatch = 0;
   let configChars = capitalizedSearchItem.slice(0, 4);
@@ -185,6 +190,11 @@ function findConfiguration(capitalizedSearchItem) {
     if (config.code === configChars) {
       if(capitalizedSearchItem.charAt(5) === 'E') {
         if(config.id !== 3 && config.id !== 4) {
+          return displayError();
+        }
+      }
+      if(config.id === 3 || config.id === 4) {
+        if(capitalizedSearchItem.charAt(5) !== 'E') {
           return displayError();
         }
       }
