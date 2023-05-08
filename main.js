@@ -75,7 +75,7 @@ function handleLayout() {
   }
 }
 
-// Make the search button change color for 100ms when the user clicks it
+// Make the search button changes color for 100ms when the user clicks it
 function flashSearchButton() {
   executeSearch.style.backgroundColor = "rgb(100, 0, 160)";
   executeSearch.style.color = "white";
@@ -119,6 +119,7 @@ function displayError() {
   return;
 }
 
+// Initial validation of the serial number. More validation happens in the findConfiguration function
 function validateSerialNumber() {
   let regex = /F[ABS29][HMX][HX][TX][EX]\d\d\d\d\d/i;
   let capitalizedSearchItem = searchItem.value.toUpperCase();
@@ -129,6 +130,7 @@ function validateSerialNumber() {
   }
 }
 
+// Find the correct breakPoint where the serial number the user entered falls between the startsAt and endsAt values.
 function findBreakPoint(serialNum, breakPointArr, sequenceNum, id, name) {
   if (serialNum.charAt(4) === "T") {
     const infoBreakPoint = breakPointArr.find((breakPoint) => {
@@ -188,11 +190,13 @@ function findConfiguration(capitalizedSearchItem) {
   let sequenceNum = capitalizedSearchItem.slice(-5);
   configs.find((config) => {
     if (config.code === configChars) {
+      // If the serial includes an E make sure it is a valid ergo code
       if(capitalizedSearchItem.charAt(5) === 'E') {
         if(config.id !== 3 && config.id !== 4) {
           return displayError();
         }
       }
+      // If the serial is an ergo code make sure it includes the E
       if(config.id === 3 || config.id === 4) {
         if(capitalizedSearchItem.charAt(5) !== 'E') {
           return displayError();
@@ -213,6 +217,7 @@ function findConfiguration(capitalizedSearchItem) {
         });
       });
     } else {
+      // if the serial doesn't match any of the 9 codes display an error
       noMatch++;
       if(noMatch === 9) {
         displayError();
