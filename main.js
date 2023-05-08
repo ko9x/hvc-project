@@ -13,6 +13,7 @@ const topResultLabel = document.getElementById("topResultLabel");
 const topResultContent = document.getElementById("topResultContent");
 const bottomResultLabel = document.getElementById("bottomResultLabel");
 const bottomResultContent = document.getElementById("bottomResultContent");
+
 // Constants for height and width
 const width = window.innerWidth
 || document.documentElement.clientWidth
@@ -21,12 +22,6 @@ const height = window.innerHeight
 || document.documentElement.clientHeight
 || document.body.clientHeight;
 
-// Configuration arrays
-const standardCConfigs = ['F9XXXX', 'F9XXTX', 'F2XXXX', 'F2XXTX'];
-const superC9Configs = ['FSXXXX', 'FSXXTX'];
-const superCFPDConfigs = ['FAHXXX', 'FAHXTX', 'FBHXXX', 'FBHXTX'];
-const ergoCConfigs = ['FAXXXE', 'FAXXTE', 'FBXXXE', 'FBXXTE'];
-const motorizedConfigs = ['FAMHXX', 'FAMHTX', 'FBMHXX', 'FBMHTX'];
 // Create a variable to differentiate between large and small screens
 const isSmall = width < 750;
 
@@ -112,219 +107,6 @@ function displayResults(id, name, itemInfo, userInterface) {
   return;
 }
 
-// Motorized C Configuration Logic
-function motorizedLogic(configChars, sequenceNum) {
-  const cable1 = '5428385';
-  const cable2 = '5786472';
-  const configDescription1 = 'Motorized C 21cm Flat Panel Display';
-  const configDescription2 = 'Motorized C 31cm Flat Panel Display';
-  const interfaceDescription1 = ' with Control Panel (non-tablet)';
-  const interfaceDescription2 = ' with Tablet';
-  if(configChars.charAt(4) !== "T") {
-    if (configChars === 'FAMHXX') {
-      if (sequenceNum < '00010') {
-        displayResults(
-          `${configDescription1} ${interfaceDescription1}`,
-          cable1
-        );
-      } else {
-        displayResults(
-          `${configDescription1} ${interfaceDescription1}`,
-          cable2
-        );
-      }
-    } else {
-      if (sequenceNum < '00021') {
-        displayResults(
-          `${configDescription2} ${interfaceDescription1}`,
-          cable1
-        );
-      } else {
-        displayResults(
-          `${configDescription2} ${interfaceDescription1}`,
-          cable2
-        );
-      }
-    }
-  } else {
-    if (configChars === 'FAMHTX') {
-      displayResults(
-        `${configDescription1} ${interfaceDescription2}`,
-        cable2
-      );
-    } else {
-      displayResults(
-        `${configDescription2} ${interfaceDescription2}`,
-        cable2
-      );
-    }
-  }
-}
-
-// Ergo C Configuration Logic
-function ergoCLogic(configChars, sequenceNum) {
-  const cable1 = '5759488 (if unavailable, order 5792201)';
-  const cable2 = '5792201';
-  const configDescription1 = 'Ergo C 21cm Flat Panel Display';
-  const configDescription2 = 'Ergo C 31cm Flat Panel Display';
-  const interfaceDescription1 = ' with Control Panel (non-tablet)';
-  const interfaceDescription2 = ' with Tablet';
-  if (configChars.charAt(4) !== "T") {
-    if (configChars === 'FAXXXE') {
-      displayResults(
-        `${configDescription1} ${interfaceDescription1}`,
-        cable1
-      );
-    } else {
-      displayResults(
-        `${configDescription2} ${interfaceDescription1}`,
-        cable1
-      );
-    }
-  } else {
-    if (configChars === 'FAXXTE') {
-      displayResults(
-        `${configDescription1} ${interfaceDescription2}`,
-        cable2
-      );
-    } else {
-      displayResults(
-        `${configDescription2} ${interfaceDescription2}`,
-        cable2
-      );
-    }
-  }
-}
-
-// Super C FPD Configuration Logic
-function superCFPDLogic(configChars, sequenceNum) {
-  const cable1 = '5458880';
-  const cable2 = '5790094';
-  const configDescription1 = 'Super C 21cm Flat Panel Display';
-  const configDescription2 = 'Super C 31cm Flat Panel Display';
-  const interfaceDescription1 = ' with Control Panel (non-tablet)';
-  const interfaceDescription2 = ' with Tablet';
-  if (configChars.charAt(4) !== "T") {
-    if (configChars === 'FAHXXX') {
-      if (sequenceNum < '00107') {
-        displayResults(
-          `${configDescription1} ${interfaceDescription1}`,
-          cable1
-        );
-      } else {
-        displayResults(
-          `${configDescription1} ${interfaceDescription1}`,
-          cable2
-        );
-      }
-    }
-    if (configChars === 'FBHXXX') {
-      if (sequenceNum < '00196') {
-        displayResults(
-          `${configDescription2} ${interfaceDescription1}`,
-          cable1
-        );
-      } else {
-        displayResults(
-          `${configDescription2} ${interfaceDescription1}`,
-          cable2
-        );
-      }
-    }
-  } else {
-    if (configChars === 'FAHXTX') {
-      displayResults(
-        `${configDescription1} ${interfaceDescription2}`,
-        cable2
-      );
-    } else {
-      displayResults(
-        `${configDescription2} ${interfaceDescription2}`,
-        cable2
-      );
-    }
-  }
-}
-
-// Super C 9" Configuration Logic
-function superC9Logic(configChars) {
-  if (configChars === "FSXXXX") {
-    displayResults(
-      'Super C 9" Image Intensifier with Control Panel (non-tablet)',
-      "5877921"
-    );
-  }
-  if (configChars === "FSXXTX") {
-    displayResults('Super C 9" Image Intensifier with Tablet', "5877921");
-  }
-}
-
-// Standard C Configuration Logic
-function standardCLogic(configChars, sequenceNum) {
-  const cable1 = '5443126';
-  const cable2 = '5792202 (if unavailable, order 5877920)';
-  const cable3 = '5877920';
-  const configDescription1 = 'Standard C 9" Image Intensifier';
-  const configDescription2 = 'Standard C 12" Image Intensifier';
-  const interfaceDescription1 = ' with Control Panel (non-tablet)';
-  const interfaceDescription2 = ' with Tablet';
-  if (configChars.charAt(4) !== "T") {
-    if (configChars === "F9XXXX") {
-      if (sequenceNum < "00035") {
-        displayResults(
-          `${configDescription1} ${interfaceDescription1}`,
-          cable1
-        );
-      } else {
-        displayResults(
-          `${configDescription1} ${interfaceDescription1}`,
-          cable2
-        );
-      }
-    }
-    if (configChars === "F2XXXX") {
-      if (sequenceNum < "00032") {
-        displayResults(
-          `${configDescription2} ${interfaceDescription1}`,
-          cable1
-        );
-      } else {
-        displayResults(
-          `${configDescription2} ${interfaceDescription1}`,
-          cable2
-        );
-      }
-    }
-  } else {
-    if (configChars === "F9XXTX") {
-      if (sequenceNum < "00134") {
-        displayResults(
-          `${configDescription1} ${interfaceDescription2}`,
-          cable2
-        );
-      } else {
-        displayResults(
-          `${configDescription1} ${interfaceDescription2}`,
-          cable3
-        );
-      }
-    }
-    if (configChars === "F2XXTX") {
-      if (sequenceNum < "00299") {
-        displayResults(
-          `${configDescription2} ${interfaceDescription2}`,
-          cable2
-        );
-      } else {
-        displayResults(
-          `${configDescription2} ${interfaceDescription2}`,
-          cable3
-        );
-      }
-    }
-  }
-}
-
 function validateSerialNumber() {
   let regex = /F[ABS29][HMX][HX][TX][EX]\d\d\d\d\d/i;
   let capitalizedSearchItem = searchItem.value.toUpperCase();
@@ -382,25 +164,4 @@ function findConfiguration(capitalizedSearchItem) {
       })
     }
   })
-  if (standardCConfigs.includes(configChars)) {
-    standardCLogic(configChars, sequenceNum);
-    return;
-  }
-  if (superC9Configs.includes(configChars)) {
-    superC9Logic(configChars);
-    return;
-  }
-  if (superCFPDConfigs.includes(configChars)) {
-    superCFPDLogic(configChars, sequenceNum);
-    return;
-  }
-  if (ergoCConfigs.includes(configChars)) {
-    ergoCLogic(configChars, sequenceNum);
-    return;
-  }
-  if (motorizedConfigs.includes(configChars)) {
-    motorizedLogic(configChars, sequenceNum);
-    return;
-  }
-  // displayResults('The Serial Number entered does not match any Elite configurations');
 }
