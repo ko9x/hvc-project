@@ -104,9 +104,17 @@ function hideResultsSection() {
 function displayResults(id, name, itemInfo, userInterface) {
   const configuration = configs.find((config) => config.id === id);
   topResultLabel.innerText = "System Configuration Details:";
-  bottomResultLabel.innerText = name;
   topResultContent.innerText = `${configuration.description} ${userInterface}`;
+  bottomResultLabel.innerText = name;
   bottomResultContent.innerText = itemInfo;
+  showResultsSection();
+  return;
+}
+function displayError() {
+  topResultLabel.innerText = "System Configuration Details:";
+  topResultContent.innerText = "Unknown configuration";
+  bottomResultLabel.innerText = "The entered System Serial Number is invalid";
+  bottomResultContent.innerText = "Please check your information and enter a valid System Serial Number";
   showResultsSection();
   return;
 }
@@ -117,7 +125,7 @@ function validateSerialNumber() {
   if (capitalizedSearchItem.match(regex)) {
     findConfiguration(capitalizedSearchItem);
   } else {
-    displayResults("The Serial Number entered is not valid");
+    displayError();
   }
 }
 
@@ -170,10 +178,16 @@ function findBreakPoint(serialNum, breakPointArr, sequenceNum, id, name) {
 
 // General Configuration Identification Logic
 function findConfiguration(capitalizedSearchItem) {
+  let noMatch = 0;
   let configChars = capitalizedSearchItem.slice(0, 4);
   let sequenceNum = capitalizedSearchItem.slice(-5);
   configs.find((config) => {
     if (config.code === configChars) {
+      if(capitalizedSearchItem.charAt(5) === 'E') {
+        if(config.id !== 3 && config.id !== 4) {
+          return displayError();
+        }
+      }
       items.forEach((item) => {
         item.configs.find((itemConfig) => {
           if (config.id === itemConfig.id) {
@@ -184,9 +198,15 @@ function findConfiguration(capitalizedSearchItem) {
               config.id,
               item.name
             );
+          } else {
           }
         });
       });
+    } else {
+      noMatch++;
+      if(noMatch === 9) {
+        displayError();
+      }
     }
   });
 }
