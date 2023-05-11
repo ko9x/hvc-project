@@ -1,5 +1,8 @@
 ### Current Focus
 * Continue testing to make sure the correct information is provided
+* Continue brainstorming about how the information should be contained in the database
+* Update findBreakPoint function to work with caveots.
+    * Need to add some caveots to the itemObject.
 * Manually add another item to the items array
     * Decide how to display all the items (eventually there could be lots of them)
         * Dynamically add sections to the results section based on how many items are returned from the search
