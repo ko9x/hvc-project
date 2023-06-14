@@ -7,9 +7,7 @@ const subTitleText = document.getElementById("subTitleText");
 const searchSection = document.getElementById("searchSection");
 const searchItem = document.getElementById("searchItem");
 const executeSearch = document.getElementById("executeSearch");
-const resultSectionContainer = document.getElementById(
-  "resultSectionContainer"
-);
+const resultSectionContainer = document.getElementById("resultSectionContainer");
 const resultSection = document.getElementById("resultSection");
 const topResultLabel = document.getElementById("topResultLabel");
 const topResultContent = document.getElementById("topResultContent");
@@ -33,32 +31,11 @@ const isSmall = width < 750;
 hideResultsSection();
 handleLayout();
 
-// Add and remove the resultSectionContainer class to hide a weird flash when the page loads
-resultSectionContainer.classList.remove("resultSectionContainer");
-
-// Event Listeners
-searchItem.addEventListener("focus", () => {
-  clearResults();
-});
-
-searchItem.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    validateSerialNumber();
-  } else {
-    clearResults();
-  }
-});
-
-executeSearch.addEventListener("click", () => {
-  validateSerialNumber();
-  flashSearchButton();
-});
-
 // Handle layout based on the screen size
 function handleLayout() {
-  const titleTextDescription = "Elite System Information Database";
+  const titleTextDescription = "Elite System Information";
   const subTitleTextDescription =
-    "Find configuration information and part numbers using the System Serial Number";
+    "Find configuration information using the System Serial Number";
   if (!isSmall) {
     container.classList.add("largeContainer");
     titleSection.classList.add("largeTitleSection");
@@ -75,16 +52,35 @@ function handleLayout() {
   }
 }
 
-// Make the search button changes color for 100ms when the user clicks it
-function flashSearchButton() {
-  executeSearch.style.backgroundColor = "rgb(100, 0, 160)";
-  executeSearch.style.color = "white";
-  setTimeout(() => {
-    executeSearch.style.color = "black";
-    executeSearch.style.backgroundColor = "white";
-  }, 100);
-}
+// Add and remove the resultSectionContainer class to hide a weird flash when the page loads
+resultSectionContainer.classList.remove("resultSectionContainer");
 
+//  Event Listeners *******************************************************
+
+// Hide the results section when the user clicks inside the search field
+searchItem.addEventListener("focus", () => {
+  clearResults();
+});
+
+// Check to see if the user hit the "enter" key to activate the search
+searchItem.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    validateSerialNumber();
+  } else {
+    // If they hit a key other than "enter", just keep hiding the result section
+    clearResults();
+  }
+});
+
+// Check to see if the user clicked the "Search" button
+executeSearch.addEventListener("click", () => {
+  validateSerialNumber();
+  flashSearchButton();
+});
+
+//NOTE: There is no listener for when the user clicks the little "x" in the search field. Javascript clears that field on its own
+
+// Hide the results section and clear all the fields
 function clearResults() {
   hideResultsSection();
   topResultLabel.innerText = "";
@@ -93,30 +89,24 @@ function clearResults() {
   bottomResultContent.innerText = "";
 }
 
+// Show the results section
 function showResultsSection() {
   resultSection.classList.remove("resultSectionHide");
 }
 
+// Hide the results section
 function hideResultsSection() {
   resultSection.classList.add("resultSectionHide");
 }
 
-function displayResults(id, name, itemInfo, userInterface) {
-  const configuration = configs.find((config) => config.id === id);
-  topResultLabel.innerText = "System Configuration Details:";
-  topResultContent.innerText = `${configuration.description} ${userInterface}`;
-  bottomResultLabel.innerText = name;
-  bottomResultContent.innerText = itemInfo;
-  showResultsSection();
-  return;
-}
-function displayError() {
-  topResultLabel.innerText = "System Configuration Details:";
-  topResultContent.innerText = "Unknown configuration";
-  bottomResultLabel.innerText = "The entered System Serial Number is invalid";
-  bottomResultContent.innerText = "Please check your information and enter a valid System Serial Number";
-  showResultsSection();
-  return;
+// Make the search button changes color for 100ms when the user clicks it
+function flashSearchButton() {
+  executeSearch.style.backgroundColor = "rgb(100, 0, 160)";
+  executeSearch.style.color = "white";
+  setTimeout(() => {
+    executeSearch.style.color = "black";
+    executeSearch.style.backgroundColor = "white";
+  }, 100);
 }
 
 // Initial validation of the serial number. More validation happens in the findConfiguration function
@@ -128,6 +118,70 @@ function validateSerialNumber() {
   } else {
     displayError();
   }
+}
+
+// Populate the results section fields with the configuration information
+function displayResults(id, name, itemInfo, userInterface) {
+  const configuration = configs.find((config) => config.id === id);
+  topResultLabel.innerText = "System Configuration Details:";
+  topResultContent.innerText = `${configuration.description} ${userInterface}`;
+  bottomResultLabel.innerText = name;
+  bottomResultContent.innerText = itemInfo;
+  showResultsSection();
+  return;
+}
+
+// Populate the results section fields with the error information
+function displayError() {
+  topResultLabel.innerText = "System Configuration Details:";
+  topResultContent.innerText = "Unknown configuration";
+  bottomResultLabel.innerText = "The entered System Serial Number is invalid";
+  bottomResultContent.innerText = "Please check your information and enter a valid System Serial Number";
+  showResultsSection();
+  return;
+}
+
+// Configuration Identification Logic
+function findConfiguration(capitalizedSearchItem) {
+  let noMatch = 0;
+  let configChars = capitalizedSearchItem.slice(0, 4);
+  let sequenceNum = capitalizedSearchItem.slice(-5);
+  configs.find((config) => {
+    if (config.code === configChars) {
+      // If the serial includes an E make sure it is a valid ergo code
+      if(capitalizedSearchItem.charAt(5) === 'E') {
+        if(config.id !== 3 && config.id !== 4) {
+          return displayError();
+        }
+      }
+      // If the serial is an ergo code make sure it includes the E
+      if(config.id === 3 || config.id === 4) {
+        if(capitalizedSearchItem.charAt(5) !== 'E') {
+          return displayError();
+        }
+      }
+      items.forEach((item) => {
+        item.configs.find((itemConfig) => {
+          if (config.id === itemConfig.id) {
+            findBreakPoint(
+              capitalizedSearchItem,
+              itemConfig.breakPoints,
+              sequenceNum,
+              config.id,
+              item.name
+            );
+          } else {
+          }
+        });
+      });
+    } else {
+      // if the serial doesn't match any of the 9 codes display an error
+      noMatch++;
+      if(noMatch === 9) {
+        displayError();
+      }
+    }
+  });
 }
 
 // Find the correct breakPoint where the serial number the user entered falls between the startsAt and endsAt values.
@@ -183,45 +237,3 @@ function findBreakPoint(serialNum, breakPointArr, sequenceNum, id, name) {
   }
 }
 
-// Configuration Identification Logic
-function findConfiguration(capitalizedSearchItem) {
-  let noMatch = 0;
-  let configChars = capitalizedSearchItem.slice(0, 4);
-  let sequenceNum = capitalizedSearchItem.slice(-5);
-  configs.find((config) => {
-    if (config.code === configChars) {
-      // If the serial includes an E make sure it is a valid ergo code
-      if(capitalizedSearchItem.charAt(5) === 'E') {
-        if(config.id !== 3 && config.id !== 4) {
-          return displayError();
-        }
-      }
-      // If the serial is an ergo code make sure it includes the E
-      if(config.id === 3 || config.id === 4) {
-        if(capitalizedSearchItem.charAt(5) !== 'E') {
-          return displayError();
-        }
-      }
-      items.forEach((item) => {
-        item.configs.find((itemConfig) => {
-          if (config.id === itemConfig.id) {
-            findBreakPoint(
-              capitalizedSearchItem,
-              itemConfig.breakPoints,
-              sequenceNum,
-              config.id,
-              item.name
-            );
-          } else {
-          }
-        });
-      });
-    } else {
-      // if the serial doesn't match any of the 9 codes display an error
-      noMatch++;
-      if(noMatch === 9) {
-        displayError();
-      }
-    }
-  });
-}
