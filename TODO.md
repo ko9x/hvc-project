@@ -1,6 +1,8 @@
 ### Current Focus
 * Merge dataObj branch back into master and sean branches
     * Then abandon the dataObj branch
+* Create an async function to make an item post request (make sure to return the item id from the backend)
+    * If the item post request is successful, Use the item id in the range post request
 * Update findBreakPoint function to work with caveots.
     * Need to add some caveots to the itemObject.
 * Continue testing to make sure the correct information is provided
