@@ -1,4 +1,5 @@
 import { items, configs } from "./dummyDatabase.js";
+import { getItems } from "./APIService.js";
 
 const container = document.getElementById("container");
 const titleText = document.getElementById("titleText");
@@ -76,6 +77,8 @@ searchItem.addEventListener("keypress", (e) => {
 executeSearch.addEventListener("click", () => {
   validateSerialNumber();
   flashSearchButton();
+  // This is here for testing the APIService
+  // getItems();
 });
 
 //NOTE: There is no listener for when the user clicks the little "x" in the search field. Javascript clears that field on its own

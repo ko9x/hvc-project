@@ -1,6 +1,7 @@
 ### Current Focus
 * Figure out how we want to interact with the backend
-    * Make an api service?
+    * Make an api service
+    * Continue writing functions to setup and test the APIService 
 * Create an async function to make an item post request (make sure to return the item id from the backend)
     * Create an async function to make a range post request 
         * If the item post request is successful, Use the item id in the range post request
