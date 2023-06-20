@@ -10,7 +10,8 @@ const searchSection = document.getElementById("searchSection");
 const searchItem = document.getElementById("searchItem");
 const itemForm = document.getElementById("itemForm");
 const addRange = document.getElementById("addRange");
-const rangeSection = document.getElementById("rangeSection");
+const rangeSectionF9XX = document.getElementById("rangeSectionF9XX");
+const rangeSectionF2XX = document.getElementById("rangeSectionF2XX");
 const executeSearch = document.getElementById("executeSearch");
 const resultSectionContainer = document.getElementById("resultSectionContainer");
 const resultSection = document.getElementById("resultSection");
@@ -88,8 +89,10 @@ executeSearch.addEventListener("click", () => {
   // getItems();
 });
 
-addRange.addEventListener("click", (e) => {
+addRange.addEventListener("click", (e, name) => {
   e.preventDefault();
+  var passedName = e.target.name;
+  console.log('e', passedName); //@DEBUG
   var rangeDiv = document.createElement("div");
   var rangeInputStartsAt = document.createElement("input");
   rangeInputStartsAt.setAttribute("type", "text");
@@ -106,7 +109,7 @@ addRange.addEventListener("click", (e) => {
   rangeDiv.appendChild(rangeInputStartsAt);
   rangeDiv.appendChild(rangeInputEndsAt);
   rangeDiv.appendChild(rangeInputDisplay);
-  rangeSection.appendChild(rangeDiv);
+  rangeSection[e.target.name].appendChild(rangeDiv);
 });
 
 itemForm.addEventListener("submit", (e) => {
