@@ -5,6 +5,7 @@ const container = document.getElementById("container");
 const titleText = document.getElementById("titleText");
 const titleSection = document.getElementById("titleSection");
 const subTitleText = document.getElementById("subTitleText");
+const disclaimerText = document.getElementById("disclaimerText");
 const searchSection = document.getElementById("searchSection");
 const searchItem = document.getElementById("searchItem");
 const executeSearch = document.getElementById("executeSearch");
@@ -37,6 +38,7 @@ function handleLayout() {
   const titleTextDescription = "Elite System Information";
   const subTitleTextDescription =
     "Find configuration information using the System Serial Number";
+  const disclaimerTextDescription = "System information is for reference only. Configuration changes and upgrades made since the date of manufacture are not tracked by this database"
   if (!isSmall) {
     container.classList.add("largeContainer");
     titleSection.classList.add("largeTitleSection");
@@ -44,12 +46,14 @@ function handleLayout() {
     resultSection.classList.add("largeResultSection");
     titleText.innerHTML = `<h1>${titleTextDescription}</h1>`;
     subTitleText.innerHTML = `<h3>${subTitleTextDescription}</h3>`;
+    disclaimerText.innerHTML = `<p>${disclaimerTextDescription}</p>`;
   }
   if (isSmall) {
     container.classList.add("smallContainer");
     executeSearch.classList.add("smallButton");
     titleText.innerHTML = `<h3>${titleTextDescription}</h3>`;
     subTitleText.innerHTML = `<p>${subTitleTextDescription}</p>`;
+    disclaimerText.innerHTML = `<p>${disclaimerTextDescription}</p>`;
   }
 }
 
