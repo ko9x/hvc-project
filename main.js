@@ -8,6 +8,9 @@ const subTitleText = document.getElementById("subTitleText");
 const disclaimerText = document.getElementById("disclaimerText");
 const searchSection = document.getElementById("searchSection");
 const searchItem = document.getElementById("searchItem");
+const itemForm = document.getElementById("itemForm");
+const addRange = document.getElementById("addRange");
+const rangeSection = document.getElementById("rangeSection");
 const executeSearch = document.getElementById("executeSearch");
 const resultSectionContainer = document.getElementById("resultSectionContainer");
 const resultSection = document.getElementById("resultSection");
@@ -83,6 +86,35 @@ executeSearch.addEventListener("click", () => {
   flashSearchButton();
   // This is here for testing the APIService
   // getItems();
+});
+
+addRange.addEventListener("click", (e) => {
+  e.preventDefault();
+  var rangeDiv = document.createElement("div");
+  var rangeInputStartsAt = document.createElement("input");
+  rangeInputStartsAt.setAttribute("type", "text");
+  rangeInputStartsAt.setAttribute("name", "starts_at");
+  rangeInputStartsAt.setAttribute("id", "starts_at");
+  var rangeInputEndsAt = document.createElement("input");
+  rangeInputEndsAt.setAttribute("type", "text");
+  rangeInputEndsAt.setAttribute("name", "ends_at");
+  rangeInputEndsAt.setAttribute("id", "ends_at");
+  var rangeInputDisplay = document.createElement("input");
+  rangeInputDisplay.setAttribute("type", "text");
+  rangeInputDisplay.setAttribute("name", "display");
+  rangeInputDisplay.setAttribute("id", "display");
+  rangeDiv.appendChild(rangeInputStartsAt);
+  rangeDiv.appendChild(rangeInputEndsAt);
+  rangeDiv.appendChild(rangeInputDisplay);
+  rangeSection.appendChild(rangeDiv);
+});
+
+itemForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let item1 = document.getElementById("starts_at");
+  let item2 = document.getElementById("ends_at");
+  let item3 = document.getElementById("display");
+  console.log('submit result', e); //@DEBUG
 });
 
 //NOTE: There is no listener for when the user clicks the little "x" in the search field. Javascript clears that field on its own
