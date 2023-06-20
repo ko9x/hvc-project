@@ -1,4 +1,5 @@
 ### Current Focus
+* Continue working on the form for adding new items (and the associated ranges) to the database
 * Figure out how we want to interact with the backend
     * Make an api service
     * Continue writing functions to setup and test the APIService 
