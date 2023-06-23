@@ -130,6 +130,36 @@
         flex-direction: column;
         align-items: center;
       }
+      .rangeContainer {
+        border: solid #282c34 1px;
+        padding: 5px;
+        margin-bottom: 5px;
+        width: 100%;
+      }
+      .rangeInputContainer {
+        display: flex;
+        width: 100%;
+        margin: 10px;
+        padding: 10px;
+      }
+      .rangeInput {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .rangeTextAreaContainer {
+        display: flex;
+        flex-direction: column;
+      }
+      .rangeTextArea {
+        height: 50px;
+        padding: 5px;
+        margin: 5px;
+      }
+      .rangeLabel {
+        padding-left: 5px;
+        padding-bottom: 5px;
+      }
     </style>
     <script src="main.js" defer type="module"></script>
   </head>
@@ -144,8 +174,43 @@
         <form id="itemForm">
           <div id="itemFormBody">
             <div id="itemFormField">
-              <button id="addRange" name="F9XX">Add serial number range information for F9XX</button>
-              <div id="rangeSectionF9XX"></div>
+              <div>
+                <h3>F9XX</h3>
+                <div class="rangeContainer">
+                  <div class="rangeInputContainer">
+                    <div class="rangeInput">
+                      <label class="rangeLabel">Starts at</label>
+                      <input type="text" id="starts_at" name="starts_at" placeholder="F9XXXX00001"/>
+                    </div>
+                    <div class="rangeInput">
+                      <label class="rangeLabel">Ends at</label>
+                      <input type="text" id="ends_at" name="ends_at"/>
+                    </div>
+                  </div>
+                  <div class="rangeTextAreaContainer">
+                    <label class="rangeLabel">Display</label>
+                    <textarea class="rangeTextArea" id="display" name="display"></textarea>
+                  </div>
+                </div>
+                <div id="rangeSectionF9XX"></div>
+                <div class="rangeContainer">
+                  <div class="rangeInputContainer">
+                    <div class="rangeInput">
+                      <label class="rangeLabel">Starts at</label>
+                      <input type="text" id="starts_at" name="starts_at"/>
+                    </div>
+                    <div class="rangeInput">
+                      <label class="rangeLabel">Ends at</label>
+                      <input type="text" id="ends_at" name="ends_at" placeholder="F9XXTX99999"/>
+                    </div>
+                  </div>
+                  <div class="rangeTextAreaContainer">
+                    <label class="rangeLabel">Display</label>
+                    <textarea class="rangeTextArea" id="display" name="display"></textarea>
+                  </div>
+                </div>
+                <button id="addRange" name="F9XX">Add serial number range information for F9XX</button>
+              </div>
               <button id="addRange" name="F9XX">Add serial number range information for F2XX</button>
               <div id="rangeSectionF9XX"></div>
             </div>
