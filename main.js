@@ -9,9 +9,7 @@ const disclaimerText = document.getElementById("disclaimerText");
 const searchSection = document.getElementById("searchSection");
 const searchItem = document.getElementById("searchItem");
 const itemForm = document.getElementById("itemForm");
-const addRange = document.getElementById("addRange");
-const rangeSectionF9XX = document.getElementById("rangeSectionF9XX");
-const rangeSectionF2XX = document.getElementById("rangeSectionF2XX");
+const addRanges = document.querySelectorAll(".rangeButton");
 const executeSearch = document.getElementById("executeSearch");
 const resultSectionContainer = document.getElementById("resultSectionContainer");
 const resultSection = document.getElementById("resultSection");
@@ -65,6 +63,7 @@ function handleLayout() {
 resultSectionContainer.classList.remove("resultSectionContainer");
 
 //  Event Listeners *******************************************************
+//NOTE: There is no listener for when the user clicks the little "x" in the search field. Javascript clears that field on its own
 
 // Hide the results section when the user clicks inside the search field
 searchItem.addEventListener("focus", () => {
@@ -89,38 +88,104 @@ executeSearch.addEventListener("click", () => {
   // getItems();
 });
 
-addRange.addEventListener("click", (e, name) => {
-  e.preventDefault();
-  var passedName = e.target.name;
-  console.log('e', passedName); //@DEBUG
-  var rangeDiv = document.createElement("div");
-  var rangeInputStartsAt = document.createElement("input");
-  rangeInputStartsAt.setAttribute("type", "text");
-  rangeInputStartsAt.setAttribute("name", "starts_at");
-  rangeInputStartsAt.setAttribute("id", "starts_at");
-  var rangeInputEndsAt = document.createElement("input");
-  rangeInputEndsAt.setAttribute("type", "text");
-  rangeInputEndsAt.setAttribute("name", "ends_at");
-  rangeInputEndsAt.setAttribute("id", "ends_at");
-  var rangeInputDisplay = document.createElement("input");
-  rangeInputDisplay.setAttribute("type", "text");
-  rangeInputDisplay.setAttribute("name", "display");
-  rangeInputDisplay.setAttribute("id", "display");
-  rangeDiv.appendChild(rangeInputStartsAt);
-  rangeDiv.appendChild(rangeInputEndsAt);
-  rangeDiv.appendChild(rangeInputDisplay);
-  rangeSection[e.target.name].appendChild(rangeDiv);
-});
+// Loop through all the addRange buttons and assign the click listener that will run the addRangeField function
+for(var i = 0; i < addRanges.length; i++) {
+  addRanges[i].addEventListener("click", (e) => {
+    addRangeField(e.target.id);
+  });
+};
 
+// Check to see if the user click the "Submit" button
 itemForm.addEventListener("submit", (e) => {
   e.preventDefault();
   let item1 = document.getElementById("starts_at");
   let item2 = document.getElementById("ends_at");
   let item3 = document.getElementById("display");
-  console.log('submit result', e); //@DEBUG
+  // console.log('submit result', e); //@DEBUG
 });
 
-//NOTE: There is no listener for when the user clicks the little "x" in the search field. Javascript clears that field on its own
+// Add another range to the form that is styled correctly and in the correct location
+function addRangeField(rangeField) {
+  // The id from the button is passed in so we know where to add the new range field
+  const rangeSection = document.getElementById(`${rangeField}`);
+  // Then we create the element to add to the DOM
+
+  // Create rangeContainer
+  var rangeContainer = document.createElement("div");
+  rangeContainer.classList.add("rangeContainer");
+
+  // Create rangeInputContainer which contains the divs that hold the input/label
+  var rangeInputContainer = document.createElement("div");
+  rangeInputContainer.classList.add("rangeInputContainer");
+
+  // Create rangeInputStart which is the div that wraps the input and the label
+  var rangeInputStart = document.createElement("div");
+  rangeInputStart.classList.add("rangeInput");
+
+  // Create the rangeInputStartsAtLabel 
+  var rangeInputStartsAtLabel = document.createElement("label");
+  rangeInputStartsAtLabel.innerHTML = "Starts at";
+  rangeInputStartsAtLabel.classList.add("rangeLabel");
+
+  // Create the rangeInputStartsAt input
+  var rangeInputStartsAt = document.createElement("input");
+  rangeInputStartsAt.setAttribute("type", "text");
+  rangeInputStartsAt.setAttribute("name", "starts_at");
+  rangeInputStartsAt.setAttribute("id", "starts_at");
+
+  // Append the rangeInputStart elements 
+  rangeInputStart.appendChild(rangeInputStartsAtLabel);
+  rangeInputStart.appendChild(rangeInputStartsAt);
+
+  // Create rangeInputEnd which is the div that wraps the input and label
+  var rangeInputEnd = document.createElement("div");
+  rangeInputEnd.classList.add("rangeInput");
+
+  // Create the rangeInputEndsLabel
+  var rangeInputEndsAtLabel = document.createElement("label");
+  rangeInputEndsAtLabel.innerHTML = "Ends at";
+  rangeInputEndsAtLabel.classList.add("rangeLabel");
+
+  // Create the rangeInputEndsAt input
+  var rangeInputEndsAt = document.createElement("input");
+  rangeInputEndsAt.setAttribute("type", "text");
+  rangeInputEndsAt.setAttribute("name", "ends_at");
+  rangeInputEndsAt.setAttribute("id", "ends_at");
+
+  // Append the rangeInputEnd elements
+  rangeInputEnd.appendChild(rangeInputEndsAtLabel);
+  rangeInputEnd.appendChild(rangeInputEndsAt);
+
+  // Append the rangeInputStart and rangeInputEnd to rangeInputContainer
+  rangeInputContainer.appendChild(rangeInputStart);
+  rangeInputContainer.appendChild(rangeInputEnd);
+
+  // Create the rangeTextAreaContainer which is the div that contains the rangeTextArea element and label
+  var rangeTextAreaContainer = document.createElement("div");
+  rangeTextAreaContainer.classList.add("rangeTextAreaContainer");
+
+  // Create the rangeInputStartsAtLabel 
+  var rangeTextAreaLabel = document.createElement("label");
+  rangeTextAreaLabel.innerHTML = "Display";
+  rangeTextAreaLabel.classList.add("rangeLabel");
+
+  // Create the rangeTextArea element
+  var rangeTextArea = document.createElement("textarea");
+  rangeTextArea.classList.add("rangeTextArea");
+  rangeTextArea.setAttribute("name", "display");
+  rangeTextArea.setAttribute("id", "display");
+
+  // Append the rangeTextArea and label to the rangeTextAreaContainer
+  rangeTextAreaContainer.appendChild(rangeTextAreaLabel);
+  rangeTextAreaContainer.appendChild(rangeTextArea);
+
+  // Append the rangeInputContainer and the rangeTextAreaContainer to the rangeContainer
+  rangeContainer.appendChild(rangeInputContainer);
+  rangeContainer.appendChild(rangeTextAreaContainer);
+
+  // Append the rangeContainer to the hard coded rangeSection div in the HTML
+  rangeSection.appendChild(rangeContainer);
+};
 
 // Hide the results section and clear all the fields
 function clearResults() {
