@@ -98,10 +98,14 @@ for(var i = 0; i < addRanges.length; i++) {
 // Check to see if the user click the "Submit" button
 itemForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  let item1 = document.getElementById("starts_at");
-  let item2 = document.getElementById("ends_at");
-  let item3 = document.getElementById("display");
-  // console.log('submit result', e); //@DEBUG
+
+  // Create a formData variable to store all the data from the form at the time the submit button is pressed
+  var formData = new FormData(itemForm);
+
+  // Loop through the key value pairs and console log them all in order (even the inputs that are dynamically added)
+  for (var pair of formData.entries()) {
+    console.log(pair[0] + ": " + pair[1]);
+  }
 });
 
 // Add another range to the form that is styled correctly and in the correct location
