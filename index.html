@@ -33,10 +33,10 @@
                     </div>
                   </div>
                   <div id="exceptionSectionStartF9XX"></div>
-                  <button class="exceptionButton" id="exceptionSectionStartF9XX" title="An exception is a serial number outside the set range where the Display description still applies" type="button">Add exception(s)</button>
+                  <button class="exceptionButton" id="exceptionSectionStartF9XX" title="An exception is a serial number outside the set range where the Display description still applies" type="button">Add exception</button>
                   <div class="rangeTextAreaContainer">
                     <label class="rangeLabel">Display</label>
-                    <textarea class="rangeTextArea" id="display" name="display"></textarea>
+                    <textarea placeholder="Enter the description the user will see for this serial nubmer range. For example: High Voltage Cable Part# 1111111" class="rangeTextArea" id="display" name="display"></textarea>
                   </div>
                 </div>
                 <div id="rangeSectionF9XX"></div>
@@ -52,13 +52,13 @@
                     </div>
                   </div>
                   <div id="exceptionSectionEndF9XX"></div>
-                  <button class="exceptionButton" id="exceptionSectionEndF9XX" title="An exception is a serial number outside the set range where the Display description still applies" type="button">Add exception(s)</button>
+                  <button class="exceptionButton" id="exceptionSectionEndF9XX" title="An exception is a serial number outside the set range where the Display description still applies" type="button">Add exception</button>
                   <div class="rangeTextAreaContainer">
                     <label class="rangeLabel">Display</label>
-                    <textarea class="rangeTextArea" id="display" name="display"></textarea>
+                    <textarea placeholder="Enter the description the user will see for this serial nubmer range. For example: High Voltage Cable Part# 3333333" class="rangeTextArea" id="display" name="display"></textarea>
                   </div>
                 </div>
-                <button class="rangeButton" type="button" id="rangeSectionF9XX">Add serial number range information for F9XX</button>
+                <button class="rangeButton" type="button" title="Add another serial range if 3 or more descriptions need to be displayed for the cut-in" id="rangeSectionF9XX">Add an intermediate serial number range for F9XX</button>
               </div>
                 <h3>F2XX</h3>
                 <div class="rangeContainer">
@@ -94,7 +94,7 @@
                     <textarea class="rangeTextArea" id="display" name="display"></textarea>
                   </div>
                 </div>
-                <button type="button" class="rangeButton" id="rangeSectionF2XX">Add serial number range information for F2XX</button>
+                <button type="button" class="rangeButton" id="rangeSectionF2XX">Add an intermediate serial number range for F2XX</button>
               </div>
             </div>
             <button type="submit">Submit</button>

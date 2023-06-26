@@ -248,7 +248,7 @@ function addRangeField(rangeField) {
   exceptionButton.setAttribute("id", `exceptionSection${rangeSectionIndex}${rangeConfigChars}`);
   exceptionButton.setAttribute("title", "An exception is a serial number outside the set range where the Display description still applies");
   exceptionButton.classList.add("exceptionButton");
-  exceptionButton.innerHTML = "Add exception(s)";
+  exceptionButton.innerHTML = "Add exception";
   exceptionButton.onclick = (e) => addExceptionField(e.target.id)
 
   // Create the rangeTextAreaContainer which is the div that contains the rangeTextArea element and label
@@ -265,6 +265,7 @@ function addRangeField(rangeField) {
   rangeTextArea.classList.add("rangeTextArea");
   rangeTextArea.setAttribute("name", "display");
   rangeTextArea.setAttribute("id", "display");
+  rangeTextArea.setAttribute("placeholder", "Enter the description the user will see for this serial nubmer range. For example: High Voltage Cable Part# 2222222 (if unavailable order 3333333)");
 
   // Append the rangeTextArea and label to the rangeTextAreaContainer
   rangeTextAreaContainer.appendChild(rangeTextAreaLabel);
