@@ -140,6 +140,16 @@ body {
     flex: 1;
     padding-bottom: 5px;
   }
+  .inputAndButton {
+    display: flex;
+  }
+  .exceptionButton {
+    margin-left: 5px;
+  }
+  .removeExceptionButton {
+    height: 42px;
+    margin-left: 5px;
+  }
   .rangeTextAreaContainer {
     display: flex;
     flex-direction: column;

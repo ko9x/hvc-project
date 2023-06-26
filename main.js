@@ -127,22 +127,30 @@ function addExceptionField(exceptionField) {
    var exceptionInputLabel = document.createElement("label");
    exceptionInputLabel.innerHTML = "Exception serial number";
    exceptionInputLabel.classList.add("rangeLabel");
+
+  //  Create a container for the input and the remove button
+  var inputAndButtonContainer = document.createElement("div");
+  inputAndButtonContainer.classList.add("inputAndButton");
  
    // Create the exceptionInput input element
    var exceptionInput = document.createElement("input");
    exceptionInput.setAttribute("type", "text");
-   exceptionInput.setAttribute("name", "starts_at");
-   exceptionInput.setAttribute("id", "starts_at");
+   exceptionInput.setAttribute("name", "exception");
+   exceptionInput.setAttribute("id", "exception");
 
   //  Create the removeExceptionButton
    var removeExceptionButton = document.createElement("button");
    removeExceptionButton.setAttribute("type", "button");
-   removeExceptionButton.innerHTML = "Remove exception"
+   removeExceptionButton.innerHTML = "remove"
+   removeExceptionButton.classList.add("removeExceptionButton");
+
+  //  Append the input and remove button to the inputAndButtonContainer
+  inputAndButtonContainer.appendChild(exceptionInput);
+  inputAndButtonContainer.appendChild(removeExceptionButton);
 
    // Append the exception elements to the exceptionInputContainer
    exceptionInputContainer.appendChild(exceptionInputLabel);
-   exceptionInputContainer.appendChild(exceptionInput);
-   exceptionInputContainer.appendChild(removeExceptionButton);
+   exceptionInputContainer.appendChild(inputAndButtonContainer);
 
    // Append the exceptionInputContainer to the exceptionSection
    exceptionSection.appendChild(exceptionInputContainer);
