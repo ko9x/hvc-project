@@ -122,7 +122,7 @@ function addExceptionField(exceptionField) {
    // Create exceptionInputContainer which is the div that wraps the input and the label
    var exceptionInputContainer = document.createElement("div");
    exceptionInputContainer.classList.add("rangeInput");
- 
+
    // Create the exceptionInputLabel 
    var exceptionInputLabel = document.createElement("label");
    exceptionInputLabel.innerHTML = "Exception serial number";
@@ -141,8 +141,8 @@ function addExceptionField(exceptionField) {
   //  Create the removeExceptionButton
    var removeExceptionButton = document.createElement("button");
    removeExceptionButton.setAttribute("type", "button");
-   removeExceptionButton.innerHTML = "remove"
-   removeExceptionButton.classList.add("removeExceptionButton");
+   removeExceptionButton.innerHTML = "X"
+   removeExceptionButton.classList.add("removeRangeCardButton");
 
   //  Append the input and remove button to the inputAndButtonContainer
   inputAndButtonContainer.appendChild(exceptionInput);
@@ -156,10 +156,10 @@ function addExceptionField(exceptionField) {
    exceptionSection.appendChild(exceptionInputContainer);
 
    // Append the onclick function to the button after all other appends are done so the parent and child elements exist
-   removeExceptionButton.onclick = () => removeExceptionField(exceptionSection, exceptionInputContainer);
+   removeExceptionButton.onclick = () => removeChildInstanceFromParentInstance(exceptionSection, exceptionInputContainer);
 }
 
-function removeExceptionField(parentInstance, childInstance) {
+function removeChildInstanceFromParentInstance(parentInstance, childInstance) {
   parentInstance.removeChild(childInstance);
 }
 
@@ -167,11 +167,24 @@ function removeExceptionField(parentInstance, childInstance) {
 function addRangeField(rangeField) {
   // The id from the button is passed in so we know where to add the new range field
   const rangeSection = document.getElementById(`${rangeField}`);
-  // Then we create the element to add to the DOM
 
+  // Then we create the element to add to the DOM
   // Create rangeContainer
   var rangeContainer = document.createElement("div");
   rangeContainer.classList.add("rangeContainer");
+
+  // Create a container for the rangeRemoveButton
+  var rangeRemoveButtonContainer = document.createElement("div");
+  rangeRemoveButtonContainer.classList.add("removeRangeCardButtonContainer");
+
+  // Create a button for the user to remove the added range card
+  var rangeRemoveButton = document.createElement("button");
+  rangeRemoveButton.setAttribute("type", "button");
+  rangeRemoveButton.innerHTML = "X";
+  rangeRemoveButton.classList.add("removeRangeCardButton");
+
+  // Append the rangeRemoveButton to its container
+  rangeRemoveButtonContainer.appendChild(rangeRemoveButton);
 
   // Create rangeInputContainer which contains the divs that hold the input/label
   var rangeInputContainer = document.createElement("div");
@@ -238,12 +251,16 @@ function addRangeField(rangeField) {
   rangeTextAreaContainer.appendChild(rangeTextAreaLabel);
   rangeTextAreaContainer.appendChild(rangeTextArea);
 
-  // Append the rangeInputContainer and the rangeTextAreaContainer to the rangeContainer
+  // Append the containers to the rangeContainer
+  rangeContainer.appendChild(rangeRemoveButtonContainer);
   rangeContainer.appendChild(rangeInputContainer);
   rangeContainer.appendChild(rangeTextAreaContainer);
 
   // Append the rangeContainer to the hard coded rangeSection div in the HTML
   rangeSection.appendChild(rangeContainer);
+
+  // Append the onclick function to the button after all other appends are done so the parent and child elements exist
+  rangeRemoveButton.onclick = () => removeChildInstanceFromParentInstance(rangeSection, rangeContainer);
 };
 
 // Hide the results section and clear all the fields
