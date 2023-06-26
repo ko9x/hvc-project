@@ -1,5 +1,20 @@
 ### Current Focus
-* Continue working on the form for adding new items (and the associated ranges) to the database
+* Continue working on the advanced form for adding new items (and the associated ranges) to the database
+    * Create a top section where the user enters their sso and the name of the item
+    * (done) Make a button to remove a range section card
+    * Give the add serial number range information button a better name and add a title hover description
+    * Make sure there are no duplicate exceptions
+        * Make sure the exception has the correct config
+        * Make sure the exception is outside the range
+            * Just to make sure the user isn't getting confused about what exceptions are
+* Make a basic form for when the creator just has a clear cut-in serial number?
+    * All we would need is the cut-in serial number, the "before" description and the "after" description
+    * Make it clear the cut-in serial number is the first system that includes the new part or feature
+    * Each config could have the option to go advanced or not
+        * So if F9XX has just an exception and the rest are single serial cut-ins you wouldn't have to do the extra work on all the other configurations
+* Form validation
+* Show a view with all the items in the database and an option to remove an item from the database
+    * This will obviously need to remove all cut-ins and exceptions associated with the item
 * Figure out how we want to interact with the backend
     * Make an api service
     * Continue writing functions to setup and test the APIService 
