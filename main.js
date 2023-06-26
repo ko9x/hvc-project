@@ -167,12 +167,18 @@ function removeChildInstanceFromParentInstance(parentInstance, childInstance) {
 function addRangeField(rangeField) {
   // The id from the button is passed in so we know where to add the new range field
   const rangeSection = document.getElementById(`${rangeField}`);
+  
+  // We use this to match the id of the exceptionSection and button
+  const rangeSectionIndex = rangeSection.children.length;
+
+  // We use this to match the id of the exceptionSection and button
+  const rangeConfigChars = rangeField.substr(rangeField.length - 4);
 
   // Then we create the element to add to the DOM
   // Create rangeContainer
   var rangeContainer = document.createElement("div");
   rangeContainer.classList.add("rangeContainer");
-
+  
   // Create a container for the rangeRemoveButton
   var rangeRemoveButtonContainer = document.createElement("div");
   rangeRemoveButtonContainer.classList.add("removeRangeCardButtonContainer");
@@ -232,6 +238,19 @@ function addRangeField(rangeField) {
   rangeInputContainer.appendChild(rangeInputStart);
   rangeInputContainer.appendChild(rangeInputEnd);
 
+  // Create the exceptionSection. This is where the input for adding exception serial numbers will display
+  var exceptionSection = document.createElement("div");
+  exceptionSection.setAttribute("id", `exceptionSection${rangeSectionIndex}${rangeConfigChars}`);
+
+  // Create the exceptionButton which will display an input for the user to enter an exception serial number
+  var exceptionButton = document.createElement("button");
+  exceptionButton.setAttribute("type", "button");
+  exceptionButton.setAttribute("id", `exceptionSection${rangeSectionIndex}${rangeConfigChars}`);
+  exceptionButton.setAttribute("title", "An exception is a serial number outside the set range where the Display description still applies");
+  exceptionButton.classList.add("exceptionButton");
+  exceptionButton.innerHTML = "Add exception(s)";
+  exceptionButton.onclick = (e) => addExceptionField(e.target.id)
+
   // Create the rangeTextAreaContainer which is the div that contains the rangeTextArea element and label
   var rangeTextAreaContainer = document.createElement("div");
   rangeTextAreaContainer.classList.add("rangeTextAreaContainer");
@@ -254,6 +273,8 @@ function addRangeField(rangeField) {
   // Append the containers to the rangeContainer
   rangeContainer.appendChild(rangeRemoveButtonContainer);
   rangeContainer.appendChild(rangeInputContainer);
+  rangeContainer.appendChild(exceptionSection);
+  rangeContainer.appendChild(exceptionButton);
   rangeContainer.appendChild(rangeTextAreaContainer);
 
   // Append the rangeContainer to the hard coded rangeSection div in the HTML
@@ -261,6 +282,7 @@ function addRangeField(rangeField) {
 
   // Append the onclick function to the button after all other appends are done so the parent and child elements exist
   rangeRemoveButton.onclick = () => removeChildInstanceFromParentInstance(rangeSection, rangeContainer);
+  
 };
 
 // Hide the results section and clear all the fields
