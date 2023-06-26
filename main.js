@@ -117,7 +117,42 @@ itemForm.addEventListener("submit", (e) => {
 });
 
 function addExceptionField(exceptionField) {
+  const exceptionSection = document.getElementById(`${exceptionField}`);
 
+   // Create exceptionInputContainer which is the div that wraps the input and the label
+   var exceptionInputContainer = document.createElement("div");
+   exceptionInputContainer.classList.add("rangeInput");
+ 
+   // Create the exceptionInputLabel 
+   var exceptionInputLabel = document.createElement("label");
+   exceptionInputLabel.innerHTML = "Exception serial number";
+   exceptionInputLabel.classList.add("rangeLabel");
+ 
+   // Create the exceptionInput input element
+   var exceptionInput = document.createElement("input");
+   exceptionInput.setAttribute("type", "text");
+   exceptionInput.setAttribute("name", "starts_at");
+   exceptionInput.setAttribute("id", "starts_at");
+
+  //  Create the removeExceptionButton
+   var removeExceptionButton = document.createElement("button");
+   removeExceptionButton.setAttribute("type", "button");
+   removeExceptionButton.innerHTML = "Remove exception"
+
+   // Append the exception elements to the exceptionInputContainer
+   exceptionInputContainer.appendChild(exceptionInputLabel);
+   exceptionInputContainer.appendChild(exceptionInput);
+   exceptionInputContainer.appendChild(removeExceptionButton);
+
+   // Append the exceptionInputContainer to the exceptionSection
+   exceptionSection.appendChild(exceptionInputContainer);
+
+   // Append the onclick function to the button after all other appends are done so the parent and child elements exist
+   removeExceptionButton.onclick = () => removeExceptionField(exceptionSection, exceptionInputContainer);
+}
+
+function removeExceptionField(parentInstance, childInstance) {
+  parentInstance.removeChild(childInstance);
 }
 
 // Add another range to the form that is styled correctly and in the correct location

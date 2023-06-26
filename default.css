@@ -138,6 +138,7 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
+    padding-bottom: 5px;
   }
   .rangeTextAreaContainer {
     display: flex;
@@ -150,6 +151,5 @@ body {
     border-radius: 5px;
   }
   .rangeLabel {
-    padding-left: 5px;
-    padding-bottom: 5px;
+    padding: 5px;
   }
