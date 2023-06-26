@@ -10,10 +10,10 @@
     * Pass the config name (i.e. F9XX) as part of the url or object
         * Once we have the breakpoint data we will still do the login here in the frontend
             * The object will just have the item name and creator as well as the breakpoints for the config we passed
-* Update findBreakPoint function to work with caveots.
-    * Need to add some caveots to the itemObject.
+* Update findBreakPoint function to work with exceptions.
+    * Need to add some exceptions to the itemObject.
 * Continue brainstorming about how the information should be contained in the database
-    * Specifically the caveots
+    * Specifically the exceptions
 * Manually add another item to the items array
     * Decide how to display all the items (eventually there could be lots of them)
         * Dynamically add sections to the results section based on how many items are returned from the search

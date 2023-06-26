@@ -10,6 +10,7 @@ const searchSection = document.getElementById("searchSection");
 const searchItem = document.getElementById("searchItem");
 const itemForm = document.getElementById("itemForm");
 const addRanges = document.querySelectorAll(".rangeButton");
+const addExceptions = document.querySelectorAll(".exceptionButton");
 const executeSearch = document.getElementById("executeSearch");
 const resultSectionContainer = document.getElementById("resultSectionContainer");
 const resultSection = document.getElementById("resultSection");
@@ -95,6 +96,13 @@ for(var i = 0; i < addRanges.length; i++) {
   });
 };
 
+// Loop through all the addException buttons and assign the click listener that will run the addExceptionField function
+for(var i = 0; i < addExceptions.length; i++) {
+  addExceptions[i].addEventListener("click", (e) => {
+    addExceptionField(e.target.id);
+  });
+};
+
 // Check to see if the user click the "Submit" button
 itemForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -107,6 +115,10 @@ itemForm.addEventListener("submit", (e) => {
     console.log(pair[0] + ": " + pair[1]);
   }
 });
+
+function addExceptionField(exceptionField) {
+
+}
 
 // Add another range to the form that is styled correctly and in the correct location
 function addRangeField(rangeField) {
