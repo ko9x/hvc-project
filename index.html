@@ -4,8 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-    <link href="default.css" rel="stylesheet" type="text/css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="default.css" rel="stylesheet" type="text/css" />
     <title>Elite System Information</title>
   </head>
   <body>
@@ -18,93 +22,142 @@
       <div class="formSection" id="formSection">
         <form id="itemForm">
           <div id="itemFormBody">
-            <div id="itemFormField">
-              <div>
-                <h3>F9XX</h3>
-                <div class="rangeContainer">
-                  <div class="rangeInputContainer">
-                    <div class="rangeInput">
-                      <label class="rangeLabel">Starts at</label>
-                      <input type="text" id="starts_at" name="starts_at" readonly value="F9XXXX00001"/>
-                    </div>
-                    <div class="rangeInput">
-                      <label class="rangeLabel">Ends at</label>
-                      <input type="text" id="ends_at" name="ends_at"/>
-                    </div>
-                  </div>
-                  <div id="exceptionSectionStartF9XX"></div>
-                  <button class="exceptionButton" id="exceptionSectionStartF9XX" title="An exception is a serial number outside the set range where the Display description still applies" type="button">Add exception</button>
-                  <div class="rangeTextAreaContainer">
-                    <label class="rangeLabel">Display</label>
-                    <textarea placeholder="Enter the description the user will see for this serial nubmer range. For example: High Voltage Cable Part# 1111111" class="rangeTextArea" id="display" name="display"></textarea>
-                  </div>
+            <h3>F9XX</h3>
+            <div class="rangeContainer" name="F9XX">
+              <div class="rangeInputContainer">
+                <div class="rangeInput">
+                  <label class="rangeLabel">Starts at</label>
+                  <input
+                    type="text"
+                    id="starts_at"
+                    readonly
+                    value="F9XXXX00001"
+                  />
                 </div>
-                <div id="rangeSectionF9XX"></div>
-                <div class="rangeContainer">
-                  <div class="rangeInputContainer">
-                    <div class="rangeInput">
-                      <label class="rangeLabel">Starts at</label>
-                      <input type="text" id="starts_at" name="starts_at"/>
-                    </div>
-                    <div class="rangeInput">
-                      <label class="rangeLabel">Ends at</label>
-                      <input type="text" id="ends_at" name="ends_at" readonly value="F9XXTX99999"/>
-                    </div>
-                  </div>
-                  <div id="exceptionSectionEndF9XX"></div>
-                  <button class="exceptionButton" id="exceptionSectionEndF9XX" title="An exception is a serial number outside the set range where the Display description still applies" type="button">Add exception</button>
-                  <div class="rangeTextAreaContainer">
-                    <label class="rangeLabel">Display</label>
-                    <textarea placeholder="Enter the description the user will see for this serial nubmer range. For example: High Voltage Cable Part# 3333333" class="rangeTextArea" id="display" name="display"></textarea>
-                  </div>
+                <div class="rangeInput">
+                  <label class="rangeLabel">Ends at</label>
+                  <input type="text" id="ends_at" />
                 </div>
-                <button class="rangeButton" type="button" title="Add another serial range if 3 or more descriptions need to be displayed for the cut-in" id="rangeSectionF9XX">Add an intermediate serial number range for F9XX</button>
               </div>
-                <h3>F2XX</h3>
-                <div class="rangeContainer">
-                  <div class="rangeInputContainer">
-                    <div class="rangeInput">
-                      <label class="rangeLabel">Starts at</label>
-                      <input type="text" id="starts_at" name="starts_at" readonly value="F2XXXX00001"/>
-                    </div>
-                    <div class="rangeInput">
-                      <label class="rangeLabel">Ends at</label>
-                      <input type="text" id="ends_at" name="ends_at"/>
-                    </div>
-                  </div>
-                  <div class="rangeTextAreaContainer">
-                    <label class="rangeLabel">Display</label>
-                    <textarea class="rangeTextArea" id="display" name="display"></textarea>
-                  </div>
-                </div>
-                <div id="rangeSectionF2XX"></div>
-                <div class="rangeContainer">
-                  <div class="rangeInputContainer">
-                    <div class="rangeInput">
-                      <label class="rangeLabel">Starts at</label>
-                      <input type="text" id="starts_at" name="starts_at"/>
-                    </div>
-                    <div class="rangeInput">
-                      <label class="rangeLabel">Ends at</label>
-                      <input type="text" id="ends_at" name="ends_at" readonly value="F2XXTX99999"/>
-                    </div>
-                  </div>
-                  <div class="rangeTextAreaContainer">
-                    <label class="rangeLabel">Display</label>
-                    <textarea class="rangeTextArea" id="display" name="display"></textarea>
-                  </div>
-                </div>
-                <button type="button" class="rangeButton" id="rangeSectionF2XX">Add an intermediate serial number range for F2XX</button>
+              <div id="exceptionSectionStartF9XX"></div>
+              <button
+                class="exceptionButton"
+                id="exceptionSectionStartF9XX"
+                title="An exception is a serial number outside the set range where the Display description still applies"
+                type="button"
+              >
+                Add exception
+              </button>
+              <div class="rangeTextAreaContainer">
+                <label class="rangeLabel">Display</label>
+                <textarea
+                  placeholder="Enter the description the user will see for this serial nubmer range. For example: High Voltage Cable Part# 1111111"
+                  class="rangeTextArea"
+                  id="display"
+                ></textarea>
               </div>
             </div>
-            <button class="submitButton" type="submit">Submit</button>
+            <div id="rangeSectionF9XX"></div>
+            <div class="rangeContainer" name="F9XX">
+              <div class="rangeInputContainer">
+                <div class="rangeInput">
+                  <label class="rangeLabel">Starts at</label>
+                  <input type="text" id="starts_at" />
+                </div>
+                <div class="rangeInput">
+                  <label class="rangeLabel">Ends at</label>
+                  <input
+                    type="text"
+                    id="ends_at"
+                    readonly
+                    value="F9XXTX99999"
+                  />
+                </div>
+              </div>
+              <div id="exceptionSectionEndF9XX"></div>
+              <button
+                class="exceptionButton"
+                id="exceptionSectionEndF9XX"
+                title="An exception is a serial number outside the set range where the Display description still applies"
+                type="button"
+              >
+                Add exception
+              </button>
+              <div class="rangeTextAreaContainer">
+                <label class="rangeLabel">Display</label>
+                <textarea
+                  placeholder="Enter the description the user will see for this serial nubmer range. For example: High Voltage Cable Part# 3333333"
+                  class="rangeTextArea"
+                  id="display"
+                ></textarea>
+              </div>
+            </div>
+            <button
+              class="rangeButton"
+              type="button"
+              title="Add another serial range if 3 or more descriptions need to be displayed for the cut-in"
+              id="rangeSectionF9XX"
+            >
+              Add an intermediate serial number range for F9XX
+            </button>
+            <h3>F2XX</h3>
+            <div class="rangeContainer" name="F2XX">
+              <div class="rangeInputContainer">
+                <div class="rangeInput">
+                  <label class="rangeLabel">Starts at</label>
+                  <input
+                    type="text"
+                    id="starts_at"
+                    readonly
+                    value="F2XXXX00001"
+                  />
+                </div>
+                <div class="rangeInput">
+                  <label class="rangeLabel">Ends at</label>
+                  <input type="text" id="ends_at" />
+                </div>
+              </div>
+              <div class="rangeTextAreaContainer">
+                <label class="rangeLabel">Display</label>
+                <textarea
+                  class="rangeTextArea"
+                  id="display"
+                ></textarea>
+              </div>
+            </div>
+            <div id="rangeSectionF2XX"></div>
+            <div class="rangeContainer" name="F2XX">
+              <div class="rangeInputContainer">
+                <div class="rangeInput">
+                  <label class="rangeLabel">Starts at</label>
+                  <input type="text" id="starts_at" />
+                </div>
+                <div class="rangeInput">
+                  <label class="rangeLabel">Ends at</label>
+                  <input
+                    type="text"
+                    id="ends_at"
+                    readonly
+                    value="F2XXTX99999"
+                  />
+                </div>
+              </div>
+              <div class="rangeTextAreaContainer">
+                <label class="rangeLabel">Display</label>
+                <textarea
+                  class="rangeTextArea"
+                  id="display"
+                ></textarea>
+              </div>
+            </div>
+            <button type="button" class="rangeButton" id="rangeSectionF2XX">
+              Add an intermediate serial number range for F2XX
+            </button>
           </div>
+          <button class="submitButton" type="submit">Submit</button>
         </form>
       </div>
-      <div
-        id="searchSection"
-        class="searchSection"
-      >
+      <div id="searchSection" class="searchSection">
         <input
           id="searchItem"
           type="search"

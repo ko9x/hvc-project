@@ -109,27 +109,23 @@ itemForm.addEventListener("submit", (e) => {
 
   let ranges = [];
 
-  let myRanges = document.getElementsByName('F9XX');
+  for (var config of configs) {
+    let myRanges = document.getElementsByName(config.code);
 
-  for (var range of myRanges) {
-    var myInputs = range.getElementsByTagName('input');
-    console.log('myInputs name', myInputs[0].name); //@DEBUG
-    console.log('myInputs value', myInputs[0].value); //@DEBUG
-    console.log('myInputs value', myInputs[1].name); //@DEBUG
-    console.log('myInputs value', myInputs[1].value); //@DEBUG
-    var myTextarea = range.getElementsByTagName('textarea')[0].value;
-    console.log('myTextArea', myTextarea); //@DEBUG
+    for (var range of myRanges) {
+      var myInputs = range.getElementsByTagName('input');
+      var myTextarea = range.getElementsByTagName('textarea')[0].value;
+      console.log('myTextArea', myTextarea); //@DEBUG
 
-    let myObj = {
-      name: 'F9XX',
-      starts_at: myInputs[0].value,
-      ends_at: myInputs[1].value,
-      display: myTextarea
-    };
-
-    ranges.push(myObj);
+      let myObj = {
+        name: config.code,
+        starts_at: myInputs[0].value,
+        ends_at: myInputs[1].value,
+        display: myTextarea
+      };
+      ranges.push(myObj);
+    }
   }
-
   console.log('ranges', ranges); //@DEBUG
 });
 
@@ -195,6 +191,7 @@ function addRangeField(rangeField) {
   // Create rangeContainer
   var rangeContainer = document.createElement("div");
   rangeContainer.classList.add("rangeContainer");
+  rangeContainer.setAttribute("name", rangeConfigChars);
   
   // Create a container for the rangeRemoveButton
   var rangeRemoveButtonContainer = document.createElement("div");
