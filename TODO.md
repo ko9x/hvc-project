@@ -1,17 +1,17 @@
 ### Current Focus
-* Continue working on the advanced form for adding new items (and the associated ranges) to the database
+* Continue working on the form
+    * Add functionality to pass the object created in the submit function to the api service
     * Create a top section where the user enters their sso and the name of the item
-    * (done) Make a button to remove a range section card
-    * Give the add serial number range information button a better name and add a title hover description
-    * Make sure there are no duplicate exceptions
+        * Add that information to the object we pass to the api service
+    * Include the exceptions in the object that is sent to the api service
+        * Make sure there are no duplicate exceptions
         * Make sure the exception has the correct config
         * Make sure the exception is outside the range
             * Just to make sure the user isn't getting confused about what exceptions are
-* Make a basic form for when the creator just has a clear cut-in serial number?
-    * All we would need is the cut-in serial number, the "before" description and the "after" description
-    * Make it clear the cut-in serial number is the first system that includes the new part or feature
-    * Each config could have the option to go advanced or not
-        * So if F9XX has just an exception and the rest are single serial cut-ins you wouldn't have to do the extra work on all the other configurations
+    * Give the add serial number range information button a better name and add a title hover description
+        * Maybe don't show the buttons unless you click on advanced or something like that
+            * It would make the form less busy
+* Make the placeholder text in the textareas less busy
 * Form validation
 * Show a view with all the items in the database and an option to remove an item from the database
     * This will obviously need to remove all cut-ins and exceptions associated with the item
@@ -36,7 +36,11 @@
 * Cleanup all the unused logic
 
 ### What to do later
-* Create a form that allows new items to be added to the database
+* Make a basic form for when the creator just has a clear cut-in serial number
+    * All we would need is the cut-in serial number, the "before" description and the "after" description
+    * Make it clear the cut-in serial number is the first system that includes the new part or feature
+    * Each config could have the option to go advanced or not
+        * So if just F9XX has an exception and the rest are single serial cut-ins you wouldn't have to do the extra work on all the other configurations
 
 ### Styling
 * Light and dark mode would be cool
