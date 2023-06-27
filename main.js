@@ -107,13 +107,30 @@ for(var i = 0; i < addExceptions.length; i++) {
 itemForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  // Create a formData variable to store all the data from the form at the time the submit button is pressed
-  var formData = new FormData(itemForm);
+  let ranges = [];
 
-  // Loop through the key value pairs and console log them all in order (even the inputs that are dynamically added)
-  for (var pair of formData.entries()) {
-    console.log(pair[0] + ": " + pair[1]);
+  let myRanges = document.getElementsByName('F9XX');
+
+  for (var range of myRanges) {
+    var myInputs = range.getElementsByTagName('input');
+    console.log('myInputs name', myInputs[0].name); //@DEBUG
+    console.log('myInputs value', myInputs[0].value); //@DEBUG
+    console.log('myInputs value', myInputs[1].name); //@DEBUG
+    console.log('myInputs value', myInputs[1].value); //@DEBUG
+    var myTextarea = range.getElementsByTagName('textarea')[0].value;
+    console.log('myTextArea', myTextarea); //@DEBUG
+
+    let myObj = {
+      name: 'F9XX',
+      starts_at: myInputs[0].value,
+      ends_at: myInputs[1].value,
+      display: myTextarea
+    };
+
+    ranges.push(myObj);
   }
+
+  console.log('ranges', ranges); //@DEBUG
 });
 
 function addExceptionField(exceptionField) {
