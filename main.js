@@ -85,9 +85,6 @@ searchItem.addEventListener("keypress", (e) => {
 executeSearch.addEventListener("click", async () => {
   validateSerialNumber();
   flashSearchButton();
-  // This is here for testing the APIService
-    // const theItem = await getItems();
-    // console.log('theItem', theItem); //@DEBUG
 });
 
 // Loop through all the addRange buttons and assign the click listener that will run the addRangeField function
@@ -395,10 +392,13 @@ function displayError() {
 }
 
 // Configuration Identification Logic
-function findConfiguration(capitalizedSearchItem) {
+async function findConfiguration(capitalizedSearchItem) {
   let noMatch = 0;
   let configChars = capitalizedSearchItem.slice(0, 4);
   let sequenceNum = capitalizedSearchItem.slice(-5);
+  const itemsArray = await getItems(configChars);
+  // checkItemId is to force item.ranges.find to only run once per item
+  let checkItemId = null;
   configs.find((config) => {
     if (config.code === configChars) {
       // If the serial includes an E make sure it is a valid ergo code
@@ -413,17 +413,17 @@ function findConfiguration(capitalizedSearchItem) {
           return displayError();
         }
       }
-      items.forEach((item) => {
-        item.configs.find((itemConfig) => {
-          if (config.id === itemConfig.id) {
+    itemsArray.forEach((item) => {
+        item.ranges.find((range) => {
+          if (config.code === range.name && checkItemId !== range.item_id) {
+            checkItemId = range.item_id;
             findBreakPoint(
               capitalizedSearchItem,
-              itemConfig.breakPoints,
+              item.ranges,
               sequenceNum,
               config.id,
               item.name
             );
-          } else {
           }
         });
       });
@@ -441,17 +441,17 @@ function findConfiguration(capitalizedSearchItem) {
 function findBreakPoint(serialNum, breakPointArr, sequenceNum, id, name) {
   if (serialNum.charAt(4) === "T") {
     const infoBreakPoint = breakPointArr.find((breakPoint) => {
-      let startSequenceNum = breakPoint.startsAt.slice(-5);
-      let endSequenceNum = breakPoint.endsAt.slice(-5);
-      if (breakPoint.startsAt.charAt(4) === "X") {
+      let startSequenceNum = breakPoint.starts_at.slice(-5);
+      let endSequenceNum = breakPoint.ends_at.slice(-5);
+      if (breakPoint.starts_at.charAt(4) === "X") {
         if (
-          breakPoint.endsAt.charAt(4) === "T" &&
+          breakPoint.ends_at.charAt(4) === "T" &&
           endSequenceNum >= sequenceNum
         ) {
           return breakPoint;
         }
       }
-      if (breakPoint.startsAt.charAt(4) === "T") {
+      if (breakPoint.starts_at.charAt(4) === "T") {
         if (startSequenceNum <= sequenceNum && endSequenceNum >= sequenceNum) {
           return breakPoint;
         }
@@ -460,22 +460,22 @@ function findBreakPoint(serialNum, breakPointArr, sequenceNum, id, name) {
     displayResults(
       id,
       name,
-      infoBreakPoint.display,
+      infoBreakPoint.details,
       "with Tablet"
     );
   }
   if (serialNum.charAt(4) === "X") {
     const infoBreakPoint = breakPointArr.find((breakPoint) => {
-      let startSequenceNum = breakPoint.startsAt.slice(-5);
-      let endSequenceNum = breakPoint.endsAt.slice(-5);
+      let startSequenceNum = breakPoint.starts_at.slice(-5);
+      let endSequenceNum = breakPoint.ends_at.slice(-5);
       if (
-        breakPoint.startsAt.charAt(4) === "X" &&
+        breakPoint.starts_at.charAt(4) === "X" &&
         startSequenceNum <= sequenceNum
       ) {
         if (
-          (breakPoint.endsAt.charAt(4) === "X" &&
+          (breakPoint.ends_at.charAt(4) === "X" &&
             endSequenceNum >= sequenceNum) ||
-          breakPoint.endsAt.charAt(4) === "T"
+          breakPoint.ends_at.charAt(4) === "T"
         ) {
           return breakPoint;
         }
@@ -484,7 +484,7 @@ function findBreakPoint(serialNum, breakPointArr, sequenceNum, id, name) {
     displayResults(
       id,
       name,
-      infoBreakPoint.display,
+      infoBreakPoint.details,
       "with Control Panel (non-tablet)"
     );
   }
