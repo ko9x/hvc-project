@@ -107,8 +107,16 @@ for(var i = 0; i < addExceptions.length; i++) {
 itemForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
+  let itemObj = {};
   let ranges = [];
   let exceptions = [];
+
+  let itemInfo = document.getElementById('itemInfo').getElementsByTagName('input');
+
+  itemObj = {
+    name: itemInfo[0].value,
+    creator: itemInfo[1].value,
+  }
 
   // Loop through each element that has a name which matches one of the config codes
   for (var config of configs) {
@@ -142,6 +150,12 @@ itemForm.addEventListener("submit", (e) => {
       }
     }
   }
+  itemObj = {
+    ...itemObj,
+    ranges: ranges,
+    exceptions: exceptions,
+  }
+  console.log('itemObj', itemObj); //@DEBUG
   console.log('ranges', ranges); //@DEBUG
   console.log('exceptions', exceptions); //@DEBUG
 });
