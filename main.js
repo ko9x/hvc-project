@@ -108,25 +108,42 @@ itemForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   let ranges = [];
+  let exceptions = [];
 
+  // Loop through each element that has a name which matches one of the config codes
   for (var config of configs) {
-    let myRanges = document.getElementsByName(config.code);
+    let itemRanges = document.getElementsByName(config.code);
 
-    for (var range of myRanges) {
-      var myInputs = range.getElementsByTagName('input');
-      var myTextarea = range.getElementsByTagName('textarea')[0].value;
-      console.log('myTextArea', myTextarea); //@DEBUG
+    // Group each range and create an object to pass to the ranges array
+    for (var range of itemRanges) {
+      var rangeInputs = range.getElementsByTagName('input');
+      var rangeTextarea = range.getElementsByTagName('textarea')[0].value;
 
-      let myObj = {
+      let rangeObj = {
         name: config.code,
-        starts_at: myInputs[0].value,
-        ends_at: myInputs[1].value,
-        display: myTextarea
+        starts_at: rangeInputs[0].value,
+        ends_at: rangeInputs[1].value,
+        display: rangeTextarea
       };
-      ranges.push(myObj);
+      ranges.push(rangeObj);
+
+      // We reference the exception by ClassName because the ById and ByName methods only exist on the document object
+      // The getElementsByClassName method exists on all HTML elements
+      var exceptionInputs = range.getElementsByClassName('exception');
+
+      // Group each exception with the corresponding range information and add the object to the exceptions array
+      for (var exceptionInput of exceptionInputs) {
+        let exceptionObj = {
+          name: config.code,
+          serial: exceptionInput.value,
+          details: rangeTextarea
+        }
+        exceptions.push(exceptionObj);
+      }
     }
   }
   console.log('ranges', ranges); //@DEBUG
+  console.log('exceptions', exceptions); //@DEBUG
 });
 
 function addExceptionField(exceptionField) {
@@ -150,6 +167,7 @@ function addExceptionField(exceptionField) {
    exceptionInput.setAttribute("type", "text");
    exceptionInput.setAttribute("name", "exception");
    exceptionInput.setAttribute("id", "exception");
+   exceptionInput.classList.add("exception");
 
   //  Create the removeExceptionButton
    var removeExceptionButton = document.createElement("button");
