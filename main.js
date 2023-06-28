@@ -82,11 +82,12 @@ searchItem.addEventListener("keypress", (e) => {
 });
 
 // Check to see if the user clicked the "Search" button
-executeSearch.addEventListener("click", () => {
+executeSearch.addEventListener("click", async () => {
   validateSerialNumber();
   flashSearchButton();
   // This is here for testing the APIService
-  // getItems();
+    // const theItem = await getItems();
+    // console.log('theItem', theItem); //@DEBUG
 });
 
 // Loop through all the addRange buttons and assign the click listener that will run the addRangeField function
