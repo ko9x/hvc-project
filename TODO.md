@@ -1,4 +1,17 @@
 ### Current Focus
+* Steps needed to test the functionality of the app
+    * Get another item into the database
+        * the F9XX and F2XX breakpoints should be enough to test I think
+    * (done) Write code to get items from the database in the correct shape to be used by the main.js functions
+    * (we still need to get this working for multiple items!) Rewrite the main.js functions to display the information correctly
+        * findConfiguration function needs to be rewritten because the database is sending us an array that is the correct config
+            * We can't completely eliminate the findConfiguration function because we do some validation there 
+                * We also get the correct config id which may or may not still be necessary
+            * Once we validate the serial is valid we need to have another function that calls the APIService
+                * The APIService will get the information from the database and parse it to be used in the findBreakPoint function
+        * findBreakPoint function may or may not need to be rewritten
+        * displayResults will need to be rewritten because the name and item info arguments will now be arrays
+            * We will also need to dynamically add html for each item that will be displayed
 * Continue working on the form
     * Add functionality to pass the object created in the submit function to the api service
     * Create a top section where the user enters their sso and the name of the item
@@ -11,6 +24,10 @@
     * Give the add serial number range information button a better name and add a title hover description
         * Maybe don't show the buttons unless you click on advanced or something like that
             * It would make the form less busy
+* Update findBreakPoint function to work with exceptions.
+    * Need to add some exceptions to the itemObject.
+* Continue brainstorming about how the information should be contained in the database
+    * Specifically the exceptions
 * Make the placeholder text in the textareas less busy
 * Form validation
 * Show a view with all the items in the database and an option to remove an item from the database
@@ -25,10 +42,6 @@
     * Pass the config name (i.e. F9XX) as part of the url or object
         * Once we have the breakpoint data we will still do the login here in the frontend
             * The object will just have the item name and creator as well as the breakpoints for the config we passed
-* Update findBreakPoint function to work with exceptions.
-    * Need to add some exceptions to the itemObject.
-* Continue brainstorming about how the information should be contained in the database
-    * Specifically the exceptions
 * Manually add another item to the items array
     * Decide how to display all the items (eventually there could be lots of them)
         * Dynamically add sections to the results section based on how many items are returned from the search
