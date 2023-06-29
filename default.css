@@ -116,10 +116,23 @@ body {
     min-height: 60px;
     transition-duration: 500ms;
   }
-  .sectionItem {
+  .topResultItemContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .bottomResultContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .bottomResultItemContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
   }
   .rangeContainer {
     border: solid #282c34 1px;

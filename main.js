@@ -16,8 +16,6 @@ const resultSectionContainer = document.getElementById("resultSectionContainer")
 const resultSection = document.getElementById("resultSection");
 const topResultLabel = document.getElementById("topResultLabel");
 const topResultContent = document.getElementById("topResultContent");
-const bottomResultLabel = document.getElementById("bottomResultLabel");
-const bottomResultContent = document.getElementById("bottomResultContent");
 
 // Constants for height and width
 const width =
@@ -335,8 +333,8 @@ function clearResults() {
   hideResultsSection();
   topResultLabel.innerText = "";
   topResultContent.innerText = "";
-  bottomResultLabel.innerText = "";
-  bottomResultContent.innerText = "";
+  // bottomResultLabel.innerText = "";
+  // bottomResultContent.innerText = "";
 }
 
 // Show the results section
@@ -373,10 +371,20 @@ function validateSerialNumber() {
 // Populate the results section fields with the configuration information
 function displayResults(id, name, itemInfo, userInterface) {
   const configuration = configs.find((config) => config.id === id);
-  topResultLabel.innerText = "System Configuration Details:";
+  topResultLabel.innerText = "System Configuration Information";
   topResultContent.innerText = `${configuration.description} ${userInterface}`;
+
+  let bottomResultContainer = document.getElementById('bottomResultContainer');
+  let bottomResultItemContainer = document.createElement('div');
+  bottomResultItemContainer.classList.add('bottomResultItemContainer')
+
+  let bottomResultLabel = document.createElement('h3');
   bottomResultLabel.innerText = name;
+  let bottomResultContent = document.createElement('div');
   bottomResultContent.innerText = itemInfo;
+  bottomResultItemContainer.appendChild(bottomResultLabel);
+  bottomResultItemContainer.appendChild(bottomResultContent);
+  bottomResultContainer.appendChild(bottomResultItemContainer);
   showResultsSection();
   return;
 }
