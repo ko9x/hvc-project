@@ -1,4 +1,6 @@
 ### Current Focus
+* Get the logic working with exceptions!
+    * Clean up the current focus section!
 * Steps needed to test the functionality of the app
     * Get another item into the database
         * the F9XX and F2XX breakpoints should be enough to test I think
