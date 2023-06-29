@@ -121,6 +121,10 @@ body {
     flex-direction: column;
     align-items: center;
   }
+  .topResultContent {
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
+  }
   .bottomResultContainer {
     display: flex;
     flex-direction: column;
