@@ -134,6 +134,9 @@ body {
     justify-content: space-between;
     width: 80%;
   }
+  .divider {
+    width: 100%;
+  }
   .rangeContainer {
     border: solid #282c34 1px;
     padding: 5px;
