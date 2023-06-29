@@ -379,35 +379,39 @@ function validateSerialNumber() {
   }
 }
 
+function createBottomResultsArea(labelText, contentText) {
+  let bottomResultContainer = document.getElementById('bottomResultContainer');
+  let bottomResultItemContainer = document.createElement('div');
+  bottomResultItemContainer.classList.add('bottomResultItemContainer')
+  let bottomResultLabel = document.createElement('h3');
+  bottomResultLabel.classList.add('bottomResultLabel');
+  bottomResultLabel.innerText = labelText;
+  let bottomResultContent = document.createElement('div');
+  bottomResultContent.classList.add('bottomResultContent');
+  bottomResultContent.innerText = contentText;
+  bottomResultItemContainer.appendChild(bottomResultLabel);
+  bottomResultItemContainer.appendChild(bottomResultContent);
+  bottomResultContainer.appendChild(bottomResultItemContainer);
+}
+
 // Populate the results section fields with the configuration information
 function displayResults(id, name, itemInfo, userInterface) {
   const configuration = configs.find((config) => config.id === id);
   topResultLabel.innerText = "System Configuration Information";
   topResultContent.innerText = `${configuration.description} ${userInterface}`;
 
-  let bottomResultContainer = document.getElementById('bottomResultContainer');
-  let bottomResultItemContainer = document.createElement('div');
-  bottomResultItemContainer.classList.add('bottomResultItemContainer')
-
-  let bottomResultLabel = document.createElement('h3');
-  bottomResultLabel.classList.add('bottomResultLabel');
-  bottomResultLabel.innerText = name;
-  let bottomResultContent = document.createElement('div');
-  bottomResultContent.classList.add('bottomResultContent');
-  bottomResultContent.innerText = itemInfo;
-  bottomResultItemContainer.appendChild(bottomResultLabel);
-  bottomResultItemContainer.appendChild(bottomResultContent);
-  bottomResultContainer.appendChild(bottomResultItemContainer);
+  createBottomResultsArea(name, itemInfo)
   showResultsSection();
   return;
 }
 
 // Populate the results section fields with the error information
 function displayError() {
+  const labelText = "";
+  const contentText = "The entered System Serial Number is invalid. Please check your information and enter a valid System Serial Number";
   topResultLabel.innerText = "System Configuration Details:";
   topResultContent.innerText = "Unknown configuration";
-  bottomResultLabel.innerText = "The entered System Serial Number is invalid";
-  bottomResultContent.innerText = "Please check your information and enter a valid System Serial Number";
+  createBottomResultsArea(labelText, contentText);
   showResultsSection();
   return;
 }
