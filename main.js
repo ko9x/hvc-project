@@ -81,8 +81,11 @@ searchItem.addEventListener("keypress", (e) => {
 
 // Check to see if the user clicked the "Search" button
 executeSearch.addEventListener("click", async () => {
-  validateSerialNumber();
-  flashSearchButton();
+  // Prevent user from doing another search while the resultsSection is already visible
+  if(resultSection.classList.contains('resultSectionHide')) {
+    validateSerialNumber();
+    flashSearchButton();
+  }
 });
 
 // Loop through all the addRange buttons and assign the click listener that will run the addRangeField function
@@ -328,13 +331,21 @@ function addRangeField(rangeField) {
   
 };
 
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
+}
+
 // Hide the results section and clear all the fields
 function clearResults() {
   hideResultsSection();
   topResultLabel.innerText = "";
   topResultContent.innerText = "";
-  // bottomResultLabel.innerText = "";
-  // bottomResultContent.innerText = "";
+
+  // Remove the bottom results label and content for each item
+  let bottomContainerParent = document.getElementById('bottomResultContainer');
+  removeAllChildNodes(bottomContainerParent);
 }
 
 // Show the results section
@@ -379,8 +390,10 @@ function displayResults(id, name, itemInfo, userInterface) {
   bottomResultItemContainer.classList.add('bottomResultItemContainer')
 
   let bottomResultLabel = document.createElement('h3');
+  bottomResultLabel.classList.add('bottomResultLabel');
   bottomResultLabel.innerText = name;
   let bottomResultContent = document.createElement('div');
+  bottomResultContent.classList.add('bottomResultContent');
   bottomResultContent.innerText = itemInfo;
   bottomResultItemContainer.appendChild(bottomResultLabel);
   bottomResultItemContainer.appendChild(bottomResultContent);
