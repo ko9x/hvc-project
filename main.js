@@ -379,8 +379,10 @@ function validateSerialNumber() {
   }
 }
 
-function createBottomResultsArea(labelText, contentText) {
+function createBottomResultsArea(titleText, labelText, contentText) {
   let bottomResultContainer = document.getElementById('bottomResultContainer');
+  let bottomResultsTitle = document.getElementById('bottomResultsTitle');
+  bottomResultsTitle.innerHTML = titleText;
   let bottomResultItemContainer = document.createElement('div');
   bottomResultItemContainer.classList.add('bottomResultItemContainer')
   let bottomResultLabel = document.createElement('h3');
@@ -397,21 +399,23 @@ function createBottomResultsArea(labelText, contentText) {
 // Populate the results section fields with the configuration information
 function displayResults(id, name, itemInfo, userInterface) {
   const configuration = configs.find((config) => config.id === id);
+  const titleText = 'System Cut-In Information';
   topResultLabel.innerText = "System Configuration Information";
   topResultContent.innerText = `${configuration.description} ${userInterface}`;
 
-  createBottomResultsArea(name, itemInfo)
+  createBottomResultsArea(titleText, name, itemInfo)
   showResultsSection();
   return;
 }
 
 // Populate the results section fields with the error information
 function displayError() {
+  const titleText = "Invalid Serial Number Error";
   const labelText = "";
   const contentText = "The entered System Serial Number is invalid. Please check your information and enter a valid System Serial Number";
   topResultLabel.innerText = "System Configuration Details:";
   topResultContent.innerText = "Unknown configuration";
-  createBottomResultsArea(labelText, contentText);
+  createBottomResultsArea(titleText, labelText, contentText);
   showResultsSection();
   return;
 }
