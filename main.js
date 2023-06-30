@@ -75,12 +75,16 @@ toggleView.addEventListener("click", () => {
     titleSection.classList.add("titleSection");
     searchSection.removeAttribute("hidden");
     searchSection.classList.add("searchSection");
+    resultSection.removeAttribute("hidden");
+    resultSection.classList.add("resultSection");
   } else {
     formSection.removeAttribute("hidden");
     titleSection.classList.remove("titleSection");
     titleSection.setAttribute("hidden", "true");
     searchSection.classList.remove("searchSection");
     searchSection.setAttribute("hidden", "true");
+    resultSection.classList.remove("resultSection");
+    resultSection.setAttribute("hidden", "true");
   }
 });
 
