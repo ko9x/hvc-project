@@ -1,6 +1,11 @@
+### Notes to add
+* Note about how to update a created element from outside the function where it was created
+* Note about how to remove child nodes
+
 ### Current Focus
 * Get the logic working with exceptions!
     * Clean up the current focus section!
+* Figure out how we are going to store the item and retrieve the id so it can be used as the item_id for the ranges and exceptions arrays that subsequently need to be stored.
 * Steps needed to test the functionality of the app
     * Get another item into the database
         * the F9XX and F2XX breakpoints should be enough to test I think
