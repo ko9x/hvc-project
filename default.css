@@ -13,6 +13,9 @@ body {
     background-color: white;
     min-height: 650px;
   }
+  .viewButton {
+    align-self: flex-end;
+  }
   .largeContainer {
     border-radius: 25px;
     margin: 5vh;

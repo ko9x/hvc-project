@@ -7,6 +7,8 @@ const titleSection = document.getElementById("titleSection");
 const subTitleText = document.getElementById("subTitleText");
 const disclaimerText = document.getElementById("disclaimerText");
 const searchSection = document.getElementById("searchSection");
+const toggleView = document.getElementById("toggleView");
+const formSection = document.getElementById("formSection");
 const searchItem = document.getElementById("searchItem");
 const itemForm = document.getElementById("itemForm");
 const addRanges = document.querySelectorAll(".rangeButton");
@@ -60,9 +62,27 @@ function handleLayout() {
 
 // Add and remove the resultSectionContainer class to hide a weird flash when the page loads
 resultSectionContainer.classList.remove("resultSectionContainer");
+formSection.setAttribute("hidden", true);
 
 //  Event Listeners *******************************************************
 //NOTE: There is no listener for when the user clicks the little "x" in the search field. Javascript clears that field on its own
+
+// Toggle between the search view and the form
+toggleView.addEventListener("click", () => {
+  if(formSection.checkVisibility()) {
+    formSection.setAttribute("hidden", "true");
+    titleSection.removeAttribute("hidden");
+    titleSection.classList.add("titleSection");
+    searchSection.removeAttribute("hidden");
+    searchSection.classList.add("searchSection");
+  } else {
+    formSection.removeAttribute("hidden");
+    titleSection.classList.remove("titleSection");
+    titleSection.setAttribute("hidden", "true");
+    searchSection.classList.remove("searchSection");
+    searchSection.setAttribute("hidden", "true");
+  }
+});
 
 // Hide the results section when the user clicks inside the search field
 searchItem.addEventListener("focus", () => {
@@ -425,6 +445,7 @@ async function findConfiguration(capitalizedSearchItem) {
   let noMatch = 0;
   let configChars = capitalizedSearchItem.slice(0, 4);
   let sequenceNum = capitalizedSearchItem.slice(-5);
+  // Get the itemsArray for the serial number configuration the user entered
   const itemsArray = await getItems(configChars);
   // checkItemId is to force item.ranges.find to only run once per item
   let checkItemId = null;
