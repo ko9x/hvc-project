@@ -8,7 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 2vh;
+    padding: 5px;
     align-items: center;
     background-color: white;
     min-height: 650px;
@@ -18,7 +18,7 @@ body {
   }
   .largeContainer {
     border-radius: 25px;
-    margin: 5vh;
+    margin: 5px;
   }
   .smallContainer {
     border-radius: 10px;
@@ -101,9 +101,8 @@ body {
     justify-content: space-evenly;
     background-color: #6022A6;
     color: white;
-    padding: 1vh;
+    padding: 5px;
     border-radius: 10px;
-    height: 250px;
     text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
     box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
     transition-duration: 500ms;
