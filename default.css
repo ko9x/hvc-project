@@ -92,8 +92,7 @@ body {
     outline-color: none;
   }
   .resultSectionContainer {
-    min-height: 250px;
-    display: none;
+    width: 60%;
   }
   .resultSection {
     display: flex;

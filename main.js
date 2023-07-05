@@ -60,14 +60,10 @@ function handleLayout() {
   }
 }
 
-// Add and remove the resultSectionContainer class to hide a weird flash when the page loads
-resultSectionContainer.classList.remove("resultSectionContainer");
-formSection.setAttribute("hidden", true);
-
 //  Event Listeners *******************************************************
 //NOTE: There is no listener for when the user clicks the little "x" in the search field. Javascript clears that field on its own
 
-// Toggle between the search view and the form
+// Toggle between the search view and the form view
 toggleView.addEventListener("click", () => {
   if(formSection.checkVisibility()) {
     formSection.setAttribute("hidden", "true");
@@ -374,11 +370,13 @@ function clearResults() {
 
 // Show the results section
 function showResultsSection() {
+  resultSectionContainer.removeAttribute("hidden", true);
   resultSection.classList.remove("resultSectionHide");
 }
 
 // Hide the results section
 function hideResultsSection() {
+  resultSectionContainer.setAttribute("hidden", true);
   resultSection.classList.add("resultSectionHide");
 }
 
