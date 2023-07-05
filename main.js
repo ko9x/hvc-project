@@ -9,6 +9,7 @@ const disclaimerText = document.getElementById("disclaimerText");
 const searchSection = document.getElementById("searchSection");
 const toggleView = document.getElementById("toggleView");
 const formSection = document.getElementById("formSection");
+const informationSection = document.getElementById("informationSection");
 const searchItem = document.getElementById("searchItem");
 const itemForm = document.getElementById("itemForm");
 const addRanges = document.querySelectorAll(".rangeButton");
@@ -67,20 +68,10 @@ function handleLayout() {
 toggleView.addEventListener("click", () => {
   if(formSection.checkVisibility()) {
     formSection.setAttribute("hidden", "true");
-    titleSection.removeAttribute("hidden");
-    titleSection.classList.add("titleSection");
-    searchSection.removeAttribute("hidden");
-    searchSection.classList.add("searchSection");
-    resultSection.removeAttribute("hidden");
-    resultSection.classList.add("resultSection");
+    informationSection.removeAttribute('style', 'display:none');
   } else {
+    informationSection.setAttribute('style', 'display:none');
     formSection.removeAttribute("hidden");
-    titleSection.classList.remove("titleSection");
-    titleSection.setAttribute("hidden", "true");
-    searchSection.classList.remove("searchSection");
-    searchSection.setAttribute("hidden", "true");
-    resultSection.classList.remove("resultSection");
-    resultSection.setAttribute("hidden", "true");
   }
 });
 
