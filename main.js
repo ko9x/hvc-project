@@ -168,7 +168,9 @@ itemForm.addEventListener("submit", (e) => {
   }
 
   // Call the function in the APIService that sends the itemObj to the backend
-  storeItem(itemObj);
+  // storeItem(itemObj);
+
+  console.log('itemObj', itemObj); //@DEBUG
 });
 
 function addExceptionField(exceptionField) {
@@ -322,7 +324,7 @@ function addRangeField(rangeField) {
   rangeTextArea.classList.add("rangeTextArea");
   rangeTextArea.setAttribute("name", "display");
   rangeTextArea.setAttribute("id", "display");
-  rangeTextArea.setAttribute("placeholder", "Enter the description the user will see for this serial nubmer range. For example: High Voltage Cable Part# 2222222 (if unavailable order 3333333)");
+  rangeTextArea.setAttribute("placeholder", "Enter the description the user will see for this serial nubmer range.");
 
   // Append the rangeTextArea and label to the rangeTextAreaContainer
   rangeTextAreaContainer.appendChild(rangeTextAreaLabel);
