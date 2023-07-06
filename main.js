@@ -457,26 +457,31 @@ async function findConfiguration(capitalizedSearchItem) {
         }
       }
     itemsArray.forEach((item) => {
-        item.exceptions.find((exception) => {
-          if (config.code === exception.name && capitalizedSearchItem === exception.serial) {
-            console.log('found it', exception); //@DEBUG
-            if(capitalizedSearchItem.charAt(4) === "T") {
-              displayResults(
-                config.id,
-                item.name,
-                exception.details,
-                "with Tablet"
-                );
-            } else {
-              displayResults(
-                config.id,
-                item.name,
-                exception.details,
-                "with Control Panel (non-tablet)"
-                );
-            }
-          }
-        })
+      // Check each item for an exception that matches the serial number the user entered
+      let exceptionFound = item.exceptions.find((exception) => {
+        if (config.code === exception.name && capitalizedSearchItem === exception.serial) {
+          return exception;
+        }
+      })
+      // If a matching exception was found display the result
+      if(exceptionFound) {
+        if(capitalizedSearchItem.charAt(4) === "T") {
+          displayResults(
+            config.id,
+            item.name,
+            exceptionFound.details,
+            "with Tablet"
+            );
+        } else {
+          displayResults(
+            config.id,
+            item.name,
+            exceptionFound.details,
+            "with Control Panel (non-tablet)"
+            );
+        }
+      } else {
+        // If there were no exceptions for the item that match the entered serial number, find the breakPoint
         item.ranges.find((range) => {
           if (config.code === range.name && checkItemId !== range.item_id) {
             checkItemId = range.item_id;
@@ -489,6 +494,7 @@ async function findConfiguration(capitalizedSearchItem) {
             );
           }
         });
+      }
       });
     } else {
       // if the serial doesn't match any of the 9 codes display an error
