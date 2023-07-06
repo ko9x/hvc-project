@@ -457,6 +457,26 @@ async function findConfiguration(capitalizedSearchItem) {
         }
       }
     itemsArray.forEach((item) => {
+        item.exceptions.find((exception) => {
+          if (config.code === exception.name && capitalizedSearchItem === exception.serial) {
+            console.log('found it', exception); //@DEBUG
+            if(capitalizedSearchItem.charAt(4) === "T") {
+              displayResults(
+                config.id,
+                item.name,
+                exception.details,
+                "with Tablet"
+                );
+            } else {
+              displayResults(
+                config.id,
+                item.name,
+                exception.details,
+                "with Control Panel (non-tablet)"
+                );
+            }
+          }
+        })
         item.ranges.find((range) => {
           if (config.code === range.name && checkItemId !== range.item_id) {
             checkItemId = range.item_id;
