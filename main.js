@@ -124,8 +124,8 @@ itemForm.addEventListener("submit", (e) => {
   let itemInfo = document.getElementById('itemInfo').getElementsByTagName('input');
 
   itemObj = {
-    name: itemInfo[0].value,
-    creator: itemInfo[1].value,
+    name: itemInfo[1].value,
+    creator: itemInfo[0].value,
   }
 
   // Loop through each element that has a name which matches one of the config codes
@@ -139,8 +139,8 @@ itemForm.addEventListener("submit", (e) => {
 
       let rangeObj = {
         name: config.code,
-        starts_at: rangeInputs[0].value,
-        ends_at: rangeInputs[1].value,
+        starts_at: rangeInputs[0].value.toUpperCase(),
+        ends_at: rangeInputs[1].value.toUpperCase(),
         display: rangeTextarea
       };
       ranges.push(rangeObj);
@@ -153,7 +153,7 @@ itemForm.addEventListener("submit", (e) => {
       for (var exceptionInput of exceptionInputs) {
         let exceptionObj = {
           name: config.code,
-          serial: exceptionInput.value,
+          serial: exceptionInput.value.toUpperCase(),
           details: rangeTextarea
         }
         exceptions.push(exceptionObj);
