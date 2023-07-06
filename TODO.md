@@ -1,12 +1,13 @@
 ### Notes to add
 
 ### Current Focus
-* Add functionality to pass the object created in the submit function to the api service
-* Figure out how we are going to store the item and retrieve the id so it can be used as the item_id for the ranges and exceptions arrays that subsequently need to be stored.
-    * Can we do all that on the server side?
-        * Have a toast or something that says if the item was stored successfully or not
-            * Decide how much info should be given if the item was not stored successfully
-* Add the rest of the configurations to the form 
+* Add all the validation to the form and test it before we use it to add a complete item
+* (done) Add the rest of the configurations to the form
+* (done) Add functionality to pass the object created in the submit function to the api service
+* (done) Create the async function that will send the object as JSON to the database to be stored
+    * (done but I haven't test the success alert yet) Add an alert that says if the item was stored successfully or not
+        * Clear the form if the item was stored successfully
+        * Decide how much info should be given if the item was not stored successfully
 
 ### Validation Section
 * Validation needs to be done on the front end and the backend
@@ -32,16 +33,18 @@
 
 
 ### What to do later
-* Fix styling for mobile
+* Add validation to the backend
+* Add functionality for designating a config as N/A
+    * For example, if the cut-in is in regard to Flat Panels, you would N/A all the I.I. configs
 * Continue testing to make sure the correct information is provided
 * Cleanup all the unused logic
+* Force the user to fill out F9XXXX0001 ends_at First
+    * Then F9XXTX99999 Starts_at etc...
+        * Just make all the other fields greyed out
 * If advanced is not selected the "Display" information from F9XXXX00001 should be automatically added to the F2XXXX00001 Display
-    * Force the user to fill out F9XXXX0001 ends at First
-        * Then F9XXTX99999 Starts at
-            * Just make all the other fields greyed out
-* * Make the placeholder text in the textareas less busy
 * Add an advanced button that will reveal the exceptions buttons and the Add intermediate serial number range buttons
     * Just to make the form a little cleaner
+* Fix styling for mobile
 
 
 ### What to do much later
