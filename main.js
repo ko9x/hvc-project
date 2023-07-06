@@ -34,6 +34,7 @@ const height =
 const isSmall = width < 750;
 
 // This section runs every time the app loads
+informationSection.setAttribute('style', 'display:none');
 hideResultsSection();
 handleLayout();
 
