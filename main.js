@@ -1,5 +1,5 @@
 import { items, configs } from "./dummyDatabase.js";
-import { getItems } from "./APIService.js";
+import { getItems, storeItem } from "./APIService.js";
 
 const container = document.getElementById("container");
 const titleText = document.getElementById("titleText");
@@ -142,7 +142,7 @@ itemForm.addEventListener("submit", (e) => {
         name: config.code,
         starts_at: rangeInputs[0].value.toUpperCase(),
         ends_at: rangeInputs[1].value.toUpperCase(),
-        display: rangeTextarea
+        details: rangeTextarea
       };
       ranges.push(rangeObj);
 
@@ -166,9 +166,9 @@ itemForm.addEventListener("submit", (e) => {
     ranges: ranges,
     exceptions: exceptions,
   }
-  console.log('itemObj', itemObj); //@DEBUG
-  console.log('ranges', ranges); //@DEBUG
-  console.log('exceptions', exceptions); //@DEBUG
+
+  // Call the function in the APIService that sends the itemObj to the backend
+  storeItem(itemObj);
 });
 
 function addExceptionField(exceptionField) {
