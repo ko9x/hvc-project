@@ -217,6 +217,16 @@ function addExceptionField(exceptionField) {
    removeExceptionButton.onclick = () => removeChildInstanceFromParentInstance(exceptionSection, exceptionInputContainer);
 }
 
+function findPatternByConfig(configChars) {
+  let myPattern;
+  configs.find((config) => {
+    if(config.code === configChars) {
+      myPattern = config.pattern;
+    }
+  });
+  return myPattern;
+}
+
 function removeChildInstanceFromParentInstance(parentInstance, childInstance) {
   parentInstance.removeChild(childInstance);
 }
@@ -231,6 +241,9 @@ function addRangeField(rangeField) {
 
   // We use this to match the id of the exceptionSection and button
   const rangeConfigChars = rangeField.substr(rangeField.length - 4);
+
+  // Find the correct regex pattern to validate the inputs
+  const configPattern = findPatternByConfig(rangeConfigChars);
 
   // Then we create the element to add to the DOM
   // Create rangeContainer
@@ -269,6 +282,10 @@ function addRangeField(rangeField) {
   rangeInputStartsAt.setAttribute("type", "text");
   rangeInputStartsAt.setAttribute("name", "starts_at");
   rangeInputStartsAt.setAttribute("id", "starts_at");
+  rangeInputStartsAt.setAttribute("placeholder", rangeConfigChars);
+  rangeInputStartsAt.setAttribute("pattern", configPattern);
+  rangeInputStartsAt.setAttribute("title", `Valid serial starting with ${rangeConfigChars}`);
+
 
   // Append the rangeInputStart elements 
   rangeInputStart.appendChild(rangeInputStartsAtLabel);
@@ -288,6 +305,9 @@ function addRangeField(rangeField) {
   rangeInputEndsAt.setAttribute("type", "text");
   rangeInputEndsAt.setAttribute("name", "ends_at");
   rangeInputEndsAt.setAttribute("id", "ends_at");
+  rangeInputEndsAt.setAttribute("placeholder", rangeConfigChars);
+  rangeInputEndsAt.setAttribute("pattern", configPattern);
+  rangeInputEndsAt.setAttribute("title", `Valid serial starting with ${rangeConfigChars}`);
 
   // Append the rangeInputEnd elements
   rangeInputEnd.appendChild(rangeInputEndsAtLabel);
