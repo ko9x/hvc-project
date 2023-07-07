@@ -11,18 +11,22 @@
 
 ### Validation Section
 * Validation needs to be done on the front end and the backend
-* Form cannot be submitted if any section is blank
+* MAKE SURE ALL INPUTS HAVE THE REQUIRED ATTRIBUTE
 
 # Item validation
-* Make sure creator is a 9 digit number
+* (done) Make sure creator is a 9 digit number
 
 # Range validation
-* Make sure each value is 11 characters long
-* Make sure each section starts with the correct configuration
+* (done for F9XX) Make sure each value is 11 characters long
+* (done for F9XX) Make sure each section starts with the correct configuration
     * i.e. F9XXXX00001 - F9XXTX00100 is allowed F9XXTX00101 - F2XXTX99999 is not
         * Maybe hard code the prefix for each section F9XXXX00001 - F9XX"only this part is fillable"
 * Make sure the entire range of serial numbers is covered
-    * i.e. F9XXXX00001 - F9XXTX00100 should be followed by F9XXTX00101 - F9XXTX99999 unless it's an advance form
+    * We need to compare each ends_at with the next starts_at
+        * We would split the serial in 2 pieces, config and sequence
+            * Make sure the config is exaclty the same and that the sequence is one digit higher
+                * We need to account for a cut-in that may happen at the introduction of tablets
+                    * So we would need to allow a config not to match if it is TX and the sequence is 00001
 
 # Exception validation
 * Make sure each value is 11 characters long
@@ -37,6 +41,9 @@
 * Add functionality for designating a config as N/A
     * For example, if the cut-in is in regard to Flat Panels, you would N/A all the I.I. configs
 * Continue testing to make sure the correct information is provided
+* Fix the styling of the form so there are 2 range containers per row on desktop
+    * Leave it at 1 per row for mobile
+        * Maybe just don't allow the form to be accessed on mobile?
 * Cleanup all the unused logic
 * Force the user to fill out F9XXXX0001 ends_at First
     * Then F9XXTX99999 Starts_at etc...
