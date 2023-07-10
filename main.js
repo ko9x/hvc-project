@@ -409,7 +409,7 @@ function addRangeField(rangeField) {
   rangeTextArea.classList.add("rangeTextArea");
   rangeTextArea.setAttribute("name", "display");
   rangeTextArea.setAttribute("id", "display");
-  rangeTextArea.setAttribute("placeholder", "Enter the description the user will see for this serial nubmer range.");
+  rangeTextArea.setAttribute("placeholder", "Enter the description the user will see for this serial number range.");
 
   // Append the rangeTextArea and label to the rangeTextAreaContainer
   rangeTextAreaContainer.appendChild(rangeTextAreaLabel);
