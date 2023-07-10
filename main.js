@@ -138,8 +138,6 @@ itemForm.addEventListener("submit", (e) => {
       var rangeInputs = range.getElementsByTagName('input');
       var rangeTextarea = range.getElementsByTagName('textarea')[0].value;
 
-      checkRangeCoverage(config.code, rangeInputs);
-
       let rangeObj = {
         name: config.code,
         starts_at: rangeInputs[0].value.toUpperCase(),
@@ -163,6 +161,8 @@ itemForm.addEventListener("submit", (e) => {
       }
     }
   }
+  // Check to see if the user covered the entire serial range
+  checkRangeCoverage(ranges);
   itemObj = {
     ...itemObj,
     ranges: ranges,
@@ -180,19 +180,14 @@ let counter = 0;
 let compareSerial;
 let errorArray = [];
 
-function checkRangeCoverage(config, rangeInput) {
-  if(config !== configCheck) {
-    configCheck = config;
-    counter = 1;
-  } else {
-    counter++;
-  }
-  if(counter === 1) {
-    compareSerial = rangeInput[1].value;
-  }
-  if(counter > 1) {
-    checkSerialPlusOne(compareSerial, rangeInput[0].value, config);
-    compareSerial = rangeInput[1].value;
+function checkRangeCoverage(ranges) {
+  // Loop through all the ranges
+  for (let i = 0; i < ranges.length - 1; i++) {
+    // Only compare the ranges if they are the same config
+    if(ranges[i].name === ranges[i + 1].name) {
+      let config = ranges[i].name
+      checkSerialPlusOne(ranges[i].ends_at, ranges[(i + 1)].starts_at, config)
+    }
   }
 }
 
@@ -202,8 +197,10 @@ function checkSerialPlusOne(controlString, checkString, config) {
   let controlSequence = controlString.slice(-5);
   let checkSequence = checkString.slice(-5);
 
+  // Compare each pair of serial strings
   if(controlConfig === checkConfig) {
     if(Number(checkSequence) === Number(controlSequence) + 1) {
+      // If there are no gaps, remove the config from the error array and the error styling if necessary
       let showErrorBorder = document.getElementById(`rangesContainer${config}`);
       let showErrorText = document.getElementById(`errorText${config}`);
       showErrorBorder.classList.remove("showError");
@@ -214,10 +211,12 @@ function checkSerialPlusOne(controlString, checkString, config) {
       }
       return;
     } else {
+      // If the sequence has a gap add the error styling
       let showErrorBorder = document.getElementById(`rangesContainer${config}`);
       let showErrorText = document.getElementById(`errorText${config}`);
       showErrorBorder.classList.add("showError");
       showErrorText.removeAttribute('hidden');
+      // Add the config to the errorArray unless it is already in there
       if(errorArray.includes(config)) {
         return;
       } else {
@@ -225,10 +224,12 @@ function checkSerialPlusOne(controlString, checkString, config) {
       }
     }
   } else {
+    // If the configuration doesn't match add the error styling
     let showErrorBorder = document.getElementById(`rangesContainer${config}`);
     let showErrorText = document.getElementById(`errorText${config}`);
     showErrorBorder.classList.add("showError");
     showErrorText.removeAttribute('hidden');
+    // Add the config to the errorArray unless it is already in there
     if(errorArray.includes(config)) {
       return;
     } else {
