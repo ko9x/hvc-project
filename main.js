@@ -178,6 +178,7 @@ itemForm.addEventListener("submit", (e) => {
 let configCheck;
 let counter = 0;
 let compareSerial;
+let errorArray = [];
 
 function checkRangeCoverage(config, rangeInput) {
   if(config !== configCheck) {
@@ -207,18 +208,32 @@ function checkSerialPlusOne(controlString, checkString, config) {
       let showErrorText = document.getElementById(`errorText${config}`);
       showErrorBorder.classList.remove("showError");
       showErrorText.setAttribute('hidden', 'true');
+      let configError = errorArray.indexOf(config);
+      if(configError !== -1) {
+        errorArray.splice(0,1);
+      }
       return;
     } else {
       let showErrorBorder = document.getElementById(`rangesContainer${config}`);
       let showErrorText = document.getElementById(`errorText${config}`);
       showErrorBorder.classList.add("showError");
       showErrorText.removeAttribute('hidden');
+      if(errorArray.includes(config)) {
+        return;
+      } else {
+        errorArray.push(config);
+      }
     }
   } else {
     let showErrorBorder = document.getElementById(`rangesContainer${config}`);
     let showErrorText = document.getElementById(`errorText${config}`);
     showErrorBorder.classList.add("showError");
     showErrorText.removeAttribute('hidden');
+    if(errorArray.includes(config)) {
+      return;
+    } else {
+      errorArray.push(config);
+    }
   }
 }
 
