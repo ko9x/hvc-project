@@ -40,29 +40,36 @@
           </div>
         </div>
       </div>
-      <div class="formSection" id="formSection" >
+      <div class="formSection" id="formSection">
         <form id="itemForm">
-            <div class="rangeContainer" id="itemInfo">
-              <div class="rangeInputContainer">
-                <div class="rangeInput">
-                  <label class="rangeLabel">Creator SSO</label>
-                  <input type="number" id="creator" name="creator" pattern=".{9,}" />
-                </div>
-              </div>
-              <div class="rangeInputContainer">
-                <div class="rangeInput">
-                  <label class="rangeLabel">Item name</label>
-                  <input
-                    type="text"
-                    id="itemName"
-                    name="itemName"
-                    placeholder="example eBox size:"
-                    style="text-transform: none;"
-                  />
-                </div>
+          <div class="rangeContainer" id="itemInfo">
+            <div class="rangeInputContainer">
+              <div class="rangeInput">
+                <label class="rangeLabel">Creator SSO</label>
+                <input
+                  type="number"
+                  id="creator"
+                  name="creator"
+                  pattern=".{9,}"
+                />
               </div>
             </div>
+            <div class="rangeInputContainer">
+              <div class="rangeInput">
+                <label class="rangeLabel">Item name</label>
+                <input
+                  type="text"
+                  id="itemName"
+                  name="itemName"
+                  placeholder="example eBox size:"
+                  style="text-transform: none"
+                />
+              </div>
+            </div>
+          </div>
+          <div id="rangesContainerF9XX">
             <h3>F9XX</h3>
+            <p hidden id="errorTextF9XX">Please ensure the entire serial range is covered</p>
             <div class="rangeContainer" name="F9XX">
               <div class="rangeInputContainer">
                 <div class="rangeInput">
@@ -76,12 +83,13 @@
                 </div>
                 <div class="rangeInput">
                   <label class="rangeLabel">Ends at</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     id="ends_at"
                     placeholder="F9XX"
                     pattern="[Ff]9[Xx][Xx][TtXx][Xx][0-9]{5}"
-                    title="Valid serial starting with F9XX">
+                    title="Valid serial starting with F9XX"
+                  />
                 </div>
               </div>
               <div id="exceptionSectionStartF9XX"></div>
@@ -107,13 +115,13 @@
               <div class="rangeInputContainer">
                 <div class="rangeInput">
                   <label class="rangeLabel">Starts at</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     id="starts_at"
                     placeholder="F9XX"
                     pattern="[Ff]9[Xx][Xx][TtXx][Xx][0-9]{5}"
                     title="Valid serial starting with F9XX"
-                     />
+                  />
                 </div>
                 <div class="rangeInput">
                   <label class="rangeLabel">Ends at</label>
@@ -151,7 +159,8 @@
             >
               Add an intermediate serial number range for F9XX
             </button>
-            <!-- <h3>F2XX</h3>
+          </div>
+          <!-- <h3>F2XX</h3>
             <div class="rangeContainer" name="F2XX">
               <div class="rangeInputContainer">
                 <div class="rangeInput">

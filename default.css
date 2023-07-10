@@ -207,3 +207,6 @@ body {
     margin-top: 5px;
     margin-left: 5px;
   }
+  .showError {
+    border: solid red 1px;
+  }

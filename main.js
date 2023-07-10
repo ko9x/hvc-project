@@ -203,14 +203,22 @@ function checkSerialPlusOne(controlString, checkString, config) {
 
   if(controlConfig === checkConfig) {
     if(Number(checkSequence) === Number(controlSequence) + 1) {
+      let showErrorBorder = document.getElementById(`rangesContainer${config}`);
+      let showErrorText = document.getElementById(`errorText${config}`);
+      showErrorBorder.classList.remove("showError");
+      showErrorText.setAttribute('hidden', 'true');
       return;
     } else {
-      // We need to update this to highlight the correct section in red and display the error to the user
-      console.log('There is a gap in the sequence for', config ); //@DEBUG
+      let showErrorBorder = document.getElementById(`rangesContainer${config}`);
+      let showErrorText = document.getElementById(`errorText${config}`);
+      showErrorBorder.classList.add("showError");
+      showErrorText.removeAttribute('hidden');
     }
   } else {
-    // We need to update this to highlight the correct section in red and display the error to the user
-    console.log(`There is an issue with configuration ${config}. Please ensure the entire serial range is covered`, ); //@DEBUG
+    let showErrorBorder = document.getElementById(`rangesContainer${config}`);
+    let showErrorText = document.getElementById(`errorText${config}`);
+    showErrorBorder.classList.add("showError");
+    showErrorText.removeAttribute('hidden');
   }
 }
 
