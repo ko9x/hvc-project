@@ -8,6 +8,9 @@
     * (done but I haven't test the success alert yet) Add an alert that says if the item was stored successfully or not
         * Clear the form if the item was stored successfully
         * Decide how much info should be given if the item was not stored successfully
+* Style the form
+    * The error border really exposes how poorly the layout is working
+    * We need to make sure intermediate ranges look good and make sense to the user
 
 ### Validation Section
 * Validation needs to be done on the front end and the backend
