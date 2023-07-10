@@ -21,7 +21,7 @@
 * (done for F9XX) Make sure each section starts with the correct configuration
     * i.e. F9XXXX00001 - F9XXTX00100 is allowed F9XXTX00101 - F2XXTX99999 is not
         * Maybe hard code the prefix for each section F9XXXX00001 - F9XX"only this part is fillable"
-* Make sure the entire range of serial numbers is covered
+* (done) Make sure the entire range of serial numbers is covered
     * We need to compare each ends_at with the next starts_at
         * We would split the serial in 2 pieces, config and sequence
             * Make sure the config is exaclty the same and that the sequence is one digit higher
