@@ -138,6 +138,8 @@ itemForm.addEventListener("submit", (e) => {
       var rangeInputs = range.getElementsByTagName('input');
       var rangeTextarea = range.getElementsByTagName('textarea')[0].value;
 
+      checkRangeCoverage(config.code, rangeInputs);
+
       let rangeObj = {
         name: config.code,
         starts_at: rangeInputs[0].value.toUpperCase(),
@@ -172,6 +174,45 @@ itemForm.addEventListener("submit", (e) => {
 
   console.log('itemObj', itemObj); //@DEBUG
 });
+
+let configCheck;
+let counter = 0;
+let compareSerial;
+
+function checkRangeCoverage(config, rangeInput) {
+  if(config !== configCheck) {
+    configCheck = config;
+    counter = 1;
+  } else {
+    counter++;
+  }
+  if(counter === 1) {
+    compareSerial = rangeInput[1].value;
+  }
+  if(counter > 1) {
+    checkSerialPlusOne(compareSerial, rangeInput[0].value, config);
+    compareSerial = rangeInput[1].value;
+  }
+}
+
+function checkSerialPlusOne(controlString, checkString, config) {
+  let controlConfig = controlString.slice(0, 6).toUpperCase();
+  let checkConfig = checkString.slice(0, 6).toUpperCase();
+  let controlSequence = controlString.slice(-5);
+  let checkSequence = checkString.slice(-5);
+
+  if(controlConfig === checkConfig) {
+    if(Number(checkSequence) === Number(controlSequence) + 1) {
+      return;
+    } else {
+      // We need to update this to highlight the correct section in red and display the error to the user
+      console.log('There is a gap in the sequence for', config ); //@DEBUG
+    }
+  } else {
+    // We need to update this to highlight the correct section in red and display the error to the user
+    console.log(`There is an issue with configuration ${config}. Please ensure the entire serial range is covered`, ); //@DEBUG
+  }
+}
 
 function addExceptionField(exceptionField) {
   const exceptionSection = document.getElementById(`${exceptionField}`);
