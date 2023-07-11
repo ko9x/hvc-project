@@ -416,7 +416,7 @@ function addRangeField(rangeField) {
   rangeTextAreaContainer.appendChild(rangeTextArea);
 
   // Append the containers to the rangeContainer
-  rangeContainer.appendChild(rangeRemoveButtonContainer);
+  rangeInputContainer.appendChild(rangeRemoveButtonContainer);
   rangeContainer.appendChild(rangeInputContainer);
   rangeContainer.appendChild(exceptionSection);
   rangeContainer.appendChild(exceptionButton);
