@@ -150,6 +150,13 @@ body {
   .divider {
     width: 100%;
   }
+  .sectionTitle {
+    display: flex;
+  }
+  .sectionTitleButton {
+    align-self: center;
+    border: none;
+  }
   .rangesContainer {
     display: flex;
     flex-wrap: wrap;
@@ -219,4 +226,7 @@ body {
     border-radius: 10px;
     padding: 10px;
     margin: 5px;
+  }
+  .hideElement {
+    display: none;
   }

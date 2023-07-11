@@ -12,6 +12,7 @@ const formSection = document.getElementById("formSection");
 const informationSection = document.getElementById("informationSection");
 const searchItem = document.getElementById("searchItem");
 const itemForm = document.getElementById("itemForm");
+const collapseSection = document.querySelectorAll(".sectionTitleButton");
 const addRanges = document.querySelectorAll(".rangeButton");
 const addExceptions = document.querySelectorAll(".exceptionButton");
 const executeSearch = document.getElementById("executeSearch");
@@ -99,6 +100,13 @@ executeSearch.addEventListener("click", async () => {
     flashSearchButton();
   }
 });
+
+// Loop through all the sectionTitles and assign the click listener that will run the collapseSection function
+for(var i = 0; i < collapseSection.length; i++) {
+  collapseSection[i].addEventListener("click", (e) => {
+    userCollapseSection(e.target.id);
+  });
+};
 
 // Loop through all the addRange buttons and assign the click listener that will run the addRangeField function
 for(var i = 0; i < addRanges.length; i++) {
@@ -235,6 +243,19 @@ function checkSerialPlusOne(controlString, checkString, config) {
     } else {
       errorArray.push(config);
     }
+  }
+}
+
+function userCollapseSection(sectionId) {
+  const configChars = sectionId.substr(sectionId.length - 4);
+  const collapseSection = document.getElementById(`rangesContainer${configChars}`);
+  const collapseText = document.getElementById(sectionId);
+  if(collapseSection.classList.contains('hideElement')) {
+    collapseSection.classList.remove('hideElement');
+    collapseText.innerHTML = '(click here to hide section)';
+  } else {
+    collapseSection.classList.add('hideElement');
+    collapseText.innerHTML = '(click here to show section)';
   }
 }
 
