@@ -12,6 +12,9 @@ body {
     background-color: white;
     min-height: 650px;
   }
+  .formSection {
+    width: 90%
+  }
   .viewButton {
     align-self: flex-end;
   }
@@ -149,13 +152,12 @@ body {
   }
   .rangesContainer {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
   }
   .rangeContainer {
-    flex: 1;
     border: solid #282c34 1px;
     margin: 5px;
-    width: 100%;
+    width: 48%;
     border-radius: 10px;
   }
   .removeRangeCardButtonContainer {
