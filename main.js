@@ -201,7 +201,7 @@ function checkSerialPlusOne(controlString, checkString, config) {
   if(controlConfig === checkConfig) {
     if(Number(checkSequence) === Number(controlSequence) + 1) {
       // If there are no gaps, remove the config from the error array and the error styling if necessary
-      let showErrorBorder = document.getElementById(`rangesContainer${config}`);
+      let showErrorBorder = document.getElementById(`sectionContainer${config}`);
       let showErrorText = document.getElementById(`errorText${config}`);
       showErrorBorder.classList.remove("showError");
       showErrorText.setAttribute('hidden', 'true');
@@ -212,7 +212,7 @@ function checkSerialPlusOne(controlString, checkString, config) {
       return;
     } else {
       // If the sequence has a gap add the error styling
-      let showErrorBorder = document.getElementById(`rangesContainer${config}`);
+      let showErrorBorder = document.getElementById(`sectionContainer${config}`);
       let showErrorText = document.getElementById(`errorText${config}`);
       showErrorBorder.classList.add("showError");
       showErrorText.removeAttribute('hidden');
@@ -225,7 +225,7 @@ function checkSerialPlusOne(controlString, checkString, config) {
     }
   } else {
     // If the configuration doesn't match add the error styling
-    let showErrorBorder = document.getElementById(`rangesContainer${config}`);
+    let showErrorBorder = document.getElementById(`sectionContainer${config}`);
     let showErrorText = document.getElementById(`errorText${config}`);
     showErrorBorder.classList.add("showError");
     showErrorText.removeAttribute('hidden');

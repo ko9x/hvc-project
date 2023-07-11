@@ -147,9 +147,14 @@ body {
   .divider {
     width: 100%;
   }
+  .rangesContainer {
+    display: flex;
+    justify-content: space-around;
+  }
   .rangeContainer {
+    flex: 1;
     border: solid #282c34 1px;
-    margin-bottom: 5px;
+    margin: 5px;
     width: 100%;
     border-radius: 10px;
   }

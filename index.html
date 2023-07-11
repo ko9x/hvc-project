@@ -67,90 +67,92 @@
               </div>
             </div>
           </div>
-          <div id="rangesContainerF9XX">
+          <div id="sectionContainerF9XX">
             <h3>F9XX</h3>
             <p hidden id="errorTextF9XX">
               Please ensure the entire serial range is covered
             </p>
-            <div class="rangeContainer" name="F9XX">
-              <div class="rangeInputContainer">
-                <div class="rangeInput">
-                  <label class="rangeLabel">Starts at</label>
-                  <input
-                    type="text"
-                    id="starts_at"
-                    readonly
-                    value="F9XXXX00001"
-                  />
+            <div class="rangesContainer">
+              <div class="rangeContainer" name="F9XX">
+                <div class="rangeInputContainer">
+                  <div class="rangeInput">
+                    <label class="rangeLabel">Starts at</label>
+                    <input
+                      type="text"
+                      id="starts_at"
+                      readonly
+                      value="F9XXXX00001"
+                    />
+                  </div>
+                  <div class="rangeInput">
+                    <label class="rangeLabel">Ends at</label>
+                    <input
+                      type="text"
+                      id="ends_at"
+                      placeholder="F9XX"
+                      pattern="[Ff]9[Xx][Xx][TtXx][Xx][0-9]{5}"
+                      title="Valid serial starting with F9XX"
+                    />
+                  </div>
                 </div>
-                <div class="rangeInput">
-                  <label class="rangeLabel">Ends at</label>
-                  <input
-                    type="text"
-                    id="ends_at"
-                    placeholder="F9XX"
-                    pattern="[Ff]9[Xx][Xx][TtXx][Xx][0-9]{5}"
-                    title="Valid serial starting with F9XX"
-                  />
-                </div>
-              </div>
-              <div id="exceptionSectionStartF9XX"></div>
-              <button
-                class="exceptionButton"
-                id="exceptionSectionStartF9XX"
-                title="An exception is a serial number outside the set range where the Display description still applies"
-                type="button"
-              >
-                Add exception
-              </button>
-              <div class="rangeTextAreaContainer">
-                <label class="rangeLabel">Display</label>
-                <textarea
-                  placeholder="Enter the description the user will see for this serial number range."
-                  class="rangeTextArea"
-                  id="display"
-                ></textarea>
-              </div>
-            </div>
-            <div id="rangeSectionF9XX"></div>
-            <div class="rangeContainer" name="F9XX">
-              <div class="rangeInputContainer">
-                <div class="rangeInput">
-                  <label class="rangeLabel">Starts at</label>
-                  <input
-                    type="text"
-                    id="starts_at"
-                    placeholder="F9XX"
-                    pattern="[Ff]9[Xx][Xx][TtXx][Xx][0-9]{5}"
-                    title="Valid serial starting with F9XX"
-                  />
-                </div>
-                <div class="rangeInput">
-                  <label class="rangeLabel">Ends at</label>
-                  <input
-                    type="text"
-                    id="ends_at"
-                    readonly
-                    value="F9XXTX99999"
-                  />
+                <div id="exceptionSectionStartF9XX"></div>
+                <button
+                  class="exceptionButton"
+                  id="exceptionSectionStartF9XX"
+                  title="An exception is a serial number outside the set range where the Display description still applies"
+                  type="button"
+                >
+                  Add exception
+                </button>
+                <div class="rangeTextAreaContainer">
+                  <label class="rangeLabel">Display</label>
+                  <textarea
+                    placeholder="Enter the description the user will see for this serial number range."
+                    class="rangeTextArea"
+                    id="display"
+                  ></textarea>
                 </div>
               </div>
-              <div id="exceptionSectionEndF9XX"></div>
-              <button
-                class="exceptionButton"
-                id="exceptionSectionEndF9XX"
-                title="An exception is a serial number outside the set range where the Display description still applies"
-                type="button"
-              >
-                Add exception
-              </button>
-              <div class="rangeTextAreaContainer">
-                <label class="rangeLabel">Display</label>
-                <textarea
-                  placeholder="Enter the description the user will see for this serial number range."
-                  class="rangeTextArea"
-                  id="display"
-                ></textarea>
+              <div id="rangeSectionF9XX"></div>
+              <div class="rangeContainer" name="F9XX">
+                <div class="rangeInputContainer">
+                  <div class="rangeInput">
+                    <label class="rangeLabel">Starts at</label>
+                    <input
+                      type="text"
+                      id="starts_at"
+                      placeholder="F9XX"
+                      pattern="[Ff]9[Xx][Xx][TtXx][Xx][0-9]{5}"
+                      title="Valid serial starting with F9XX"
+                    />
+                  </div>
+                  <div class="rangeInput">
+                    <label class="rangeLabel">Ends at</label>
+                    <input
+                      type="text"
+                      id="ends_at"
+                      readonly
+                      value="F9XXTX99999"
+                    />
+                  </div>
+                </div>
+                <div id="exceptionSectionEndF9XX"></div>
+                <button
+                  class="exceptionButton"
+                  id="exceptionSectionEndF9XX"
+                  title="An exception is a serial number outside the set range where the Display description still applies"
+                  type="button"
+                >
+                  Add exception
+                </button>
+                <div class="rangeTextAreaContainer">
+                  <label class="rangeLabel">Display</label>
+                  <textarea
+                    placeholder="Enter the description the user will see for this serial number range."
+                    class="rangeTextArea"
+                    id="display"
+                  ></textarea>
+                </div>
               </div>
             </div>
             <button
@@ -162,7 +164,7 @@
               Add an intermediate serial number range for F9XX
             </button>
           </div>
-          <div id="rangesContainerF2XX">
+          <div id="sectionContainerF2XX">
             <h3>F2XX</h3>
             <p hidden id="errorTextF2XX">
               Please ensure the entire serial range is covered
