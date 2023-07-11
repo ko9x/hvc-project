@@ -1,6 +1,7 @@
 ### Notes to add
 
 ### Current Focus
+* Test all the functionality before merging wideForm back into the sean branch
 * Add all the validation to the form and test it before we use it to add a complete item
 * (done) Add the rest of the configurations to the form
 * (done) Add functionality to pass the object created in the submit function to the api service
@@ -9,8 +10,10 @@
         * Clear the form if the item was stored successfully
         * Decide how much info should be given if the item was not stored successfully
 * Style the form
-    * The error border really exposes how poorly the layout is working
-    * We need to make sure intermediate ranges look good and make sense to the user
+    * (done) We need to make sure intermediate ranges look good and make sense to the user
+    * (done) Add the ability to collapse each section
+    * Add a button to validate each section individually
+        * Adds a green border or something
 
 ### Validation Section
 * Validation needs to be done on the front end and the backend
@@ -37,6 +40,8 @@
 * Make sure the exception has the correct config
     * Maybe hard code the prefix for each exception i.e. F9XX"only this part is fillable"
 * Make sure the exception is outside the range
+* Make sure if the exception input is showing it is required
+    * We don't want a blank exception being passed to the database
 
 
 ### What to do later
