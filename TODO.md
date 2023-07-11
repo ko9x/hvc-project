@@ -1,7 +1,6 @@
 ### Notes to add
 
 ### Current Focus
-* Test all the functionality before merging wideForm back into the sean branch
 * Add all the validation to the form and test it before we use it to add a complete item
 * (done) Add the rest of the configurations to the form
 * (done) Add functionality to pass the object created in the submit function to the api service
