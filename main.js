@@ -252,7 +252,7 @@ function userCollapseSection(sectionId) {
   const collapseText = document.getElementById(sectionId);
   if(collapseSection.classList.contains('hideElement')) {
     collapseSection.classList.remove('hideElement');
-    collapseText.innerHTML = '(click here to hide section)';
+    collapseText.innerHTML = '(click here to collapse section)';
   } else {
     collapseSection.classList.add('hideElement');
     collapseText.innerHTML = '(click here to show section)';
