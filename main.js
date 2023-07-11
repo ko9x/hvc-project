@@ -248,7 +248,7 @@ function addExceptionField(exceptionField) {
    // Create the exceptionInputLabel 
    var exceptionInputLabel = document.createElement("label");
    exceptionInputLabel.innerHTML = "Exception serial number";
-   exceptionInputLabel.classList.add("rangeLabel");
+   exceptionInputLabel.classList.add("inputAndButtonLabel");
 
   //  Create a container for the input and the remove button
   var inputAndButtonContainer = document.createElement("div");

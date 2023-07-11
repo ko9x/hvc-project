@@ -160,14 +160,11 @@ body {
   .removeRangeCardButton {
     height: 35px;
     width: 35px;
-    margin-left: 5px;
-    
+    margin: 5px;
   }
   .rangeInputContainer {
     display: flex;
-    width: 100%;
     margin: 10px;
-    padding: 10px;
   }
   .rangeInput {
     display: flex;
@@ -175,12 +172,17 @@ body {
     flex: 1;
     padding-bottom: 5px;
   }
+  .inputAndButtonLabel {
+    margin-left: 10px;
+    padding: 5px;
+  }
   .inputAndButton {
     display: flex;
     align-items: center;
+    margin-left: 10px;
   }
   .exceptionButton {
-    margin-left: 5px;
+    margin-left: 10px;
   }
   .removeExceptionButton {
     height: 42px;
@@ -200,7 +202,6 @@ body {
     padding: 5px;
   }
   .rangeButton {
-    margin-left: 5px;
   }
   .submitButton {
     margin-top: 5px;
@@ -209,4 +210,6 @@ body {
   .showError {
     border: solid red 2px;
     border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
   }
