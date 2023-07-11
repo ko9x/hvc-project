@@ -104,21 +104,21 @@ executeSearch.addEventListener("click", async () => {
 // Loop through all the sectionTitles and assign the click listener that will run the collapseSection function
 for(var i = 0; i < collapseSection.length; i++) {
   collapseSection[i].addEventListener("click", (e) => {
-    userCollapseSection(e.target.id);
+    userCollapseSection(e.target.value);
   });
 };
 
 // Loop through all the addRange buttons and assign the click listener that will run the addRangeField function
 for(var i = 0; i < addRanges.length; i++) {
   addRanges[i].addEventListener("click", (e) => {
-    addRangeField(e.target.id);
+    addRangeField(e.target.value);
   });
 };
 
 // Loop through all the addException buttons and assign the click listener that will run the addExceptionField function
 for(var i = 0; i < addExceptions.length; i++) {
   addExceptions[i].addEventListener("click", (e) => {
-    addExceptionField(e.target.id);
+    addExceptionField(e.target.value);
   });
 };
 
@@ -246,15 +246,19 @@ function checkSerialPlusOne(controlString, checkString, config) {
   }
 }
 
+// Hide the rangeSection and the addRange button when the user clicks "collapse section"
 function userCollapseSection(sectionId) {
   const configChars = sectionId.substr(sectionId.length - 4);
   const collapseSection = document.getElementById(`rangesContainer${configChars}`);
+  const addRangeButton = document.getElementById(`addRangeButton${configChars}`);
   const collapseText = document.getElementById(sectionId);
   if(collapseSection.classList.contains('hideElement')) {
     collapseSection.classList.remove('hideElement');
+    addRangeButton.classList.remove('hideElement');
     collapseText.innerHTML = '(click here to collapse section)';
   } else {
     collapseSection.classList.add('hideElement');
+    addRangeButton.classList.add('hideElement');
     collapseText.innerHTML = '(click here to show section)';
   }
 }
