@@ -171,19 +171,28 @@ itemForm.addEventListener("submit", (e) => {
   }
   // Check to see if the user covered the entire serial range
   checkRangeCoverage(ranges);
-  itemObj = {
-    ...itemObj,
-    ranges: ranges,
-    exceptions: exceptions,
+
+  // If checkRangeCoverage stored no errors in the errorArray, check for exception duplicates
+  if(errorArray.length < 1) {
+    checkExceptionsForDuplicates(exceptions)
   }
 
-  // Call the function in the APIService that sends the itemObj to the backend
-  // storeItem(itemObj);
+  // If checkRangeCoverage and checkExceptionsForDuplicates stored no errors in the errorArray, build the object
+  if(errorArray.length < 1) {
+    itemObj = {
+      ...itemObj,
+      ranges: ranges,
+      exceptions: exceptions,
+    }
+  }
 
-  console.log('itemObj', itemObj); //@DEBUG
+  // If the errorArray is empty and the itemObj is not empty, call the APIService function that sends the itemObj to the backend
+  if(errorArray.length < 1 && (Object.getOwnPropertyNames(itemObj).length > 0)) {
+    console.log('send the object', itemObj ); //@DEBUG
+    // storeItem(itemObj);
+  }
 });
 
-let configCheck;
 let counter = 0;
 let compareSerial;
 let errorArray = [];
@@ -199,50 +208,65 @@ function checkRangeCoverage(ranges) {
   }
 }
 
+function checkExceptionsForDuplicates(exceptionArr) {
+  const serialNumbers = exceptionArr.map((exception) => exception.serial);
+  let hasDuplicate = serialNumbers.some((val, i) => {
+    if(serialNumbers.indexOf(val) !== i) {
+      let config = val.slice(0, 4).toUpperCase();
+      addErrorState(config, 'Please remove any duplicated exception serial numbers')
+    } else {
+      let config = val.slice(0, 4).toUpperCase();
+      removeErrorState(config);
+    }
+  });
+  return hasDuplicate;
+}
+
+function addErrorState(config, errorText) {
+  let showErrorBorder = document.getElementById(`sectionContainer${config}`);
+  let showErrorText = document.getElementById(`errorText${config}`);
+  showErrorBorder.classList.add("showError");
+  showErrorText.removeAttribute('hidden');
+  showErrorText.innerHTML = errorText;
+  // Add the config to the errorArray unless it is already in there
+  if(errorArray.includes(config)) {
+    return;
+  } else {
+    errorArray.push(config);
+  }
+}
+function removeErrorState(config) {
+  let showErrorBorder = document.getElementById(`sectionContainer${config}`);
+      let showErrorText = document.getElementById(`errorText${config}`);
+      showErrorBorder.classList.remove("showError");
+      showErrorText.setAttribute('hidden', 'true');
+      let configError = errorArray.indexOf(config);
+      // Remove the config from the errorArray
+      if(configError !== -1) {
+        errorArray.splice(0,1);
+      }
+      return;
+}
+
 function checkSerialPlusOne(controlString, checkString, config) {
   let controlConfig = controlString.slice(0, 6).toUpperCase();
   let checkConfig = checkString.slice(0, 6).toUpperCase();
   let controlSequence = controlString.slice(-5);
   let checkSequence = checkString.slice(-5);
+  let errorText = 'Please ensure entire serial range is covered';
 
   // Compare each pair of serial strings
   if(controlConfig === checkConfig) {
     if(Number(checkSequence) === Number(controlSequence) + 1) {
-      // If there are no gaps, remove the config from the error array and the error styling if necessary
-      let showErrorBorder = document.getElementById(`sectionContainer${config}`);
-      let showErrorText = document.getElementById(`errorText${config}`);
-      showErrorBorder.classList.remove("showError");
-      showErrorText.setAttribute('hidden', 'true');
-      let configError = errorArray.indexOf(config);
-      if(configError !== -1) {
-        errorArray.splice(0,1);
-      }
-      return;
+      // If there are no gaps in the sequence remove the error state if necessary
+      removeErrorState(config);
     } else {
-      // If the sequence has a gap add the error styling
-      let showErrorBorder = document.getElementById(`sectionContainer${config}`);
-      let showErrorText = document.getElementById(`errorText${config}`);
-      showErrorBorder.classList.add("showError");
-      showErrorText.removeAttribute('hidden');
-      // Add the config to the errorArray unless it is already in there
-      if(errorArray.includes(config)) {
-        return;
-      } else {
-        errorArray.push(config);
-      }
+      // If there are gaps in the sequence add the error state
+      addErrorState(config, errorText);
     }
   } else {
-    // If the configuration doesn't match add the error styling
-    let showErrorBorder = document.getElementById(`sectionContainer${config}`);
-    let showErrorText = document.getElementById(`errorText${config}`);
-    showErrorBorder.classList.add("showError");
-    showErrorText.removeAttribute('hidden');
-    // Add the config to the errorArray unless it is already in there
-    if(errorArray.includes(config)) {
-      return;
-    } else {
-      errorArray.push(config);
-    }
+    // If the configuration doesn't match add the error state
+    addErrorState(config, errorText);
   }
 }
 
