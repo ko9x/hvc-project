@@ -104,7 +104,7 @@ executeSearch.addEventListener("click", async () => {
 // Loop through all the sectionTitles and assign the click listener that will run the collapseSection function
 for(var i = 0; i < collapseSection.length; i++) {
   collapseSection[i].addEventListener("click", (e) => {
-    userCollapseSection(e.target.value);
+    userCollapseSection(e.target.id);
   });
 };
 
@@ -255,11 +255,11 @@ function userCollapseSection(sectionId) {
   if(collapseSection.classList.contains('hideElement')) {
     collapseSection.classList.remove('hideElement');
     addRangeButton.classList.remove('hideElement');
-    collapseText.innerHTML = '(click here to collapse section)';
+    collapseText.innerHTML = '(collapse section)';
   } else {
     collapseSection.classList.add('hideElement');
     addRangeButton.classList.add('hideElement');
-    collapseText.innerHTML = '(click here to show section)';
+    collapseText.innerHTML = '(show section)';
   }
 }
 
