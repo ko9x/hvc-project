@@ -1,49 +1,49 @@
 ### Notes to add
 
 ### Current Focus
-* Add all the validation to the form and test it before we use it to add a complete item
+* Add all the config sections to the form and test it
+    * We need to edit all the patterns for each different config
+* Clear the form if the item was stored successfully
+    * Test the success alert
+* Decide how much info should be given if the item was not stored successfully
+* (done) Add all the validation to the F9XX section of the form and test it
 * (done) Add the rest of the configurations to the form
 * (done) Add functionality to pass the object created in the submit function to the api service
 * (done) Create the async function that will send the object as JSON to the database to be stored
-    * (done but I haven't test the success alert yet) Add an alert that says if the item was stored successfully or not
-        * Clear the form if the item was stored successfully
-        * Decide how much info should be given if the item was not stored successfully
-* Style the form
+* (done) Style the form
     * (done) We need to make sure intermediate ranges look good and make sense to the user
     * (done) Add the ability to collapse each section
-    * Add a button to validate each section individually
-        * Adds a green border or something
 
 ### Validation Section
 * Validation needs to be done on the front end and the backend
-* MAKE SURE ALL INPUTS HAVE THE REQUIRED ATTRIBUTE
+* MAKE SURE ALL INPUTS HAVE THE "REQUIRED" ATTRIBUTE
 
 # Item validation
 * (done) Make sure creator is a 9 digit number
 
 # Range validation
+* Make sure the checkRangeCoverage checks for the min length of the array once all the sections are added to the form
+    * 9 configurations and each configuration should have a minimum of 2 ranges for a total min length of 18
 * (done for F9XX) Make sure each value is 11 characters long
-* (done for F9XX) Make sure each section starts with the correct configuration
-    * i.e. F9XXXX00001 - F9XXTX00100 is allowed F9XXTX00101 - F2XXTX99999 is not
-        * Maybe hard code the prefix for each section F9XXXX00001 - F9XX"only this part is fillable"
+* (done for F9XX) Make sure each section starts with the correct configurationis fillable"
 * (done) Make sure the entire range of serial numbers is covered
     * We need to compare each ends_at with the next starts_at
         * We would split the serial in 2 pieces, config and sequence
             * Make sure the config is exaclty the same and that the sequence is one digit higher
-                * We need to account for a cut-in that may happen at the introduction of tablets
-                    * So we would need to allow a config not to match if it is TX and the sequence is 00001
+                
 
 # Exception validation
-* Make sure each value is 11 characters long
-* Make sure there are no duplicate exceptions
-* Make sure the exception has the correct config
-    * Maybe hard code the prefix for each exception i.e. F9XX"only this part is fillable"
-* Make sure the exception is outside the range
-* Make sure if the exception input is showing it is required
-    * We don't want a blank exception being passed to the database
-
+* (done) Make sure each value is 11 characters long
+* (done) Make sure there are no duplicate exceptions
+* (done) Make sure the exception has the correct config
+* (done) Make sure if the exception input is showing it is required
 
 ### What to do later
+* We may need to account for a cut-in that happens at the introduction of tablets
+    * So we would need to allow a config not to match if it is TX and the sequence is 00001
+* Add a button to validate each section individually
+        * Adds a green border or something
+* Make sure if an exception is added, it is ouside of the range specified for that description
 * Add validation to the backend
 * Add functionality for designating a config as N/A
     * For example, if the cut-in is in regard to Flat Panels, you would N/A all the I.I. configs
