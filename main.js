@@ -266,6 +266,12 @@ function userCollapseSection(sectionId) {
 function addExceptionField(exceptionField) {
   const exceptionSection = document.getElementById(`${exceptionField}`);
 
+   // Find the config of the section this exception is being added to
+   const configChars = exceptionField.substr(exceptionField.length - 4);
+
+   // Find the correct regex pattern to validate the input
+   const configPattern = findPatternByConfig(configChars);
+
    // Create exceptionInputContainer which is the div that wraps the input and the label
    var exceptionInputContainer = document.createElement("div");
    exceptionInputContainer.classList.add("rangeInput");
@@ -284,6 +290,9 @@ function addExceptionField(exceptionField) {
    exceptionInput.setAttribute("type", "text");
    exceptionInput.setAttribute("name", "exception");
    exceptionInput.setAttribute("id", "exception");
+   exceptionInput.setAttribute("placeholder", configChars);
+   exceptionInput.setAttribute("pattern", configPattern);
+   exceptionInput.setAttribute("title", `Valid serial starting with ${configChars}`);
    exceptionInput.classList.add("exception");
 
   //  Create the removeExceptionButton
