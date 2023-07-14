@@ -1,232 +1,236 @@
 body {
-    background-color: #282c34;
-    font-family: 'Source Sans Pro', sans-serif;
-    color: #6022A6;
-    text-shadow: 1px 2px 2px rgba(0,0,0,0.3);
-  }
-  .container {
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
-    align-items: center;
-    background-color: white;
-    min-height: 650px;
-  }
-  .formSection {
-    width: 90%;
-  }
-  .viewButton {
-    align-self: flex-end;
-  }
-  .largeContainer {
-    border-radius: 25px;
-    margin: 5px;
-  }
-  .smallContainer {
-    border-radius: 10px;
-  }
-  .informationSection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  .titleSection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    padding-top: 10px;
-    background-color: #6022A6;
-    color: white;
-    border-radius: 10px;
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.6)
-  }
-  .largeTitleSection {
-    text-shadow: 3px 3px 3px black;
-  }
-  .searchSection {
-    display: flex;
-    margin-top: 20px;
-    align-items: center;
-    justify-content: space-around;
-    background-color: #6022A6;
-    height: 80px;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-  }
-  .largeSearchSection {
-    width: 480px;
-  }
-  input {
-    width: 72%;
-    height: 38px;
-    border-radius: 25px;
-    padding-left: 15px;
-    font-size: large;
-    text-transform: uppercase;
-  }
-  input::placeholder {
-    padding-left: 2px;
-    font-size: medium;
-    text-transform: capitalize;
-  }
-  input:focus {
-    outline-style: solid;
-    outline-width: 2px;
-    outline-color: #6022A6;
-  }
-  input::-webkit-search-cancel-button {
-    cursor: pointer;
-    padding-right: 5px;
-  }
-  button {
-    color: #6022A6;
-    background-color: white;
-    height: 38px;
-    border-radius: 25px;
-  }
-  button:hover {
-    cursor: pointer;
-    outline-style: solid;
-    outline-width: 2px;
-    outline-color: white;
-  }
-  .smallButton:hover {
-    outline-style: none;
-    outline-width: 0;
-    outline-color: none;
-  }
-  .resultSectionContainer {
-    width: 60%;
-  }
-  .resultSection {
-    display: flex;
-    margin-top: 20px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: #6022A6;
-    color: white;
-    padding: 5px;
-    border-radius: 10px;
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-  }
-  .largeResultSection {
-    text-shadow: 3px 3px 3px black;
-    min-width: 480px;
-  }
-  .resultSectionHide {
-    background-color: white;
-    text-shadow: none;
-    box-shadow: none;
-    min-height: 60px;
-  }
-  .topResultItemContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .topResultContent {
-    padding-bottom: 10px;
-    border-bottom: 2px solid white;
-  }
-  .bottomResultContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  .bottomResultItemContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 80%;
-  }
-  .divider {
-    width: 100%;
-  }
-  .sectionTitle {
-    display: flex;
-  }
-  .sectionTitleButton {
-    align-self: center;
-    border: none;
-  }
-  .rangesContainer {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .rangeContainer {
-    border: solid #282c34 1px;
-    margin: 5px;
-    width: 48%;
-    border-radius: 10px;
-  }
-  .removeRangeCardButtonContainer {
-    display: flex;
-    justify-content: end;
-  }
-  .removeRangeCardButton {
-    height: 35px;
-    width: 35px;
-    margin: 5px;
-  }
-  .rangeInputContainer {
-    display: flex;
-    margin: 10px;
-  }
-  .rangeInput {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding-bottom: 5px;
-  }
-  .inputAndButtonLabel {
-    margin-left: 10px;
-    padding: 5px;
-  }
-  .inputAndButton {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-  }
-  .exceptionButton {
-    margin-left: 10px;
-  }
-  .removeExceptionButton {
-    height: 42px;
-    margin-left: 5px;
-  }
-  .rangeTextAreaContainer {
-    display: flex;
-    flex-direction: column;
-  }
-  .rangeTextArea {
-    height: 50px;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 5px;
-  }
-  .rangeLabel {
-    padding: 5px;
-  }
-  .rangeButton {
-  }
-  .submitButton {
-    margin-top: 5px;
-    margin-left: 5px;
-  }
-  .showError {
-    border: solid red 2px;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 5px;
-  }
-  .hideElement {
-    display: none;
-  }
+  background-color: #282c34;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #6022a6;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  align-items: center;
+  background-color: white;
+  min-height: 650px;
+}
+.formSection {
+  width: 90%;
+}
+.viewButton {
+  align-self: flex-end;
+}
+.largeContainer {
+  border-radius: 25px;
+  margin: 5px;
+}
+.smallContainer {
+  border-radius: 10px;
+}
+.informationSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  padding-top: 10px;
+  background-color: #6022a6;
+  color: white;
+  border-radius: 10px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+.largeTitleSection {
+  text-shadow: 3px 3px 3px black;
+}
+.searchSection {
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #6022a6;
+  height: 80px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+.largeSearchSection {
+  width: 480px;
+}
+input {
+  width: 72%;
+  height: 38px;
+  border-radius: 25px;
+  padding-left: 15px;
+  font-size: large;
+  text-transform: uppercase;
+}
+input::placeholder {
+  padding-left: 2px;
+  font-size: medium;
+  text-transform: capitalize;
+}
+input:focus {
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: #6022a6;
+}
+input::-webkit-search-cancel-button {
+  cursor: pointer;
+  padding-right: 5px;
+}
+button {
+  color: #6022a6;
+  background-color: white;
+  height: 38px;
+  border-radius: 25px;
+}
+button:hover {
+  cursor: pointer;
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: white;
+}
+.smallButton:hover {
+  outline-style: none;
+  outline-width: 0;
+  outline-color: none;
+}
+.resultSectionContainer {
+  width: 60%;
+}
+.resultSection {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #6022a6;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+.largeResultSection {
+  text-shadow: 3px 3px 3px black;
+  min-width: 480px;
+}
+.resultSectionHide {
+  background-color: white;
+  text-shadow: none;
+  box-shadow: none;
+  min-height: 60px;
+}
+.topResultItemContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.topResultContent {
+  padding-bottom: 10px;
+  border-bottom: 2px solid white;
+}
+.bottomResultContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.bottomResultItemContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+}
+.divider {
+  width: 100%;
+}
+.sectionTitle {
+  display: flex;
+}
+.sectionTitleButton {
+  align-self: center;
+  border: none;
+}
+.rangesContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+.rangeContainer {
+  border: solid #282c34 1px;
+  margin: 5px;
+  width: 48%;
+  border-radius: 10px;
+}
+.removeRangeCardButtonContainer {
+  display: flex;
+  justify-content: end;
+}
+.removeRangeCardButton {
+  height: 35px;
+  width: 35px;
+  margin: 5px;
+}
+.rangeInputContainer {
+  display: flex;
+  margin: 10px;
+}
+.rangeInput {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-bottom: 5px;
+}
+.inputAndButtonLabel {
+  margin-left: 10px;
+  padding: 5px;
+}
+.inputAndButton {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+.exceptionButton {
+  margin-left: 10px;
+}
+.removeExceptionButton {
+  height: 42px;
+  margin-left: 5px;
+}
+.rangeTextAreaContainer {
+  display: flex;
+  flex-direction: column;
+}
+.rangeTextArea {
+  height: 50px;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+}
+.rangeLabel {
+  padding: 5px;
+}
+.rangeButton {
+}
+.submitButton {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.showError {
+  border: solid red 2px;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
+}
+.hideElement {
+  display: none;
+}
