@@ -47,10 +47,12 @@
               <div class="rangeInput">
                 <label class="rangeLabel">Creator SSO</label>
                 <input
-                  type="number"
+                  type="text"
                   id="creator"
                   name="creator"
-                  pattern=".{9,}"
+                  pattern="[0-9]{9}"
+                  title="Please enter a valid SSO"
+                  required
                 />
               </div>
             </div>
@@ -61,8 +63,10 @@
                   type="text"
                   id="itemName"
                   name="itemName"
+                  minlength="8"
                   placeholder="example eBox size:"
                   style="text-transform: none"
+                  required
                 />
               </div>
             </div>
@@ -89,6 +93,7 @@
                       id="starts_at"
                       readonly
                       value="F9XXXX00001"
+                      required
                     />
                   </div>
                   <div class="rangeInput">
@@ -99,6 +104,7 @@
                       placeholder="F9XX"
                       pattern="[Ff]9[Xx][Xx][TtXx][Xx][0-9]{5}"
                       title="Valid serial starting with F9XX"
+                      required
                     />
                   </div>
                 </div>
@@ -112,11 +118,13 @@
                   Add exception
                 </button>
                 <div class="rangeTextAreaContainer">
-                  <label class="rangeLabel">Display</label>
+                  <label class="rangeLabel">Description for specified serial range</label>
                   <textarea
-                    placeholder="Enter the description the user will see for this serial number range."
+                    placeholder="Example: Full size eBox (non-mini)"
                     class="rangeTextArea"
                     id="display"
+                    minlength="7"
+                    required
                   ></textarea>
                 </div>
               </div>
@@ -130,6 +138,7 @@
                       placeholder="F9XX"
                       pattern="[Ff]9[Xx][Xx][TtXx][Xx][0-9]{5}"
                       title="Valid serial starting with F9XX"
+                      required
                     />
                   </div>
                   <div class="rangeInput">
@@ -139,6 +148,7 @@
                       id="ends_at"
                       readonly
                       value="F9XXTX99999"
+                      required
                     />
                   </div>
                 </div>
@@ -152,11 +162,13 @@
                   Add exception
                 </button>
                 <div class="rangeTextAreaContainer">
-                  <label class="rangeLabel">Display</label>
+                  <label class="rangeLabel">Description for specified serial range</label>
                   <textarea
-                    placeholder="Enter the description the user will see for this serial number range."
+                    placeholder="Example: Mini eBox"
                     class="rangeTextArea"
                     id="display"
+                    minlength="7"
+                    required
                   ></textarea>
                 </div>
               </div>

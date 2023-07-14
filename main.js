@@ -316,6 +316,7 @@ function addExceptionField(exceptionField) {
    exceptionInput.setAttribute("id", "exception");
    exceptionInput.setAttribute("placeholder", configChars);
    exceptionInput.setAttribute("pattern", configPattern);
+   exceptionInput.setAttribute("required", true);
    exceptionInput.setAttribute("title", `Valid serial starting with ${configChars}`);
    exceptionInput.classList.add("exception");
 
@@ -406,6 +407,7 @@ function addRangeField(rangeField) {
   rangeInputStartsAt.setAttribute("name", "starts_at");
   rangeInputStartsAt.setAttribute("id", "starts_at");
   rangeInputStartsAt.setAttribute("placeholder", rangeConfigChars);
+  rangeInputStartsAt.setAttribute("required", true);
   rangeInputStartsAt.setAttribute("pattern", configPattern);
   rangeInputStartsAt.setAttribute("title", `Valid serial starting with ${rangeConfigChars}`);
 
@@ -429,6 +431,7 @@ function addRangeField(rangeField) {
   rangeInputEndsAt.setAttribute("name", "ends_at");
   rangeInputEndsAt.setAttribute("id", "ends_at");
   rangeInputEndsAt.setAttribute("placeholder", rangeConfigChars);
+  rangeInputEndsAt.setAttribute("required", true);
   rangeInputEndsAt.setAttribute("pattern", configPattern);
   rangeInputEndsAt.setAttribute("title", `Valid serial starting with ${rangeConfigChars}`);
 
@@ -467,6 +470,8 @@ function addRangeField(rangeField) {
   rangeTextArea.classList.add("rangeTextArea");
   rangeTextArea.setAttribute("name", "display");
   rangeTextArea.setAttribute("id", "display");
+  rangeTextArea.setAttribute("required", true);
+  rangeTextArea.setAttribute("minlength", "7");
   rangeTextArea.setAttribute("placeholder", "Enter the description the user will see for this serial number range.");
 
   // Append the rangeTextArea and label to the rangeTextAreaContainer
