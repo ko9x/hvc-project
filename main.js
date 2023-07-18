@@ -255,6 +255,13 @@ function checkSerialPlusOne(controlString, checkString, config) {
   let checkSequence = checkString.slice(-5);
   let errorText = 'Please ensure entire serial range is covered';
 
+  // Check if the range break happens at the introduction of the tablet. If so, let the range pass validation.
+  if((controlString.charAt(4) === "X") && (controlSequence === "99999")) {
+    if ((checkString.charAt(4) === "T") && checkSequence === "00001" ) {
+      return removeErrorState(config);
+    }
+  }
+
   // Compare each pair of serial strings
   if(controlConfig === checkConfig) {
     if(Number(checkSequence) === Number(controlSequence) + 1) {
