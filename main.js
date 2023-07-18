@@ -189,7 +189,7 @@ itemForm.addEventListener("submit", (e) => {
   // If the errorArray is empty and the itemObj is not empty, call the APIService function that sends the itemObj to the backend
   if(errorArray.length < 1 && (Object.getOwnPropertyNames(itemObj).length > 0)) {
     console.log('send the object', itemObj ); //@DEBUG
-    // storeItem(itemObj);
+    storeItem(itemObj);
   }
 });
 
