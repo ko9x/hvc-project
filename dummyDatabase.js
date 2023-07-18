@@ -6,8 +6,8 @@ export const configs = [
   { id: 5, code: "FSXX", description: 'Super C 9" Image Intensifier', pattern: '[Ff][Ss][Xx][Xx][TtXx][Xx][0-9]{5}'},
   { id: 6, code: "FAHX", description: "Super C 21cm Flat Panel Display", pattern: '[Ff][Aa][Hh][Xx][TtXx][Xx][0-9]{5}'},
   { id: 7, code: "FBHX", description: "Super C 31cm Flat Panel Display", pattern: '[Ff][Bb][Hh][Xx][TtXx][Xx][0-9]{5}'},
-  { id: 8, code: "FAMH", description: "Motorized C 21cm Flat Panel Display", pattern: '[Ff][Aa][Mm][Xx][TtXx][Xx][0-9]{5}'},
-  { id: 9, code: "FBMH", description: "Motorized C 31cm Flat Panel Display", pattern: '[Ff][Bb][Mm][Xx][TtXx][Xx][0-9]{5}'},
+  { id: 8, code: "FAMH", description: "Motorized C 21cm Flat Panel Display", pattern: '[Ff][Aa][Mm][Hh][TtXx][Xx][0-9]{5}'},
+  { id: 9, code: "FBMH", description: "Motorized C 31cm Flat Panel Display", pattern: '[Ff][Bb][Mm][Hh][TtXx][Xx][0-9]{5}'},
 ];
 
 // We can get rid of this later but it is nice to have as a reference while we are building the form and stuff
