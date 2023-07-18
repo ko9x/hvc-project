@@ -189,7 +189,7 @@ itemForm.addEventListener("submit", (e) => {
   // If the errorArray is empty and the itemObj is not empty, call the APIService function that sends the itemObj to the backend
   if(errorArray.length < 1 && (Object.getOwnPropertyNames(itemObj).length > 0)) {
     console.log('send the object', itemObj ); //@DEBUG
-    storeItem(itemObj);
+    // storeItem(itemObj);
   }
 });
 
@@ -197,12 +197,43 @@ let counter = 0;
 let compareSerial;
 let errorArray = [];
 
+function verifyOverlapOrder(controlString, checkString, config) {
+  let controlConfig = controlString.slice(0, 6).toUpperCase();
+  let checkConfig = checkString.slice(0, 6).toUpperCase();
+  let controlSequence = controlString.slice(-5);
+  let checkSequence = checkString.slice(-5);
+  let errorText = 'Please ensure shorter overlap ranges are entered first';
+
+  if((controlConfig.charAt(4) === "X") && (checkConfig.charAt(4) === "T")) {
+    removeErrorState(config);
+    return true;
+  }
+  if((controlConfig.charAt(4) === "T") && (checkConfig.charAt(4) === "X")) {
+    return addErrorState(config, errorText);
+  }
+  if(controlConfig.charAt(4) === checkConfig.charAt(4)) {
+    if(controlSequence < checkSequence) {
+      removeErrorState(config);
+      return true;
+    }
+    if(controlSequence === checkSequence) {
+      return addErrorState(config, "Please remove any duplicated ranges");
+    }
+    if(controlSequence > checkSequence) {
+      return addErrorState(config, errorText);
+    }
+  }
+}
+
 function checkRangeCoverage(ranges) {
   // Loop through all the ranges
   for (let i = 0; i < ranges.length - 1; i++) {
     // Only compare the ranges if they are the same config
     if(ranges[i].name === ranges[i + 1].name) {
       let config = ranges[i].name
+      if(ranges[i].starts_at === ranges[i + 1].starts_at) {
+        console.log('overlap', config); //@DEBUG
+      }
       checkSerialPlusOne(ranges[i].ends_at, ranges[(i + 1)].starts_at, config)
     }
   }
