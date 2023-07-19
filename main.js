@@ -197,6 +197,7 @@ let counter = 0;
 let compareSerial;
 let errorArray = [];
 
+// This function was created for adding the High Voltage Cable item. No other items should have overlap
 function verifyOverlapOrder(controlString, checkString, config) {
   let controlConfig = controlString.slice(0, 6).toUpperCase();
   let checkConfig = checkString.slice(0, 6).toUpperCase();
@@ -209,7 +210,8 @@ function verifyOverlapOrder(controlString, checkString, config) {
     return true;
   }
   if((controlConfig.charAt(4) === "T") && (checkConfig.charAt(4) === "X")) {
-    return addErrorState(config, errorText);
+    addErrorState(config, errorText);
+    return false;
   }
   if(controlConfig.charAt(4) === checkConfig.charAt(4)) {
     if(controlSequence < checkSequence) {
@@ -217,22 +219,37 @@ function verifyOverlapOrder(controlString, checkString, config) {
       return true;
     }
     if(controlSequence === checkSequence) {
-      return addErrorState(config, "Please remove any duplicated ranges");
+      addErrorState(config, "Please remove any duplicated ranges");
+      return false;
     }
     if(controlSequence > checkSequence) {
-      return addErrorState(config, errorText);
+      addErrorState(config, errorText);
+      return false;
     }
   }
 }
 
 function checkRangeCoverage(ranges) {
+  let indexCounter = 1;
   // Loop through all the ranges
   for (let i = 0; i < ranges.length - 1; i++) {
+    // store the previous range index to be used in case of overlap
+    let previousRange = ranges[i - 1]
     // Only compare the ranges if they are the same config
     if(ranges[i].name === ranges[i + 1].name) {
       let config = ranges[i].name
+      // Check for overlap (This was only used to add the High Voltage Cable item. No other items should have overlap)
       if(ranges[i].starts_at === ranges[i + 1].starts_at) {
-        console.log('overlap', config); //@DEBUG
+        while(ranges[i + indexCounter] && ranges[i + indexCounter].name === config) {
+          // Verify the overlapping ranges are in the correct order
+          if(verifyOverlapOrder(ranges[i].ends_at, ranges[i + indexCounter].ends_at, config)) {
+            indexCounter++;
+          } else {
+            return;
+          }
+        }
+        // Find the last overLapping range to compare with the previousRange
+        return checkSerialPlusOne(previousRange.ends_at, ranges[i + (indexCounter - 1)].starts_at, config);
       }
       checkSerialPlusOne(ranges[i].ends_at, ranges[(i + 1)].starts_at, config)
     }
