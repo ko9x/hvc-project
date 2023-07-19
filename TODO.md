@@ -1,11 +1,14 @@
 ### Notes to add
 
 ### Current Focus
-* Add all the config sections to the form and test it
-    * We need to edit all the patterns for each different config
-* Clear the form if the item was stored successfully
-    * Test the success alert
+* Add functionality to remove an item 
+    * This should also remove all the ranges and exceptions associated with the item
+    * Create a view that displays all the items in the database
+        * Have a delete button next to each item
+            * Show an alert saying this action cannot be undone
 * Decide how much info should be given if the item was not stored successfully
+* Set the search view to be the default view
+* Show an error screen if the form view is accessed on mobile
 * (done) Add all the validation to the F9XX section of the form and test it
 * (done) Add the rest of the configurations to the form
 * (done) Add functionality to pass the object created in the submit function to the api service
@@ -16,14 +19,12 @@
 
 ### Validation Section
 * Validation needs to be done on the front end and the backend
-* MAKE SURE ALL INPUTS HAVE THE "REQUIRED" ATTRIBUTE
+* (done) MAKE SURE ALL INPUTS HAVE THE "REQUIRED" ATTRIBUTE
 
 # Item validation
 * (done) Make sure creator is a 9 digit number
 
 # Range validation
-* Make sure the checkRangeCoverage checks for the min length of the array once all the sections are added to the form
-    * 9 configurations and each configuration should have a minimum of 2 ranges for a total min length of 18
 * (done for F9XX) Make sure each value is 11 characters long
 * (done for F9XX) Make sure each section starts with the correct configurationis fillable"
 * (done) Make sure the entire range of serial numbers is covered
@@ -39,8 +40,6 @@
 * (done) Make sure if the exception input is showing it is required
 
 ### What to do later
-* We may need to account for a cut-in that happens at the introduction of tablets
-    * So we would need to allow a config not to match if it is TX and the sequence is 00001
 * Add a button to validate each section individually
         * Adds a green border or something
 * Make sure if an exception is added, it is ouside of the range specified for that description
@@ -92,3 +91,15 @@
 * Figure out how to create a database we can connect to
     * MySQL and Docker
 * Dynamically add sections to the results section based on how many items are returned from the search
+* Account for a cut-in that happens at the introduction of tablets
+    * So we would need to allow a config not to match if it is TX and the sequence is 00001
+* Just get overlap working for entering the HV Cable ranges. 
+    * There really shouldn't be overlap in a cut-in. The HV Cable is not really a cut-in
+        * We could also get rid of the intermediate serial range button I think
+            * We might need to check the other cut-ins and see if it would be needed
+* Add all the config sections to the form and test it
+    * We need to edit all the patterns for each different config
+* Clear the form if the item was stored successfully
+    * Test the success alert
+* Get the search section working on mobile
+    * Needed to use the MacBook IP instead of localhost in the API address
