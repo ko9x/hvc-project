@@ -108,12 +108,13 @@ for(var i = 0; i < collapseSection.length; i++) {
   });
 };
 
+// This was only used for adding the High Voltage Cable item
 // Loop through all the addRange buttons and assign the click listener that will run the addRangeField function
-for(var i = 0; i < addRanges.length; i++) {
-  addRanges[i].addEventListener("click", (e) => {
-    addRangeField(e.target.value);
-  });
-};
+// for(var i = 0; i < addRanges.length; i++) {
+//   addRanges[i].addEventListener("click", (e) => {
+//     addRangeField(e.target.value);
+//   });
+// };
 
 // Loop through all the addException buttons and assign the click listener that will run the addExceptionField function
 for(var i = 0; i < addExceptions.length; i++) {
@@ -329,15 +330,16 @@ function checkSerialPlusOne(controlString, checkString, config) {
 function userCollapseSection(sectionId) {
   const configChars = sectionId.substr(sectionId.length - 4);
   const collapseSection = document.getElementById(`rangesContainer${configChars}`);
-  const addRangeButton = document.getElementById(`addRangeButton${configChars}`);
+  // The add range button was only used for adding the High Voltage Cable item
+  // const addRangeButton = document.getElementById(`addRangeButton${configChars}`);
   const collapseText = document.getElementById(sectionId);
   if(collapseSection.classList.contains('hideElement')) {
     collapseSection.classList.remove('hideElement');
-    addRangeButton.classList.remove('hideElement');
+    // addRangeButton.classList.remove('hideElement');
     collapseText.innerHTML = '(collapse section)';
   } else {
     collapseSection.classList.add('hideElement');
-    addRangeButton.classList.add('hideElement');
+    // addRangeButton.classList.add('hideElement');
     collapseText.innerHTML = '(show section)';
   }
 }

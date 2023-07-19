@@ -220,6 +220,7 @@ button:hover {
   padding: 5px;
 }
 .rangeButton {
+  display: none;
 }
 .submitButton {
   margin-top: 5px;
