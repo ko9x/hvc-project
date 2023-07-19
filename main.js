@@ -35,6 +35,11 @@ const height =
 const isSmall = width < 750;
 
 // This section runs every time the app loads
+
+// Default to information view
+// formSection.setAttribute('style', 'display:none');
+
+// Default to form view
 informationSection.setAttribute('style', 'display:none');
 hideResultsSection();
 handleLayout();
