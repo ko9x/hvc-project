@@ -1,6 +1,9 @@
 ### Notes to add
 
 ### Current Focus
+* Continue working on predicting the next number the user is going to enter for the config range
+    * Add functionality to predict F2XXTX00001 if the user enters F2XXXX99999
+        * and vice versa
 * Add functionality to remove an item 
     * This should also remove all the ranges and exceptions associated with the item
     * Create a view that displays all the items in the database
