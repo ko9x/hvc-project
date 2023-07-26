@@ -418,6 +418,7 @@ function removeChildInstanceFromParentInstance(parentInstance, childInstance) {
 }
 
 // Add another range to the form that is styled correctly and in the correct location
+// This was only used to add the High Voltage Cable.
 function addRangeField(rangeField) {
   // The id from the button is passed in so we know where to add the new range field
   const rangeSection = document.getElementById(`${rangeField}`);
