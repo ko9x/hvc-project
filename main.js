@@ -17,6 +17,7 @@ const preCutInButton = document.querySelectorAll(".preCutInButton");
 const postCutInButton = document.querySelectorAll(".postCutInButton");
 const addRanges = document.querySelectorAll(".rangeButton");
 const addExceptions = document.querySelectorAll(".exceptionButton");
+const predictSerial = document.querySelectorAll(".rangesContainer");
 const executeSearch = document.getElementById("executeSearch");
 const resultSectionContainer = document.getElementById("resultSectionContainer");
 const resultSection = document.getElementById("resultSection");
@@ -124,6 +125,40 @@ postCutInButton[0].addEventListener("click", (e) => {
 for(var i = 0; i < collapseSection.length; i++) {
   collapseSection[i].addEventListener("click", (e) => {
     userCollapseSection(e.target.id);
+  });
+};
+
+for(var i = 0; i < predictSerial.length; i++) {
+  predictSerial[i].addEventListener("click", (e) => {
+    const focusedInput = e.target;
+    if(focusedInput.hasAttribute('readonly')) {
+      return;
+    }
+    const mainContainer = document.getElementById(`rangesContainer${focusedInput.placeholder}`)
+    if(focusedInput.id === "ends_at") {
+      const patternCheck = new RegExp(mainContainer.children[1].children[0].children[0].children[1].pattern);
+      const siblingSerial = mainContainer.children[1].children[0].children[0].children[1].value
+      console.log('pattern', patternCheck); //@DEBUG
+      if(patternCheck.test(siblingSerial)) {
+        const siblingNum = siblingSerial.slice(-5);
+        const siblingConfig = siblingSerial.substring(0, 6);
+        const newSequenceNum = Number(siblingNum) - 1
+        
+        console.log('it matches',siblingConfig, newSequenceNum.toString().padStart(5, "0")); //@DEBUG
+      } else {
+        return;
+      }
+      console.log('ends_at', mainContainer.children[1].children[0].children[0].children[1].value ); //@DEBUG
+    } else {
+      console.log('starts_at')
+    }
+    // const theParent = focusedInput.parentNode.parentNode.parentNode.parentNode;
+    // const theGrandParent = theParent.parentNode;
+    // console.log('predictSerial',e.target); //@DEBUG
+    // console.log('focusedInput',focusedInput); //@DEBUG
+    // console.log('theParent',theParent); //@DEBUG
+    // console.log('mainContainer',mainContainer); //@DEBUG
+    // userCollapseSection(e.target.id);
   });
 };
 
