@@ -13,6 +13,8 @@ const informationSection = document.getElementById("informationSection");
 const searchItem = document.getElementById("searchItem");
 const itemForm = document.getElementById("itemForm");
 const collapseSection = document.querySelectorAll(".sectionTitleButton");
+const preCutInButton = document.querySelectorAll(".preCutInButton");
+const postCutInButton = document.querySelectorAll(".postCutInButton");
 const addRanges = document.querySelectorAll(".rangeButton");
 const addExceptions = document.querySelectorAll(".exceptionButton");
 const executeSearch = document.getElementById("executeSearch");
@@ -104,6 +106,18 @@ executeSearch.addEventListener("click", async () => {
     validateSerialNumber();
     flashSearchButton();
   }
+});
+
+// Set the description for all the pre cut-in descriptions
+preCutInButton[0].addEventListener("click", (e) => {
+  // Pass the id from the button the user pressed and the controlPrefix "pre"
+  setCutInDescription(e.target.id, 'pre');
+});
+
+// Set the description for all the post cut-in descriptions
+postCutInButton[0].addEventListener("click", (e) => {
+  // Pass the id from the button the user pressed and the controlPrefix "post"
+  setCutInDescription(e.target.id, 'post');
 });
 
 // Loop through all the sectionTitles and assign the click listener that will run the collapseSection function
@@ -346,6 +360,20 @@ function userCollapseSection(sectionId) {
     collapseSection.classList.add('hideElement');
     // addRangeButton.classList.add('hideElement');
     collapseText.innerHTML = '(show section)';
+  }
+}
+
+// Copy the description from the textArea to the rest of the textAreas that match the controlPrefix
+function setCutInDescription(textAreaID, controlPrefix) {
+  // Find the element that contains the text the user wants to copy to the other textAreas
+  const userDescription = document.getElementById(`${controlPrefix}CutIn${textAreaID}`);
+  // Loop over all the text areas and only assign the userDescription to areas that match the controlPrefix
+  const allTextAreas = document.getElementsByClassName('rangeTextArea');
+  for(var i = 0; i < allTextAreas.length; i++) {
+    let checkPrefix = allTextAreas[i].id.substring(0, allTextAreas[i].id.length - 9);
+    if(checkPrefix === controlPrefix) {
+      allTextAreas[i].value = userDescription.value;
+    }
   }
 }
 
