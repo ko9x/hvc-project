@@ -12,6 +12,8 @@
     * Create a view that displays all the items in the database
         * Have a delete button next to each item
             * Show an alert saying this action cannot be undone
+* Add functionality to edit an item?
+    * Probably not the ranges but the item name, pre cut-in description and post cut-in description would be nice
 * Add a button for advanced mode
     * This will remove a lot of the safe guards that prevent the user from making an item that doesn't cover the whole range
         * Once we migrate this app to the server we may need to re-add all the cutins, including the HVC
