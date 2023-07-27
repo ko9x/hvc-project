@@ -17,7 +17,8 @@ const preCutInButton = document.querySelectorAll(".preCutInButton");
 const postCutInButton = document.querySelectorAll(".postCutInButton");
 const addRanges = document.querySelectorAll(".rangeButton");
 const addExceptions = document.querySelectorAll(".exceptionButton");
-const predictSerial = document.querySelectorAll(".rangesContainer");
+const watchEndsAt = document.querySelectorAll('.ends_at');
+const watchStartsAt = document.querySelectorAll('.starts_at');
 const executeSearch = document.getElementById("executeSearch");
 const resultSectionContainer = document.getElementById("resultSectionContainer");
 const resultSection = document.getElementById("resultSection");
@@ -100,6 +101,20 @@ searchItem.addEventListener("keypress", (e) => {
   }
 });
 
+// Loop over all the ends_at inputs and add an eventListener
+for(var i = 0; i < watchEndsAt.length; i++) {
+  watchEndsAt[i].addEventListener("keyup", (e) => {
+    findAndFillSiblingInput(e, 'end');
+  })
+};
+
+// Loop over all the starts_at inputs and add an eventListener
+for(var i = 0; i < watchStartsAt.length; i++) {
+  watchStartsAt[i].addEventListener("keyup", (e) => {
+    findAndFillSiblingInput(e, 'start');
+  })
+};
+
 // Check to see if the user clicked the "Search" button
 executeSearch.addEventListener("click", async () => {
   // Prevent user from doing another search while the resultsSection is already visible
@@ -125,40 +140,6 @@ postCutInButton[0].addEventListener("click", (e) => {
 for(var i = 0; i < collapseSection.length; i++) {
   collapseSection[i].addEventListener("click", (e) => {
     userCollapseSection(e.target.id);
-  });
-};
-
-for(var i = 0; i < predictSerial.length; i++) {
-  predictSerial[i].addEventListener("click", (e) => {
-    const focusedInput = e.target;
-    if(focusedInput.hasAttribute('readonly')) {
-      return;
-    }
-    const mainContainer = document.getElementById(`rangesContainer${focusedInput.placeholder}`)
-    if(focusedInput.id === "ends_at") {
-      const patternCheck = new RegExp(mainContainer.children[1].children[0].children[0].children[1].pattern);
-      const siblingSerial = mainContainer.children[1].children[0].children[0].children[1].value
-      console.log('pattern', patternCheck); //@DEBUG
-      if(patternCheck.test(siblingSerial)) {
-        const siblingNum = siblingSerial.slice(-5);
-        const siblingConfig = siblingSerial.substring(0, 6);
-        const newSequenceNum = Number(siblingNum) - 1
-        
-        console.log('it matches',siblingConfig, newSequenceNum.toString().padStart(5, "0")); //@DEBUG
-      } else {
-        return;
-      }
-      console.log('ends_at', mainContainer.children[1].children[0].children[0].children[1].value ); //@DEBUG
-    } else {
-      console.log('starts_at')
-    }
-    // const theParent = focusedInput.parentNode.parentNode.parentNode.parentNode;
-    // const theGrandParent = theParent.parentNode;
-    // console.log('predictSerial',e.target); //@DEBUG
-    // console.log('focusedInput',focusedInput); //@DEBUG
-    // console.log('theParent',theParent); //@DEBUG
-    // console.log('mainContainer',mainContainer); //@DEBUG
-    // userCollapseSection(e.target.id);
   });
 };
 
@@ -395,6 +376,24 @@ function userCollapseSection(sectionId) {
     collapseSection.classList.add('hideElement');
     // addRangeButton.classList.add('hideElement');
     collapseText.innerHTML = '(show section)';
+  }
+}
+
+// Once the user enters a valid serial number in an input, find the sibling and fill it with the start or end of the next range
+function findAndFillSiblingInput(e, atValue) {
+  const focusedInput = e.target;
+  const configPattern = new RegExp(focusedInput.pattern);
+  const mainContainer = document.getElementById(`rangesContainer${focusedInput.placeholder}`);
+  const siblingInput = mainContainer.children[atValue === 'end' ? 1 : 0].children[0].children[atValue === 'end' ? 0 : 1].children[1];
+  if(configPattern.test(focusedInput.value)) {
+    const config = focusedInput.value.substring(0, 6);
+    const sequenceNum = focusedInput.value.slice(-5);
+    const startSequenceNum = Number(sequenceNum) + 1;
+    const endSequenceNum = Number(sequenceNum) - 1;
+    const paddedSequenceNum = atValue === "end" ? startSequenceNum.toString().padStart(5, "0") : endSequenceNum.toString().padStart(5, "0");
+    siblingInput.value = `${config}${paddedSequenceNum}`
+  } else {
+    siblingInput.value = '';
   }
 }
 
