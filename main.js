@@ -382,10 +382,33 @@ function userCollapseSection(sectionId) {
 // Once the user enters a valid serial number in an input, find the sibling and fill it with the start or end of the next range
 function findAndFillSiblingInput(e, atValue) {
   const focusedInput = e.target;
+  // Don't allow a serial number ending in 00000 because they don't exist.
+  if(focusedInput.value.slice(-5) === "00000") {
+    return focusedInput.value = '';
+  }
   const configPattern = new RegExp(focusedInput.pattern);
   const mainContainer = document.getElementById(`rangesContainer${focusedInput.placeholder}`);
   const siblingInput = mainContainer.children[atValue === 'end' ? 1 : 0].children[0].children[atValue === 'end' ? 0 : 1].children[1];
+  // Verify the user entered a serial number that matches the pattern and is 11 characters long
   if(configPattern.test(focusedInput.value) && focusedInput.value.length === 11) {
+    // The pre cut-in range cannot end at TX99999
+    if(atValue === 'end' && (focusedInput.value.slice(-7).toUpperCase() === "TX99999")) {
+      return focusedInput.value = '';
+    }
+    // Non-table 99999 puts tablet 00001 in the sibling input
+    if(atValue === 'end' && (focusedInput.value.slice(-7).toUpperCase() === "XX99999")) {
+      const config = focusedInput.value.substring(0, 4);
+      return siblingInput.value = `${config}TX00001`;
+    }
+    // The post cut-in range cannot start at XX00001
+    if(atValue === 'start' && (focusedInput.value.slice(-7).toUpperCase() === "XX00001")) {
+      return focusedInput.value = '';
+    }
+    // Tablet 00001 puts non-tablet 99999 in the sibling input
+    if(atValue === 'start' && (focusedInput.value.slice(-7).toUpperCase() === "TX00001")) {
+      const config = focusedInput.value.substring(0, 4);
+      return siblingInput.value = `${config}XX99999`;
+    }
     const config = focusedInput.value.substring(0, 6);
     const sequenceNum = focusedInput.value.slice(-5);
     const startSequenceNum = Number(sequenceNum) + 1;
