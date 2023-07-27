@@ -385,7 +385,7 @@ function findAndFillSiblingInput(e, atValue) {
   const configPattern = new RegExp(focusedInput.pattern);
   const mainContainer = document.getElementById(`rangesContainer${focusedInput.placeholder}`);
   const siblingInput = mainContainer.children[atValue === 'end' ? 1 : 0].children[0].children[atValue === 'end' ? 0 : 1].children[1];
-  if(configPattern.test(focusedInput.value)) {
+  if(configPattern.test(focusedInput.value) && focusedInput.value.length === 11) {
     const config = focusedInput.value.substring(0, 6);
     const sequenceNum = focusedInput.value.slice(-5);
     const startSequenceNum = Number(sequenceNum) + 1;
