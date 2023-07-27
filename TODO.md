@@ -1,14 +1,21 @@
 ### Notes to add
 
 ### Current Focus
-* Continue working on predicting the next number the user is going to enter for the config range
-    * Add functionality to predict F2XXTX00001 if the user enters F2XXXX99999
-        * and vice versa
+* Move the app into the Laravel project (Should we make a new branch?)
+    * Then we can have routes
+        * A route that defaults all users to the information/search view
+            * This view will have a login button that routes you to a login form
+        * A protected route that takes an authorized user to the Add Item Form
+        * A protected route that takes an authorized user to the Remove Item View
 * Add functionality to remove an item 
     * This should also remove all the ranges and exceptions associated with the item
     * Create a view that displays all the items in the database
         * Have a delete button next to each item
             * Show an alert saying this action cannot be undone
+* Add a button for advanced mode
+    * This will remove a lot of the safe guards that prevent the user from making an item that doesn't cover the whole range
+        * Once we migrate this app to the server we may need to re-add all the cutins, including the HVC
+            * Or is there maybe a way to clone a database?
 * Decide how much info should be given if the item was not stored successfully
 * Set the search view to be the default view
 * Show an error screen if the form view is accessed on mobile
@@ -106,3 +113,7 @@
     * Test the success alert
 * Get the search section working on mobile
     * Needed to use the MacBook IP instead of localhost in the API address
+* (done) Make sure the findAndFill function cannot spit out a number longer than 5 digits (serial no longer than 11)
+* (done) findAndFill needs to know that XXXX99999 is followed by XXTX00001
+* (done) findAndFill needs to know that XXTX00001 is preceeded by XXXX99999
+* (done) findAndFill needs to know that XXXX00000 and XXTX00000 are not valid numbers
